@@ -46,9 +46,9 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 5, 
             type: 'a',
-            content: 'Incorporate “................................” into assessments',
-            colour: '#26a8df',
-            svgUrl: '../../public/images/illustrations/girl with finger up.svg',
+            content: 'Provide opportunities for formative feedback',
+            colour: '#Afd3f0',
+            svgUrl: '../../public/images/illustrations/tick box person.svg',
             isFront: true, 
         },
 
