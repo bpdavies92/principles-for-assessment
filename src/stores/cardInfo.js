@@ -5,25 +5,53 @@ export const useCardStore = defineStore('cardInfo', {
         cardInfo: [
         {
             id: 0, 
-            type: 'answer',
-            content: 'This is a test, and if it show it has worked',
-            colour: '#Afd3f0',
-            svgUrl: '../../public/images/illustrations/rocket.svg'
+            type: 'q',
+            content: 'The most important aspect of a course assessment strategy is “.......................................................”',
+            colour: '#26a8df',
+            svgUrl: '../../public/images/illustrations/guy with chess piece.svg',
+            isFront: true, 
         },
         {
             id: 1, 
-            type: 'answer',
-            content: 'Another one',
-            colour: '#Afd3f0',
-            svgUrl: '../../public/images/illustrations/rocket.svg'
+            type: 'q',
+            content: 'To ensure that assessments are reliable and fair “.........”',
+            colour: '#26a8df',
+            svgUrl: '../../public/images/illustrations/hand and earth.svg',
+            isFront: true, 
         },
         {
             id: 2, 
-            type: 'question',
-            content: 'Another one',
+            type: 'q',
+            content: '“................” should be considered when designing assessments',
             colour: '#26a8df',
-            svgUrl: '../../public/images/illustrations/rocket.svg'
-        }
+            svgUrl: '../../public/images/illustrations/guy holding pencil up looking at it.svg',
+            isFront: true, 
+        },
+        {
+            id: 3, 
+            type: 'q',
+            content: '“.............................” to avoid over-assessment',
+            colour: '#26a8df',
+            svgUrl: '../../public/images/illustrations/unhappy assessment girl.svg',
+            isFront: true, 
+        },
+        {
+            id: 4, 
+            type: 'q',
+            content: 'Incorporate “................................” into assessments',
+            colour: '#26a8df',
+            svgUrl: '../../public/images/illustrations/girl with finger up.svg',
+            isFront: true, 
+        },
+        {
+            id: 5, 
+            type: 'a',
+            content: 'Incorporate “................................” into assessments',
+            colour: '#26a8df',
+            svgUrl: '../../public/images/illustrations/girl with finger up.svg',
+            isFront: true, 
+        },
+
     ]
     })
   })

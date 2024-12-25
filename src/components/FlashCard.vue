@@ -6,7 +6,7 @@
         rounded="xl"
         :color="cardColour"
     >
-            <v-sheet class="pa-3 d-flex flex-column" rounded='xl' background-color="primary" height="100%" >
+            <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
                 <v-img
                 :src="svgUrl"
                 width="80%"
