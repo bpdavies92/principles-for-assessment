@@ -1,10 +1,13 @@
 <template>
-  <div v-for="(item, index) in cardInfo" :key="index">
-    <FlashCard :svgUrl="item.svgUrl" :cardColour="item.colour">
+  
+  <div v-for="(item, index) in onlyQuestionCards" :key="index">
+    <FlashCard :question="item.type" :svgUrl="item.svgUrl" :cardColour="item.colour" >
+        <template v-slot:h1Title>Question</template>
         <template v-slot:bodyText>{{item.content}}</template>
     </FlashCard>
   </div>
-
+  
+ 
 </template>
 
 <script setup>
@@ -13,6 +16,7 @@
 
   const store = useCardStore()
 
-  const { cardInfo } = store
+  const { cardInfo, onlyQuestionCards } = store
 
+  console.log(onlyQuestionCards)
 </script>
