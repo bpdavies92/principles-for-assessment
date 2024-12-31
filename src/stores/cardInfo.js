@@ -141,6 +141,16 @@ export const useCardStore = defineStore('cardInfo', {
         }, 
         onlyAnswerCards: (state) => {
         return state.cardInfo.filter((i) => i.type === 'a')
+        },
+        onlyQuestionCardsSingleRandom: (state) => {
+           const questionCards = state.cardInfo.filter((i) => {   
+               return i.type === 'q'
+            })
+            const randomCard = Math.floor(Math.random() * questionCards.length)
+
+            console.log(questionCards[randomCard])
+            
+           return questionCards[randomCard]
         }
     }
   })
