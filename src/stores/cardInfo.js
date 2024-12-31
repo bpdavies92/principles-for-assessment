@@ -148,9 +148,15 @@ export const useCardStore = defineStore('cardInfo', {
             })
             const randomCard = Math.floor(Math.random() * questionCards.length)
 
-            console.log(questionCards[randomCard])
-            
-           return questionCards[randomCard]
-        }
+            return questionCards[randomCard]
+        },
+        // onlyAnswerCardsSixCards: (state) => {
+        //     const allCards = state.cardInfo
+        //     const answerCards = allCards.filter(i => i.type === 'a')
+        //     const randomSixCard = answerCards.map((i, e) => {
+        //         console.log(i)
+        //     })
+        //     console.log('this',randomSixCard)
+        // }
     }
   })

@@ -5,6 +5,7 @@
         width="330px"
         rounded="xl"
         :color="cardColour"
+        :elevation="dropshadow"
     >
             <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
 
@@ -34,7 +35,7 @@
 </template>
 
 <script setup>
-    const props = defineProps(['svgUrl', 'cardColour', 'question'])
+    const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow'])
 </script>
 
 <style>
