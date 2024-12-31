@@ -1,3 +1,4 @@
+
 import { defineStore } from 'pinia'
 
 export const useCardStore = defineStore('cardInfo', {
@@ -150,13 +151,14 @@ export const useCardStore = defineStore('cardInfo', {
 
             return questionCards[randomCard]
         },
-        // onlyAnswerCardsSixCards: (state) => {
-        //     const allCards = state.cardInfo
-        //     const answerCards = allCards.filter(i => i.type === 'a')
-        //     const randomSixCard = answerCards.map((i, e) => {
-        //         console.log(i)
-        //     })
-        //     console.log('this',randomSixCard)
-        // }
+        onlyAnswerCardsSixCards: (state) => {
+            const allCards = state.cardInfo
+            const onlyAnswerCards = allCards.filter(i => i.type === 'a')
+            let bag = [...onlyAnswerCards]
+            for(let i = bag.length; i > 0 ; i--) {
+                [bag[i], bag[Math.floor(Math.random() * (i + 1))]] = [bag[Math.floor(Math.random() * (i + 1))], bag[i]]
+            }
+            return bag.splice(6)
+        }
     }
   })
