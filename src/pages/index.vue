@@ -1,11 +1,11 @@
 <template>
   
       <v-sheet class="position-relative card-container" height="100vh" width="100%" color="#fafafa">
-        <FlashCard class="card-question" :class="{'winning-card-question': cardPicked}" :dropshadow="10" :question="onlyQuestionCardsSingleRandom.type" :svgUrl="onlyQuestionCardsSingleRandom.svgUrl" :cardColour="onlyQuestionCardsSingleRandom.colour" >
+        <FlashCard  :class="[cardPicked === true ? 'winning-card-question' : 'card-question']" :dropshadow="10" :question="onlyQuestionCardsSingleRandom.type" :svgUrl="onlyQuestionCardsSingleRandom.svgUrl" :cardColour="onlyQuestionCardsSingleRandom.colour" >
           <template v-slot:h1Title>Question</template>
           <template v-slot:bodyText>{{onlyQuestionCardsSingleRandom.content}}</template>
         </FlashCard>
-        <FlashCard v-for="(item, index) in onlyAnswerCardsSixCards" :key="index" :question="item.type" :svgUrl="item.svgUrl" :cardColour="item.colour" @click="cardSelected[index] = true" :class="[cardSelected[index] === true ? 'winning-card-answer' : 'card-question']">
+        <FlashCard v-for="(item, index) in onlyAnswerCardsSixCards" :key="index" :question="item.type" :svgUrl="item.svgUrl" :cardColour="item.colour" @click="cardSelected[index] = true ; cardPicked = true" :class="[cardSelected[index] === true ? 'winning-card-answer' : 'card-question']">
           <template v-slot:h1Title>Question</template>
           <template v-slot:bodyText>{{item.content}}</template>
         </FlashCard>
@@ -21,7 +21,7 @@
   const store = useCardStore()
   let cardSelected = ref([false, false, false, false, false, false])
   const winText = ref('winning-card-answer')
-  const cardPicked = ref(true)
+  const cardPicked = ref(false)
 
 
   const { 
@@ -36,7 +36,7 @@
 
 <style lang="scss">
 
- 
+
 
   .card-top {
     z-index: 200 !important;
@@ -48,13 +48,13 @@
   }
 
   .card-question {
-      // position: absolute;
-      // top: 50%;
-      // bottom: 50%;
-      // right: 50%;
-      // left: 50%;
-      // transform: translate(-50%, -50%);
-      // z-index: 100;
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
 
     &:nth-of-type(3) {
       position: absolute;

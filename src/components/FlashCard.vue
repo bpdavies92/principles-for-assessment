@@ -1,44 +1,96 @@
 <template>
-    <v-card
-        class="mx-auto pa-4 overflow-hidden"
-        height="450px"
-        width="330px"
-        rounded="xl"
-        :color="cardColour"
-        :elevation="dropshadow"
-    >
-            <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
-
-                <v-sheet v-if="question === 'q'" class="title-graphics-corner position-relative" :class="[question === 'q' ? 'mb-n10' : '']" color="transparent">
-                    
-                    <v-img 
-                        class="title-graphic" 
-                        src="../../public/images/shapes/question card title graphic.svg" 
-                        height="100%"
-                        width="auto">
-                        <h3 class="text-h5"><slot name="h1Title"></slot></h3>
+    <div class="card-container">
+        <v-card
+            class="mx-auto pa-4 overflow-hidden card card-back"
+            height="450px"
+            width="330px"
+            rounded="xl"
+            :color="cardColour"
+            :elevation="dropshadow"
+        >
+                <v-sheet height="100%" color="transparent" class="d-flex flex-column justify-space-between align-space-between">
+                    <v-img
+                    src="../../public/images/branding/principles for assessment logo.svg"
+                    width="50%"
+                    height="auto"
+                    class="mr-auto ml-auto"
+                    >
+                    </v-img>
+                    <v-img
+                    src="../../public/images/branding/clt logo with black text.svg"
+                    width="50%"
+                    height="auto"
+                    class="mr-auto ml-auto"
+                    >
                     </v-img>
                 </v-sheet>
-                
-                <v-img
-                :src="svgUrl"
-                width="80%"
-                height="auto"
-                class="mr-auto ml-auto"
-                >
-                </v-img>
-                <v-card-text class="">
-                    <p class="text-body-2"><slot name="bodyText"></slot></p>
-                </v-card-text>
-            </v-sheet>
-    </v-card>
+        </v-card>
+        <v-card
+            class="mx-auto pa-4 overflow-hidden card card-front"
+            height="450px"
+            width="330px"
+            rounded="xl"
+            :color="cardColour"
+            :elevation="dropshadow"
+        >
+                <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
+                    <v-sheet v-if="question === 'q'" class="title-graphics-corner position-relative" :class="[question === 'q' ? 'mb-n10' : '']" color="transparent">
+        
+                        <v-img
+                            class="title-graphic"
+                            src="../../public/images/shapes/question card title graphic.svg"
+                            height="100%"
+                            width="auto">
+                            <h3 class="text-h5"><slot name="h1Title"></slot></h3>
+                        </v-img>
+                    </v-sheet>
+        
+                    <v-img
+                    :src="svgUrl"
+                    width="80%"
+                    height="auto"
+                    class="mr-auto ml-auto"
+                    >
+                    </v-img>
+                    <v-card-text class="">
+                        <p class="text-body-1"><slot name="bodyText"></slot></p>
+                    </v-card-text>
+                </v-sheet>
+        </v-card>
+    </div>
 </template>
 
 <script setup>
     const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow'])
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+    .card-container {
+        position: relative;
+    }
+
+    .card {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        perspective: 1000px;
+        transform: rotate3d(90deg);
+        transform-style: preserve-3d;
+
+        &-front {
+            z-index: 50;
+            transform: translateX(1px);
+        }
+        &-back {
+            z-index: 50;
+            transform: translateX(-1px);
+        }
+    }
+
     .title-graphic {
         position: absolute;
         content: '';
