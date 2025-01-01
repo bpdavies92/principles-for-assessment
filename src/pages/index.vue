@@ -36,8 +36,6 @@
 
 <style lang="scss">
 
-
-
   .card-top {
     z-index: 200 !important;
   }
@@ -85,6 +83,9 @@
 
       &:hover {
         z-index: 200;
+        // transform: rotateY(180deg);
+        // backface-visibility: hidden; /* Hides the back side when flipped */
+        // transform-style: preserve-3d; /* Keeps the front and back faces in the same 3D space */
       }
     }
 
@@ -157,10 +158,9 @@
       position: absolute;
       top: 50%;
       bottom: 50%;
-      right: 40%;
+      right: 50%;
       left: 50%;
-      transform: translate(0%, -50%);
-      scale: scale(0.88, 0.88);
+      transform: translate(-40%, -50%);
       z-index: 200;
       transition: all 1s ease;
     }
@@ -172,7 +172,6 @@
       right: 50%;
       left: 40%;
       transform: translate(-50%, -50%);
-      scale: scale(0.88, 0.88);
       z-index: 200;
       transition: all 1s ease;
     }
