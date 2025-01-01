@@ -1,23 +1,20 @@
 <template>
   
-  <div class="position.relative">
-    <v-sheet class="position.relative " height="100vh" width="100vw" color="#fafafa">
-      <FlashCard class="cardQuestion" :dropshadow="10" :question="onlyQuestionCardsSingleRandom.type" :svgUrl="onlyQuestionCardsSingleRandom.svgUrl" :cardColour="onlyQuestionCardsSingleRandom.colour" >
-        <template v-slot:h1Title>Question</template>
-        <template v-slot:bodyText>{{onlyQuestionCardsSingleRandom.content}}</template>
-      </FlashCard>
-    </v-sheet>
-  </div>
-
-  <div class="postion-relative">
-    <v-sheet height="100%" class="position.relative" >
-      <FlashCard v-for="(item, index) in onlyAnswerCardsSixCards" :key="index" :question="item.type" :svgUrl="item.svgUrl" :cardColour="item.colour" >
+      <v-sheet class="position-relative " height="100vh" width="100vw" color="#fafafa">
+        <FlashCard class="card-question" :dropshadow="10" :question="onlyQuestionCardsSingleRandom.type" :svgUrl="onlyQuestionCardsSingleRandom.svgUrl" :cardColour="onlyQuestionCardsSingleRandom.colour" >
+          <template v-slot:h1Title>Question</template>
+          <template v-slot:bodyText>{{onlyQuestionCardsSingleRandom.content}}</template>
+        </FlashCard>
+        <FlashCard class="card-question" v-for="(item, index) in onlyAnswerCardsSixCards" :key="index" :question="item.type" :svgUrl="item.svgUrl" :cardColour="item.colour" >
           <template v-slot:h1Title>Question</template>
           <template v-slot:bodyText>{{item.content}}</template>
-      </FlashCard>
+        </FlashCard>
+      </v-sheet>
+
+    <v-sheet height="100%" class="position-relative" >
+  
     </v-sheet>
-  </div>  
- 
+
 </template>
 
 <script setup>
@@ -37,13 +34,50 @@
 
 <style lang="scss">
 
-  .cardQuestion {
+  .card-question {
+
       position: absolute;
       top: 50%;
       bottom: 50%;
       right: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+
+    &:nth-of-type(2) {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: -10%;
+      left: 50%;
+      transform: translate(0%, -50%);
+    }
+
+    &:nth-of-type(3) {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: -10%;
+      transform: translate(0%, -50%);
+    }
+
+    &:nth-of-type(4) {
+      position: absolute;
+      top: 0%;
+      bottom: 50%;
+      right: 10%;
+      left: 50%;
+      transform: translate(0%, 0%);
+    }
+
+    &:nth-of-type(5) {
+      position: absolute;
+      top: 50%;
+      bottom: 10%;
+      right: 50%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+    }
   }
 
 </style>

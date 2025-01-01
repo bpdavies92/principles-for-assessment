@@ -152,13 +152,19 @@ export const useCardStore = defineStore('cardInfo', {
             return questionCards[randomCard]
         },
         onlyAnswerCardsSixCards: (state) => {
-            const allCards = state.cardInfo
-            const onlyAnswerCards = allCards.filter(i => i.type === 'a')
-            let bag = [...onlyAnswerCards]
-            for(let i = bag.length; i > 0 ; i--) {
-                [bag[i], bag[Math.floor(Math.random() * (i + 1))]] = [bag[Math.floor(Math.random() * (i + 1))], bag[i]]
+            const allCards = state.cardInfo; // Get all cards
+            const onlyAnswerCards = allCards.filter((i) => i.type === 'a'); // Filter only "answer" cards
+            let bag = [...onlyAnswerCards]; // Clone the array
+            const length = bag.length;
+        
+            // Fisher-Yates Shuffle
+            for (let i = length - 1; i > 0; i--) {
+                const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index within range
+                [bag[i], bag[randomIndex]] = [bag[randomIndex], bag[i]]; // Swap elements
             }
-            return bag.splice(6)
+        
+            console.log(bag);
+            return bag.slice(0, 6);
         }
     }
   })
