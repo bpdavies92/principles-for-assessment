@@ -1,6 +1,6 @@
 <template>
             <v-sheet color="transparent" class="cards-container"   height="450px" width="330px" :class="[topCard ? 'top-card' : '']" >
-                <v-sheet color="transparent" class="card-inner"  height="450px" width="330px">
+                <v-sheet color="transparent" class="card-inner" :class="{flip, flip}" height="450px" width="330px">
                     <v-card
                         class="mx-auto pa-4 overflow-hidden card-front"
                         height="450px" 
@@ -62,7 +62,9 @@
 </template>
 
 <script setup>
-    const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow', 'topCard'])
+    const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow', 'topCard', 'cardFlip', 'flip'])
+
+    console.log('tis the one', props.flip)
 </script>
 
 <style lang="scss" scoped>
@@ -105,10 +107,16 @@
         backface-visibility: hidden;
     }
 
-    .cards-container:hover .card-inner {
+    // .cards-container:hover .flip {
+    // // transition: all 1s ease;
+    // transform: rotateY(180deg); /* Flip the card */
+    // }
+
+    .cards-container .flip {
     // transition: all 1s ease;
     transform: rotateY(180deg); /* Flip the card */
     }
+
 
     .card-back {
     transform: rotateY(180deg); /* Back face starts rotated */
