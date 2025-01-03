@@ -1,71 +1,110 @@
 <template>
-            <!-- <v-card
-                class="mx-auto pa-4 overflow-hidden card card-back"
-                height="450px"
-                width="330px"
-                rounded="xl"
-                :color="cardColour"
-            >
-                    <v-sheet height="100%" color="transparent" class="d-flex flex-column justify-space-between align-space-between">
-                        <v-img
-                        src="../../public/images/branding/principles for assessment logo.svg"
-                        width="50%"
-                        height="auto"
-                        class="mr-auto ml-auto"
-                        >
-                        </v-img>
-                        <v-img
-                        src="../../public/images/branding/clt logo with black text.svg"
-                        width="50%"
-                        height="auto"
-                        class="mr-auto ml-auto"
-                        >
-                        </v-img>
-                    </v-sheet>
-            </v-card> -->
-            <v-card
-                class="mx-auto pa-4 overflow-hidden card card-front"
-                height="450px"
-                width="330px"
-                rounded="xl"
-                :color="cardColour"
-                :elevation="dropshadow"
-            >
-                    <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
-                        <v-sheet v-if="question === 'q'" class="title-graphics-corner position-relative" :class="[question === 'q' ? 'mb-n10' : '']" color="transparent">
-            
-                            <v-img
-                                class="title-graphic"
-                                src="../../public/images/shapes/question card title graphic.svg"
-                                height="100%"
-                                width="auto">
-                                <h3 class="text-h5"><slot name="h1Title"></slot></h3>
-                            </v-img>
-                        </v-sheet>
-            
-                        <v-img
-                        :src="svgUrl"
-                        width="80%"
-                        height="auto"
-                        class="mr-auto ml-auto"
-                        >
-                        </v-img>
-                        <v-card-text class="">
-                            <p class="text-body-1"><slot name="bodyText"></slot></p>
-                        </v-card-text>
-                    </v-sheet>
-            </v-card>
+            <v-sheet color="transparent" class="cards-container"   height="450px" width="330px" >
+                <v-sheet color="transparent" class="card-inner"  height="450px" width="330px">
+                    <v-card
+                        class="mx-auto pa-4 overflow-hidden card-front"
+                        height="450px" 
+                        width = "330px"
+                        rounded="xl"
+                        :color="cardColour"
+                        :elevation="dropshadow"
+                    >
+                            <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
+                                <v-sheet v-if="question === 'q'" class="title-graphics-corner position-relative" :class="[question === 'q' ? 'mb-n10' : '']" color="transparent">
+                    
+                                    <v-img
+                                        class="title-graphic"
+                                        src="../../public/images/shapes/question card title graphic.svg"
+                                        height="100%"
+                                        width="auto">
+                                        <h3 class="text-h5"><slot name="h1Title"></slot></h3>
+                                    </v-img>
+                                </v-sheet>
+                    
+                                <v-img
+                                :src="svgUrl"
+                                width="80%"
+                                height="auto"
+                                class="mr-auto ml-auto"
+                                >
+                                </v-img>
+                                <v-card-text class="">
+                                    <p class="text-body-1"><slot name="bodyText"></slot></p>
+                                </v-card-text>
+                            </v-sheet>
+                    </v-card>
+                    <v-card
+                        class="mx-auto pa-4 overflow-hidden card-back"
+                        height="450px" 
+                        width = "330px"
+                        rounded="xl"
+                        :color="cardColour"
+                    >
+                            <v-sheet height="100%" color="transparent" class="d-flex flex-column justify-space-between align-space-between">
+                                <v-img
+                                src="../../public/images/branding/principles for assessment logo.svg"
+                                width="50%"
+                                height="auto"
+                                class="mr-auto ml-auto"
+                                >
+                                </v-img>
+                                <v-img
+                                src="../../public/images/branding/clt logo with black text.svg"
+                                width="50%"
+                                height="auto"
+                                class="mr-auto ml-auto"
+                                >
+                                </v-img>
+                            </v-sheet>
+                    </v-card>
+                </v-sheet>
+            </v-sheet>
 </template>
 
 <script setup>
     const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow'])
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-    .card-container {
-        position: relative;
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
     }
+
+    .cards-container {
+    position: absolute; /* This is fine */
+    perspective: 1000px; /* Enables 3D flipping */
+    }
+
+    .card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  transform-origin: 50% 50%; /* Flip from center */
+    }
+
+ 
+
+    .card-front, .card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+
+    .cards-container:hover .card-inner {
+    // transition: all 1s ease;
+    transform: rotateY(180deg); /* Flip the card */
+    }
+
+    .card-back {
+    transform: rotateY(180deg); /* Back face starts rotated */
+    }
+
 
 
     .title-graphic {
