@@ -1,5 +1,5 @@
 <template>
-            <v-sheet color="transparent" class="cards-container"   height="450px" width="330px" >
+            <v-sheet color="transparent" class="cards-container"   height="450px" width="330px" :class="[topCard ? 'top-card' : '']" >
                 <v-sheet color="transparent" class="card-inner"  height="450px" width="330px">
                     <v-card
                         class="mx-auto pa-4 overflow-hidden card-front"
@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-    const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow'])
+    const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow', 'topCard'])
 </script>
 
 <style lang="scss" scoped>
@@ -92,7 +92,9 @@
 
     }
 
- 
+    .top-card {
+        z-index: 1 !important;
+    }
 
     .card-front, .card-back {
         position: absolute;
