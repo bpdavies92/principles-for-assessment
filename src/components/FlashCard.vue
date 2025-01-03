@@ -76,13 +76,20 @@
     .cards-container {
     position: absolute; /* This is fine */
     perspective: 1000px; /* Enables 3D flipping */
+    &:hover {
+    z-index: 100; /* Instantly moves to the top */
+    }
     }
 
     .card-inner {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-  transform-origin: 50% 50%; /* Flip from center */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    transform-origin: 50% 50%; /* Flip from center */
+    transform: translateZ(0); /* Triggers GPU rendering */
+    z-index: 1;
+
+
     }
 
  

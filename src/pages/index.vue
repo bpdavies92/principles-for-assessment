@@ -45,30 +45,42 @@
 //     transform-origin: center center;
 //   }
 
-  // .card-question {
-  //     position: absolute;
-  //     top: 50%;
-  //     bottom: 50%;
-  //     right: 50%;
-  //     left: 50%;
-  //     transform: translate(-50%, -50%);
-  //     z-index: 100; }
+  .card-question {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      
+        &:nth-of-type(3) {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        scale: scale(0.88, 0.88);
+        transition: all 1s ease-in;
+      }
 
-    // &:nth-of-type(3) {
-    //   position: absolute;
-    //   top: 50%;
-    //   bottom: 50%;
-    //   right: 50%;
-    //   left: -10%;
-    //   transform: translate(0%, -50%);
-    //   scale: scale(0.88, 0.88);
-    //   z-index: 50;
-    //   transition: all 1s ease-in;
+        &:nth-of-type(6) {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        scale: scale(0.88, 0.88);
+        transition: all 1s ease-in;
+      }
+      }
+ 
 
-    //   &:hover {
-    //     z-index: 200;
-    //   }
-    // }
+
+
+  
+ 
 
     // &:nth-of-type(6) {
     //   position: absolute;
@@ -153,29 +165,29 @@
     // }
   
 
-// .winning-card {
-//     &-answer {
-//       position: absolute;
-//       top: 50%;
-//       bottom: 50%;
-//       right: 50%;
-//       left: 50%;
-//       transform: translate(-40%, -50%);
-//       z-index: 200;
-//       transition: all 1s ease;
-//     }
+.winning-card {
+    &-answer {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      z-index: 200;
+      transition: all 1s ease;
+    }
 
-//     &-question {
-//       position: absolute;
-//       top: 50%;
-//       bottom: 50%;
-//       right: 50%;
-//       left: 40%;
-//       transform: translate(-50%, -50%);
-//       z-index: 200;
-//       transition: all 1s ease;
-//     }
-// }
+    &-question {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 200;
+      transition: all 1s ease;
+    }
+}
 
 </style>
 
