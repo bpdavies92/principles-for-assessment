@@ -86,7 +86,7 @@
     .card-inner {
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: all 1s ease;
     transform-origin: 50% 50%; /* Flip from center */
     transform: translateZ(0); /* Triggers GPU rendering */
     z-index: 1;
