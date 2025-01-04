@@ -135,8 +135,9 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false
         },
     ],
-    randomCard: 3,
-    processStage: 0
+    randomCard: 0,
+    processStage: 0,
+    randomCardAnswers: []
     }),
     getters: { 
         onlyQuestionCards: (state) => {
@@ -146,31 +147,11 @@ export const useCardStore = defineStore('cardInfo', {
         return state.cardInfo.filter((i) => i.type === 'a')
         },
         onlyQuestionCardsSingleRandom: (state) => { 
-            const questionCards = state.cardInfo.filter((i) => {   
-                return i.type === 'q'
-             })
-            //  let randomCard = Math.floor(Math.random() * questionCards.length)
- 
-             return questionCards[state.randomCard]
+            const questionCards = state.cardInfo.filter((i) => {return i.type === 'q'})
+            return questionCards[state.randomCard]
         },
         onlyAnswerCardsSixCards: (state) => {
-            
-            const allCards = state.cardInfo; // Get all cards
-            const onlyAnswerCards = allCards.filter((i) => i.type === 'a'); // Filter only "answer" cards
-            let bag = [...onlyAnswerCards]; // Clone the array
-            const length = bag.length;
-
-            // Fisher-Yates Shuffle
-            for (let i = length - 1; i > 0; i--) {
-                const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index within range
-                [bag[i], bag[randomIndex]] = [bag[randomIndex], bag[i]]; // Swap elements
-            }
-        
-            console.log(bag.slice(0, 6));
-
-            state.shuffleTrigger; 
-
-            return bag.slice(0, 6);
+            return state.randomCardAnswers.slice(0, 6);
         },
 
     },
@@ -183,6 +164,21 @@ export const useCardStore = defineStore('cardInfo', {
             this.randomCard = Math.floor(Math.random() * questionCards.length)
             console.log(this.randomCard)
             return this.randomCard
+        },
+        reshuffleAnswerCard() {
+            const allCards = this.cardInfo; // Get all cards
+            const onlyAnswerCards = allCards.filter((i) => i.type === 'a'); // Filter only "answer" cards
+            this.randomCardAnswers = [...onlyAnswerCards]; // Clone the array
+            const length = this.randomCardAnswers.length;
+
+            // Fisher-Yates Shuffle
+            for (let i = length - 1; i > 0; i--) {
+                const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index within range
+                [this.randomCardAnswers[i], this.randomCardAnswers[randomIndex]] = [this.randomCardAnswers[randomIndex], this.randomCardAnswers[i]]; // Swap elements
+            }
+    
+
+            return this.randomCardAnswers;
         }
     }
   })

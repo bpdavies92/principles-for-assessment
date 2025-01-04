@@ -1,6 +1,6 @@
 <template>
             <v-sheet color="transparent" class="cards-container"   height="450px" width="330px" :class="[topCard ? 'top-card' : '']" >
-                <v-sheet color="transparent" class="card-inner" :class="{flip, flip}" height="450px" width="330px">
+                <v-sheet color="transparent" class="card-inner" :class="[flip ? 'flip' : '']" height="450px" width="330px">
                     <v-card
                         class="mx-auto pa-4 overflow-hidden card-front"
                         height="450px" 
