@@ -134,7 +134,9 @@ export const useCardStore = defineStore('cardInfo', {
             isDouble: false,
             isTriple: false
         },
-    ]
+    ],
+    randomCard: 3,
+    processStage: 0
     }),
     getters: { 
         onlyQuestionCards: (state) => {
@@ -143,28 +145,44 @@ export const useCardStore = defineStore('cardInfo', {
         onlyAnswerCards: (state) => {
         return state.cardInfo.filter((i) => i.type === 'a')
         },
-        onlyQuestionCardsSingleRandom: (state) => {
-           const questionCards = state.cardInfo.filter((i) => {   
-               return i.type === 'q'
-            })
-            const randomCard = Math.floor(Math.random() * questionCards.length)
-
-            return questionCards[randomCard]
+        onlyQuestionCardsSingleRandom: (state) => { 
+            const questionCards = state.cardInfo.filter((i) => {   
+                return i.type === 'q'
+             })
+            //  let randomCard = Math.floor(Math.random() * questionCards.length)
+ 
+             return questionCards[state.randomCard]
         },
         onlyAnswerCardsSixCards: (state) => {
+            
             const allCards = state.cardInfo; // Get all cards
             const onlyAnswerCards = allCards.filter((i) => i.type === 'a'); // Filter only "answer" cards
             let bag = [...onlyAnswerCards]; // Clone the array
             const length = bag.length;
-        
+
             // Fisher-Yates Shuffle
             for (let i = length - 1; i > 0; i--) {
                 const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index within range
                 [bag[i], bag[randomIndex]] = [bag[randomIndex], bag[i]]; // Swap elements
             }
         
-            console.log(bag);
+            console.log(bag.slice(0, 6));
+
+            state.shuffleTrigger; 
+
             return bag.slice(0, 6);
+        },
+
+    },
+    actions: {
+        reshuffleQuestionCard() {
+            const questionCards = this.cardInfo.filter((i) => {   
+                return i.type === 'q'
+            })
+
+            this.randomCard = Math.floor(Math.random() * questionCards.length)
+            console.log(this.randomCard)
+            return this.randomCard
         }
     }
   })
