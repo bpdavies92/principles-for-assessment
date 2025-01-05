@@ -44,6 +44,7 @@
           </FlashCard>
         </v-sheet>
         <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
+        <v-btn @click="poop">dlkfja</v-btn>
         
       </v-sheet>
 
@@ -79,7 +80,7 @@
 
   onMounted(() => {
       ctx = gsap.context((self) => {
-      tl.to(".card", {y: -1100, duration: .2});
+      tl.to(".card", {y: -1100, duration: .2})
     })     
   });
 
@@ -105,12 +106,13 @@
   }
 
   function newSelection(i) {
+    tl.restart()
     processStage.value = 1
     if(processStage.value === 1 ) { 
       newGame.value = true
       processStage.value = 2
   } 
-  tl.restart()
+   
     if(processStage.value === 2) {
       
       processStage.value = 0
@@ -125,7 +127,17 @@
     }
   }
 
+function poop() {
 
+  let cardSelected = ref([null, null, null, null, null, null])
+  const cardPicked = ref(false)
+  const animationStage = ref(0)
+  const newGame = ref(false)
+  tl.pause() 
+  tl.progress(0);
+  tl.pause() 
+
+}
 
 </script>
 
