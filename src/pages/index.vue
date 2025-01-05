@@ -1,11 +1,11 @@
 <template>
   
-        <v-sheet height="100vh" width="100%" color="#fafafa" ref="main">
+        <v-sheet height="100vh" width="100%" color="#fafafa" ref="main" >
         <v-sheet class="position-relative card-container" height="100%" width="100%" color="transparent">
 
           <!-------- QUESTION CARD ------>
 
-         {{ startAnimation }}
+         {{ randomCard }} {{ numberAdder }} {{ cardSelected }}
 
           <FlashCard 
               :key="randomCard"
@@ -46,7 +46,6 @@
           </FlashCard>
         </v-sheet>
         <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
-     
       </v-sheet>
 
 </template>
@@ -61,9 +60,11 @@
 
   const store = useCardStore()
 
+  const numberAdder = ref(1)
+
   const main = ref();
     let ctx;
-    var tl = gsap.timeline({paused: true});
+    var tl = gsap.timeline({paused: true, defaults: {ease: "power2.inOut"}});
 
   const { 
     cardInfo, 
@@ -90,13 +91,9 @@
 
   onMounted(() => {
       ctx = gsap.context((self) => {
-      tl.to('.card', {y: -1100, duration: .2})
+      tl.to('.card', {y: -1100, duration: .1})
     })
   });
-
-  function wait() {
-  tl.play()
-}
 
   onUnmounted(() => {
     ctx.revert(); // <- Easy Cleanup!
@@ -129,16 +126,16 @@
    
     if(processStage.value === 2) {
       
-      processStage.value = 0
-      
       setTimeout(() => {
         tl.revert()
-        cardSelected.value.forEach((value, index, array) => array[index] = null)
         newGame.value = false
         cardPicked.value = false
+        cardSelected.value.forEach((value, index, array) => { array[index] = null })
         store.reshuffleQuestionCard()
         store.reshuffleAnswerCard()
-      }, 2000)
+        processStage.value = 0
+        animationDelay()  
+      }, 5000)
     }
   }
 
@@ -188,7 +185,6 @@
         left: 50%;
         transform: translate(-50%, -50%);
         
-
         // &:nth-child(1) {
         //   position: absolute;
         // top: 50%;
