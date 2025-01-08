@@ -1,7 +1,8 @@
 <template>
-  
-        <v-sheet height="100vh" width="100%" color="#fafafa" ref="main" >
-        <v-sheet class="position-relative card-container" height="100%" width="100%" color="transparent">
+        <v-sheet height="100vh" width="100vw"  color="#fafafa" ref="main" >
+        <AllAnswers class="position-fixed"/>
+        <v-sheet class="position-relative card-container " height="100vh" width="100vw" color="transparent">
+
 
           <!-------- QUESTION CARD ------>
 
@@ -9,11 +10,11 @@
 
           <FlashCard 
               :key="randomCard"
-              class="card"
               :class="[
                 cardPicked === true ? 'winning-card-question' : 'card-question',
                 newGame === true ? 'new-canvas' : '',
-                startAnimation === true ? 'animation-start' : ''
+                startAnimation === true ? 'animation-start' : '',
+                startAnimation === true ? 'test' : ''
               ]" 
               :dropshadow="10" 
               :question="onlyQuestionCardsSingleRandom.type" 
@@ -33,11 +34,12 @@
                 :svgUrl="item.svgUrl" 
                 :flip="cardSelected[index] === 'not selected'" 
                 :cardColour="item.colour"
-                class="card" 
+                class="" 
                 @click="cardChoice(index) ; cardPicked = true" 
                 :class="[
                     cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
                     cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
+                    newGame === true ? 'new-canvas' : '',
                     startAnimation === true ? 'animation-start' : ''
                   ]"
             >
@@ -57,6 +59,7 @@
   import { MotionPathPlugin } from "gsap/MotionPathPlugin";
   import { storeToRefs } from 'pinia';
   import gsap from 'gsap';
+import AllAnswers from '@/components/AllAnswers.vue';
 
   const store = useCardStore()
 
@@ -91,7 +94,7 @@
 
   onMounted(() => {
       ctx = gsap.context((self) => {
-      tl.to('.card', {y: -1100, duration: .1})
+      // tl.to('.card', {y: -1100, duration: .1})
     })
   });
 
@@ -134,6 +137,7 @@
         store.reshuffleQuestionCard()
         store.reshuffleAnswerCard()
         processStage.value = 0
+        startAnimation.value = true
         animationDelay()  
       }, 5000)
     }
@@ -177,6 +181,18 @@
     }
   }
 
+  .test {
+    position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform: scale(1);
+        transition: all 1s ease;
+          animation: move-away-1 2s ease forwards ;
+  }
+
   .card-question {
         position: absolute;
         top: 50%;
@@ -184,17 +200,9 @@
         right: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        // transition: all 1s ease;
         
-        // &:nth-child(1) {
-        //   position: absolute;
-        // top: 50%;
-        // bottom: 50%;
-        // right: 50%;
-        // left: 50%;
-        // transform: translate(-50%, -50%);
-        // transform: scale(1);
-        //   animation: move-away-1 2s ease forwards ;
-        // }
+
        
         &:nth-of-type(3) {
           position: absolute;
@@ -203,7 +211,6 @@
           right: 50%;
           left: 20%;
           transform: translate(-50%, -50%);
-          scale: scale(0.88, 0.88);
           // animation: move-away-3 2s ease 2s both;
           // transition: all 1s ease .7s;
         } 
@@ -215,7 +222,6 @@
           right: 50%;
           left: 35%;
           transform: translate(-50%, -50%);
-          scale: scale(0.88, 0.88);
           // animation: move-away-6 2s ease 2s both ;
           // transition: all 1s ease .3s;
         }
@@ -227,7 +233,6 @@
           right: 50%;
           left: 35%;
           transform: translate(-50%, -20%);
-          scale: scale(0.88, 0.88);
           // animation: move-away-5 2s ease 2s both ;
           // transition: all 1s ease .10s;
         }
@@ -236,12 +241,10 @@
           position: absolute;
           top: 50%;
           bottom: 50%;
-          right: 50%;
-          left: 50%;
-          transform: translate(15%, -20%);
-          scale: scale(0.88, 0.88);
-          // animation: move-away-4 2s ease 2s both ;
-          // transition: all 1s ease .4s;
+          left: 65%;
+          transform: translate(-50%, -20%);
+          // animation: move-away-5 2s ease 2s both ;
+          // transition: all 1s ease .10s;
         }
 
          &:nth-of-type(7) {
@@ -249,9 +252,8 @@
           top: 30%;
           bottom: 50%;
           right: 50%;
-          left: 50%;
-          transform: translate(15%, -50%);
-          scale: scale(0.88, 0.88);
+          left: 65%;
+          transform: translate(-50%, -50%);
           // animation: move-away-7 2s ease 2s both ;
           // transition: all 1s ease .4s;
         }
@@ -261,37 +263,14 @@
           top: 50%;
           bottom: 50%;
           right: 50%;
-          left: 50%;
-          transform: translate(80%, -50%);
-          scale: scale(0.88, 0.88);
+          left: 80%;
+          transform: translate(-50%, -50%);
           // animation: move-away-2 2s ease 2s both ;
           // transition: all 1s ease ;
         }
       }
 
-.winning-card {
-    &-answer {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 50%;
-      transform: translate(10%, -50%);
-      z-index: 200;
-      transition: all 1s ease;
-    }
 
-    &-question {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 40%;
-      transform: translate(-50%, -50%);
-      z-index: 200;
-      transition: all 1s ease;
-    }
-}
 
 // .pause-animation {
 //   animation-play-state: paused;
@@ -358,7 +337,7 @@
           transform: translate(1%, 70%);
           scale: scale(0.88, 0.88);
           transition: all 1s ease;
-          animation-delay: 1s;
+          // animation-delay: 1s;
         }
 
          &:nth-of-type(7) {
@@ -371,7 +350,7 @@
           // animation: move-away-7 2s ease;
           scale: scale(0.88, 0.88);
           transition: all 1s ease;
-          animation-delay: 1s;
+          // animation-delay: 1s;
         }
 
         &:nth-of-type(2) {
@@ -384,7 +363,7 @@
           // animation: move-away-2 2s ease ;
           scale: scale(0.88, 0.88);
           transition: all 1s ease;
-          animation-delay: 1s;
+          // animation-delay: 1s;
         }
       }
 
@@ -499,9 +478,7 @@
         } 
       }
 
-      .new-canvas {
-        animation: empty-scene 1s ease forwards;
-      }
+
 
       @keyframes empty-scene {
         0% {
@@ -512,9 +489,33 @@
         }
       }
 
-      
+      .winning-card {
+    &-answer {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: 50%;
+      transform: translate(10%, -50%);
+      z-index: 200;
+      transition: all 1s ease;
+    }
 
+    &-question {
+      position: absolute;
+      top: 50%;
+      bottom: 50%;
+      right: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 200;
+      transition: all 1s ease;
+    }
+}
 
+.new-canvas {
+        animation: empty-scene 1s ease forwards;
+      }
 </style>
 
 

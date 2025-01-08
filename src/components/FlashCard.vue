@@ -120,8 +120,6 @@
     transform: rotateY(180deg); /* Back face starts rotated */
     }
 
-
-
     .title-graphic {
         position: absolute;
         content: '';
@@ -131,7 +129,6 @@
         bottom: 0%;     
         transform: scale(230%);
         transform: translate(-50, -50);
-
     }
 
     .title-graphics-corner {
