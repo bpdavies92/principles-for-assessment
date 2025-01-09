@@ -1,7 +1,7 @@
 <template>
 
 
-    <v-container class="position-relative card-grid" max-width="1200"  width="100%">
+    <v-container class="position-relative card-grid" max-width="1200"  width="100vw" height="100vh">
         <v-row >
             <v-col v-for="(card, index) of onlyAnswerCards" :key="index" cols="12" sm="4">
                 <FlashCard

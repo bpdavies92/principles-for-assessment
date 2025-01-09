@@ -1,9 +1,13 @@
 <template>
-        <v-sheet height="100vh" width="100vw"  color="#fafafa" ref="main" >
-        <AllAnswers class="position-fixed"/>
-        <v-sheet class="position-relative card-container " height="100vh" width="100vw" color="transparent">
+        
+        <v-container color="#fafafa" ref="main">
 
-
+          <v-sheet v-if="showAllAnswerCards" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
+            <AllAnswers/>
+          </v-sheet>
+  
+        <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
+         
           <!-------- QUESTION CARD ------>
 
          {{ randomCard }} {{ numberAdder }} {{ cardSelected }}
@@ -48,7 +52,7 @@
           </FlashCard>
         </v-sheet>
         <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
-      </v-sheet>
+      </v-container>
 
 </template>
 
@@ -62,6 +66,8 @@
 import AllAnswers from '@/components/AllAnswers.vue';
 
   const store = useCardStore()
+
+  const showAllAnswerCards = ref(false)
 
   const numberAdder = ref(1)
 
@@ -147,6 +153,10 @@ import AllAnswers from '@/components/AllAnswers.vue';
 </script>
 
 <style lang="scss">
+
+  .answer-cards-container {
+    z-index: 500;
+  }
 
   .next-button {
     z-index: 100;
