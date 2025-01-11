@@ -1,6 +1,6 @@
 <template>
-  <v-app class="position-relative">
-    <v-app-bar  :elevation="0" rounded class="position-fixed mb-n12">
+  <v-app>
+    <v-app-bar scroll-behavior="inverted collapse hide" class="position-fixed top-0">
       <template v-slot:prepend>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
       </template>

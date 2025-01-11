@@ -153,6 +153,15 @@ export const useCardStore = defineStore('cardInfo', {
         onlyAnswerCardsSixCards: (state) => {
             return state.randomCardAnswers.slice(0, 6);
         },
+        onlyNineImages: (state) => {
+            const onlyImages = state.cardInfo.map((value, index, array) => {
+                return value.svgUrl
+            })
+
+            console.log('SVG', onlyImages)
+
+            return onlyImages
+        }
 
     },
     actions: {
