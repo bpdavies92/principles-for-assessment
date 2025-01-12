@@ -4,6 +4,9 @@
         <v-sheet v-if="showAllAnswers" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
           <AllAnswers/>
         </v-sheet>
+        <v-sheet v-if="showAllPicks" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
+          <MyPicks/>
+        </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
       
         <!-------- QUESTION CARD ------>
@@ -60,6 +63,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { storeToRefs } from 'pinia';
 import gsap from 'gsap';
 import AllAnswers from '@/components/AllAnswers.vue';
+import MyPicks from '@/components/MyPicks.vue'
 
 const store = useCardStore()
 
@@ -83,7 +87,8 @@ randomCard,
 onlyQuestionCardsSingleRandom, 
 randomCardAnswers, 
 onlyAnswerCardsSixCards,
-showAllAnswers
+showAllAnswers, 
+showAllPicks
 } = storeToRefs(store)
 
 const startAnimation = ref(true)

@@ -148,6 +148,7 @@ export const useCardStore = defineStore('cardInfo', {
     processStage: 0,
     randomCardAnswers: [], 
     showAllAnswers: false,
+    showAllPicks: false,
     myQuestionAnswers: []
     }),
     getters: { 
