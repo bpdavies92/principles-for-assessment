@@ -1,9 +1,9 @@
 <template>
     <v-overlay v-model="showAllAnswers" class="overflow-scroll d-flex justify-center scroll">
         <v-container class="position-relative card-grid d-flex" max-width="1200"  width="100%" height="auto">
-            <v-icon class="position-fixed top-0 left-0" @click="overlay = false" icon="mdi-plus">Close</v-icon>
-            
-            <v-row class="">
+          
+            <v-row class=""> 
+                
                 <v-col v-for="(card, index) of onlyAnswerCards" :key="index" cols="12" sm="4">
                     <FlashCard
                         class="position-relative mr-auto ml-auto"
@@ -17,10 +17,15 @@
                         <template v-slot:bodyText>{{card.content}}</template>
                     </FlashCard>
                 </v-col>
+             
             </v-row>
+            
         </v-container>
+        <v-btn prepend-icon="mdi-close" @click="showAllAnswers = false" class="close-btn">Close</v-btn>
     </v-overlay>
-<div class="background-layer"></div>
+<div  @click="showAllAnswers = false" class="background-layer position-relative"></div>
+
+
 
 </template>
 
@@ -28,11 +33,15 @@
 import { computed, ref, watch } from 'vue';
 import { useCardStore } from '../stores/cardInfo.js'
 import FlashCard from './FlashCard.vue';
+import { storeToRefs } from 'pinia';
+
+const store = useCardStore()
+
+const {showAllAnswers} = storeToRefs(store)
 
 const {
     cardInfo, 
     onlyAnswerCards,
-    showAllAnswers
 } = useCardStore()
 
 const flipOrNot = ref(Array(cardInfo.length).fill(false))
@@ -43,6 +52,16 @@ const flipOrNot = ref(Array(cardInfo.length).fill(false))
 
 .card-grid {
     z-index: 100;
+}
+
+.close-btn {
+    z-index: 800;
+    position: sticky;
+    top: 0%;
+    bottom: 0%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .background-layer {

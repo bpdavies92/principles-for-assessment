@@ -6,7 +6,7 @@
       </template>
       <v-app-bar-title>Principles Towards Assessment</v-app-bar-title>
       <v-btn @click="showAllAnswers = !showAllAnswers" size="small" prepend-icon="mdi-cards-playing">Answers</v-btn>
-      <v-btn @click="showAllAnswers = !showAllAnswers" size="small" prepend-icon="mdi-cards-playing">Introduction</v-btn>
+      <v-btn  size="small" prepend-icon="mdi-cards-playing">Introduction</v-btn>
       <v-btn @click="goTo('.rules', {offset:20, duration: 300})" size="small" prepend-icon="mdi-book-open-blank-variant">Rules</v-btn>
       <v-btn size="small" prepend-icon="mdi-heart">My picks</v-btn>
     </v-app-bar>
