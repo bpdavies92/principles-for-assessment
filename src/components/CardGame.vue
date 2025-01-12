@@ -1,58 +1,54 @@
 <template>
-        
-    <v-container color="#fafafa" ref="main" class="ml-auto mr-auto">
-
-      <v-sheet v-if="showAllAnswers" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
-        <AllAnswers/>
-      </v-sheet>
-
-    <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
-     
-      <!-------- QUESTION CARD ------>
-
-     {{ randomCard }} {{ numberAdder }} {{ cardSelected }}
-
-      <FlashCard 
-          :key="randomCard"
-          :class="[
-            cardPicked === true ? 'winning-card-question' : 'card-question',
-            newGame === true ? 'new-canvas' : '',
-            startAnimation === true ? 'animation-start' : '',
-            startAnimation === true ? 'test' : ''
-          ]" 
-          :dropshadow="10" 
-          :question="onlyQuestionCardsSingleRandom.type" 
-          :svgUrl="onlyQuestionCardsSingleRandom.svgUrl" 
-          :cardColour="onlyQuestionCardsSingleRandom.colour" 
-          :topCard="true">
-          <template v-slot:h1Title>Question</template>
-          <template v-slot:bodyText>{{onlyQuestionCardsSingleRandom.content}}</template>
-      </FlashCard>
-
-      <!-------- ANSWER CARD ------>
-
-      <FlashCard 
-            v-for="(item, index) in onlyAnswerCardsSixCards" 
-            :key="index" 
-            :question="item.type" 
-            :svgUrl="item.svgUrl" 
-            :flip="cardSelected[index] === 'not selected'" 
-            :cardColour="item.colour"
-            class="" 
-            @click="cardChoice(index) ; cardPicked = true" 
+    <div class="overflow-hidden">
+      <v-container color="#fafafa" ref="main" class="ml-auto mr-auto ">
+        <v-sheet v-if="showAllAnswers" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
+          <AllAnswers/>
+        </v-sheet>
+      <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
+      
+        <!-------- QUESTION CARD ------>
+       {{ randomCard }} {{ numberAdder }} {{ cardSelected }}
+        <FlashCard
+            :key="randomCard"
             :class="[
-                cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
-                cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
-                newGame === true ? 'new-canvas' : '',
-                startAnimation === true ? 'animation-start' : ''
-              ]"
-        >
-          <template v-slot:h1Title>Question</template>
-          <template v-slot:bodyText>{{item.content}}</template>
-      </FlashCard>
-    </v-sheet>
-    <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
-  </v-container>
+              cardPicked === true ? 'winning-card-question' : 'card-question',
+              newGame === true ? 'new-canvas' : '',
+              startAnimation === true ? 'animation-start' : '',
+              startAnimation === true ? 'test' : ''
+            ]"
+            :dropshadow="10"
+            :question="onlyQuestionCardsSingleRandom.type"
+            :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
+            :cardColour="onlyQuestionCardsSingleRandom.colour"
+            :topCard="true">
+            <template v-slot:h1Title>Question</template>
+            <template v-slot:bodyText>{{onlyQuestionCardsSingleRandom.content}}</template>
+        </FlashCard>
+        <!-------- ANSWER CARD ------>
+        <FlashCard
+              v-for="(item, index) in onlyAnswerCardsSixCards"
+              :key="index"
+              :question="item.type"
+              :svgUrl="item.svgUrl"
+              :flip="cardSelected[index] === 'not selected'"
+              :cardColour="item.colour"
+              class=""
+              @click="cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points)"
+              :class="[
+                  cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
+                  cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
+                  newGame === true ? 'new-canvas' : '',
+                  startAnimation === true ? 'animation-start' : ''
+                ]"
+          >
+            <template v-slot:h1Title>Question</template>
+            <template v-slot:bodyText>{{item.content}}</template>
+        </FlashCard>
+        <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
+      </v-sheet>
+      
+        </v-container>
+    </div>
 
 </template>
 
@@ -78,6 +74,7 @@ var tl = gsap.timeline({paused: true, defaults: {ease: "power2.inOut"}});
 const { 
 cardInfo, 
 onlyQuestionCards, 
+questionAnswerPair
 } = store
 
 const { 
@@ -146,7 +143,7 @@ if(processStage.value === 2) {
     processStage.value = 0
     startAnimation.value = true
     animationDelay()  
-  }, 5000)
+  }, 1000)
 }
 }
 
@@ -170,25 +167,25 @@ transform-origin: center center;
 
 .animation-start {
 &:nth-of-type(1) {
-  animation: move-away-1 2s ease forwards;
+  animation: move-away-1 .5s ease forwards;
 }
 &:nth-of-type(2) {
-  animation: move-away-2 2s ease 2s both;
+  animation: move-away-2 .5s ease .7s both;
 }
 &:nth-of-type(3) {
-  animation: move-away-3 2s ease 2s both;
+  animation: move-away-3 .5s ease .7s both;
 }
 &:nth-of-type(4) {
-  animation: move-away-4 2s ease 2s both;
+  animation: move-away-4 .5s ease .7s both;
 }
 &:nth-of-type(5) {
-  animation: move-away-5 2s ease 2s both;
+  animation: move-away-5 .5s ease .7s both;
 }
 &:nth-of-type(6) {
-  animation: move-away-6 2s ease 2s both;
+  animation: move-away-6 .5s ease .7s both;
 }
 &:nth-of-type(7) {
-  animation: move-away-7 2s ease 2s both;
+  animation: move-away-7 .5s ease .7s both;
 }
 }
 
@@ -402,11 +399,14 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
+      position: absolute;
       top: 50%;
       bottom: 50%;
       right: 50%;
-      left: 50%;
-      transform: translate(80%, -50%);
+      left: 80%;
+      transform: translate(-50%, -50%);
+      // animation: move-away-2 2s ease 2s both ;
+      // transition: all 1s ease ;
     } 
   }
 
@@ -418,11 +418,13 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
+      position: absolute;
       top: 50%;
       bottom: 50%;
-      right: 50%;
-      left: 50%;
-      transform: translate(15%, -20%);
+      left: 65%;
+      transform: translate(-50%, -20%);
+      // animation: move-away-5 2s ease 2s both ;
+      // transition: all 1s ease .10s;
     } 
   }
 
@@ -467,11 +469,14 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
+      position: absolute;
       top: 30%;
       bottom: 50%;
       right: 50%;
-      left: 50%;
-      transform: translate(15%, -50%);
+      left: 65%;
+      transform: translate(-50%, -50%);
+      // animation: move-away-7 2s ease 2s both ;
+      // transition: all 1s ease .4s;
     } 
   }
 

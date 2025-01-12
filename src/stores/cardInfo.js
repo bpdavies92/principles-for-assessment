@@ -63,7 +63,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/tick box person.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 6, 
@@ -73,7 +74,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/blindfolded students.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 7, 
@@ -83,7 +85,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/multi choice assessment.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 8, 
@@ -93,7 +96,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/hand arm and book.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 9, 
@@ -103,7 +107,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/puzzle pieces.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 10, 
@@ -113,7 +118,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/arm hand and pencil.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 11, 
@@ -123,7 +129,8 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/earth.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
         {
             id: 12, 
@@ -133,14 +140,15 @@ export const useCardStore = defineStore('cardInfo', {
             svgUrl: '../../public/images/illustrations/key lady.svg',
             isFront: true, 
             isDouble: false,
-            isTriple: false
+            isTriple: false,
+            points: 10
         },
     ],
     randomCard: 0,
     processStage: 0,
     randomCardAnswers: [], 
     showAllAnswers: false,
-    myQuestionAnswers: {}
+    myQuestionAnswers: []
     }),
     getters: { 
         onlyQuestionCards: (state) => {
@@ -187,8 +195,12 @@ export const useCardStore = defineStore('cardInfo', {
                 [this.randomCardAnswers[i], this.randomCardAnswers[randomIndex]] = [this.randomCardAnswers[randomIndex], this.randomCardAnswers[i]]; // Swap elements
             }
     
-
             return this.randomCardAnswers;
+        },
+        questionAnswerPair(question, answer, score) {
+            const newPair = [question, answer, score]
+            this.myQuestionAnswers.push(newPair)
+            console.log(this.myQuestionAnswers)
         }
     }
   })
