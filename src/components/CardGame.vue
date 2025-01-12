@@ -2,7 +2,7 @@
         
     <v-container color="#fafafa" ref="main" class="ml-auto mr-auto">
 
-      <v-sheet v-if="showAllAnswerCards" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
+      <v-sheet v-if="showAllAnswers" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
         <AllAnswers/>
       </v-sheet>
 
@@ -85,7 +85,8 @@ processStage,
 randomCard, 
 onlyQuestionCardsSingleRandom, 
 randomCardAnswers, 
-onlyAnswerCardsSixCards
+onlyAnswerCardsSixCards,
+showAllAnswers
 } = storeToRefs(store)
 
 const startAnimation = ref(true)

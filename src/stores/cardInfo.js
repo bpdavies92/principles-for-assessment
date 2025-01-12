@@ -1,4 +1,5 @@
 
+import AllAnswers from '@/components/AllAnswers.vue'
 import { defineStore } from 'pinia'
 
 export const useCardStore = defineStore('cardInfo', {
@@ -137,7 +138,9 @@ export const useCardStore = defineStore('cardInfo', {
     ],
     randomCard: 0,
     processStage: 0,
-    randomCardAnswers: []
+    randomCardAnswers: [], 
+    showAllAnswers: false,
+    myQuestionAnswers: {}
     }),
     getters: { 
         onlyQuestionCards: (state) => {
@@ -158,9 +161,7 @@ export const useCardStore = defineStore('cardInfo', {
                 return value.svgUrl
             })
 
-            console.log('SVG', onlyImages)
-
-            return onlyImages
+            return onlyImages.slice(0, 8)
         }
 
     },

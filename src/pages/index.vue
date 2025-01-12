@@ -2,5 +2,3 @@
   <Rules/>
   <CardGame/>
 </template>
-
-<P
