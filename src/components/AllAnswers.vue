@@ -1,6 +1,6 @@
 <template>
     <v-overlay width="100vw" v-model="showAllAnswers" class="d-flex justify-center">
-        <v-sheet height="100vh" width="100vw" color="transparent" class="overflow-scroll curser-none">
+        <v-sheet height="100vh" width="99.5vw" color="transparent" class="overflow-y-scroll overflow-x-none curser-none">
             <v-container  class="position-relative card-grid d-flex" max-width="1200"  width="100%" height="auto">
             
                 <v-row  ref="target">

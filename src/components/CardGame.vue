@@ -10,8 +10,10 @@
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
       
         <!-------- QUESTION CARD ------>
-       {{ randomCard }} {{ numberAdder }} {{ cardSelected }}
+       <!-- {{ randomCard }} {{ numberAdder }} {{ cardSelected }} -->
         <FlashCard
+           
+            class="question-card-top"
             :key="randomCard"
             :class="[
               cardPicked === true ? 'winning-card-question' : 'card-question',
@@ -31,11 +33,11 @@
         <FlashCard
               v-for="(item, index) in onlyAnswerCardsSixCards"
               :key="index"
+               class="rot-1"
               :question="item.type"
               :svgUrl="item.svgUrl"
               :flip="cardSelected[index] === 'not selected'"
               :cardColour="item.colour"
-              class=""
               @click="cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points)"
               :class="[
                   cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
@@ -67,6 +69,8 @@ import MyPicks from '@/components/MyPicks.vue'
 
 const store = useCardStore()
 
+const rot = ref([23, 2, 34, -3, -43, 12, -34])
+
 const showAllAnswerCards = ref(false)
 
 const numberAdder = ref(1)
@@ -96,7 +100,7 @@ const startAnimation = ref(true)
 function animationDelay() {
 setTimeout(() => {
   startAnimation.value = false
-}, 3000)
+}, 1200)
 }
 
 animationDelay()
@@ -148,14 +152,19 @@ if(processStage.value === 2) {
     processStage.value = 0
     startAnimation.value = true
     animationDelay()  
-  }, 1000)
+  }, 700)
 }
 }
+
 
 
 </script>
 
 <style lang="scss">
+
+.question-card-top {
+  z-index: 99;
+}
 
 .answer-cards-container {
 z-index: 500;
@@ -203,7 +212,7 @@ position: absolute;
     transform: translate(-50%, -50%);
     transform: scale(1);
     transition: all 1s ease;
-      animation: move-away-1 2s ease forwards ;
+    animation: move-away-1 2s ease forwards ;
 }
 
 .card-question {
@@ -213,85 +222,70 @@ position: absolute;
     right: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // transition: all 1s ease;
-    
-
-   
+    transition: all 1s ease;
+  
+   //FAR LEFT
     &:nth-of-type(3) {
       position: absolute;
       top: 50%;
       bottom: 50%;
       right: 50%;
-      left: 20%;
-      transform: translate(-50%, -50%);
-      // animation: move-away-3 2s ease 2s both;
-      // transition: all 1s ease .7s;
+      left: 0%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      
     } 
 
+    //LEFT TOP
     &:nth-of-type(6) {
       position: absolute;
       top: 30%;
       bottom: 50%;
       right: 50%;
-      left: 35%;
-      transform: translate(-50%, -50%);
-      // animation: move-away-6 2s ease 2s both ;
-      // transition: all 1s ease .3s;
+      left: 25%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      
     }
 
+    //LEFT BOTTOM
     &:nth-of-type(5) {
       position: absolute;
-      top: 50%;
+      top: 70%;
       bottom: 50%;
       right: 50%;
-      left: 35%;
-      transform: translate(-50%, -20%);
-      // animation: move-away-5 2s ease 2s both ;
-      // transition: all 1s ease .10s;
+      left: 25%;
+      transform: translate(-50%, -50%) rotate(0deg);
     }
 
+    //RIGHT TOP
     &:nth-of-type(4) {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      left: 65%;
-      transform: translate(-50%, -20%);
-      // animation: move-away-5 2s ease 2s both ;
-      // transition: all 1s ease .10s;
-    }
-
-     &:nth-of-type(7) {
       position: absolute;
       top: 30%;
       bottom: 50%;
       right: 50%;
-      left: 65%;
-      transform: translate(-50%, -50%);
-      // animation: move-away-7 2s ease 2s both ;
-      // transition: all 1s ease .4s;
+      left: 75%;
+      transform: translate(-50%, -50%), rotate(0deg);
     }
 
+    //RIGHT BOTTOM
+    &:nth-of-type(7) {
+      position: absolute;
+      top: 70%;
+      bottom: 50%;
+      right: 50%;
+      left: 75%;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    //FAR RIGHT
     &:nth-of-type(2) {
       position: absolute;
       top: 50%;
       bottom: 50%;
       right: 50%;
-      left: 80%;
+      left: 100%;
       transform: translate(-50%, -50%);
-      // animation: move-away-2 2s ease 2s both ;
-      // transition: all 1s ease ;
     }
   }
-
-
-
-// .pause-animation {
-//   animation-play-state: paused;
-// }
-
-// .continue-animation {
-//   animation-play-state: running;
-// }
 
 .move-cards-away {
     position: absolute;
@@ -308,10 +302,8 @@ position: absolute;
       right: 50%;
       left: 1%;
       transform: translate(-50%, -50%);
-      // animation: move-away-3 1s ease ;
       scale: scale(0.88, 0.88);
       transition: all 1s ease;
-      // animation-delay: 1s;
     } 
 
     &:nth-of-type(6) {
@@ -348,7 +340,6 @@ position: absolute;
       left: 50%;
       // animation: move-away-4 1s ease ;
       transform: translate(1%, 70%);
-      scale: scale(0.88, 0.88);
       transition: all 1s ease;
       // animation-delay: 1s;
     }
@@ -373,10 +364,8 @@ position: absolute;
       right: 50%;
       left: 70%;
       transform: translate(100%, -50%);
-      // animation: move-away-2 2s ease ;
       scale: scale(0.88, 0.88);
       transition: all 1s ease;
-      // animation-delay: 1s;
     }
   }
 
@@ -388,11 +377,11 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 20%;
-      transform: translate(-50%, -50%);
+      // top: 50%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 20%;
+      // transform: translate(-50%, -50%);
     } 
   }
 
@@ -404,12 +393,12 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 80%;
-      transform: translate(-50%, -50%);
+      // position: absolute;
+      // top: 50%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 80%;
+      // transform: translate(-50%, -50%);
       // animation: move-away-2 2s ease 2s both ;
       // transition: all 1s ease ;
     } 
@@ -423,11 +412,11 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      left: 65%;
-      transform: translate(-50%, -20%);
+      // position: absolute;
+      // top: 50%;
+      // bottom: 50%;
+      // left: 65%;
+      // transform: translate(-50%, -20%);
       // animation: move-away-5 2s ease 2s both ;
       // transition: all 1s ease .10s;
     } 
@@ -441,11 +430,11 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 35%;
-      transform: translate(-50%, -20%);
+      // top: 50%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 35%;
+      // transform: translate(-50%, -20%);
     } 
   }
 
@@ -458,11 +447,11 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      top: 30%;
-      bottom: 50%;
-      right: 50%;
-      left: 35%;
-      transform: translate(-50%, -50%);
+      // top: 30%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 35%;
+      // transform: translate(-50%, -50%);
     } 
   }
 
@@ -474,12 +463,12 @@ position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
     } 100% {
-      position: absolute;
-      top: 30%;
-      bottom: 50%;
-      right: 50%;
-      left: 65%;
-      transform: translate(-50%, -50%);
+      // position: absolute;
+      // top: 30%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 65%;
+      // transform: translate(-50%, -50%);
       // animation: move-away-7 2s ease 2s both ;
       // transition: all 1s ease .4s;
     } 
@@ -489,13 +478,13 @@ position: absolute;
     0% {
       transform: scale(34);
     } 100% {
-      transform: scale(1);
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      right: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      // transform: scale(1);
+      // position: absolute;
+      // top: 50%;
+      // bottom: 50%;
+      // right: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
     } 
   }
 
@@ -537,6 +526,20 @@ position: absolute;
 .new-canvas {
     animation: empty-scene 1s ease forwards;
   }
+
+  // .rot-1:nth-of-type(1) {
+  //   transform: translate(-50%, -50%) rotate(-5deg);
+  //   transition: all 1s ease;
+  //   transform-origin: bottom; /* Rotates around the top-left corner */
+  // }
+
+  // .rot-1:nth-of-type(4) {
+  //   transform: translate(-50%, -50%) rotate(-5deg);
+  //   transition: all 1s ease;
+  //   transform-origin: bottom; /* Rotates around the top-left corner */
+  // }
+
+
 </style>
 
 

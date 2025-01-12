@@ -1,6 +1,7 @@
 <template>
   <div class="extra-space">
     <CardGame/>
+    <Introduction />
     <Rules />
   </div>
 </template>
