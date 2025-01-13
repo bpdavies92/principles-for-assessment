@@ -9,7 +9,7 @@
             aspect-ratio="16/9"
             ></v-img>
         </v-col>
-        <v-col cols="12" sm="6" class="pl-12 pr-12 pb-12">
+        <v-col cols="12" sm="6" class="pa-12">
             <h2 class="text-h2 mb-6">Introduction</h2>
             <p class="text-body-1">This is not just a game, it’s an opportunity to <strong>reflect</strong>, <strong>learn</strong>, and <strong>innovate</strong> in your approach to assessment
             </p>

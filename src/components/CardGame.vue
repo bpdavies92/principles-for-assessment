@@ -11,7 +11,7 @@
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
         {{ isRotated }} 
         <!-------- QUESTION CARD ------>
-
+        {{ cardPicked }}
         <FlashCard
            
             class="question-card-top"
@@ -35,17 +35,16 @@
               v-for="(item, index) in onlyAnswerCardsSixCards"
               :key="index" 
               
-              @mouseover="isRotated[index] = true"
-              @mouseleave="isRotated[index] = false"
+              @mouseover="cardPicked === false ? isRotated[index] = true : null"
+              @mouseleave="cardPicked === false ? isRotated[index] = false : null"
               :style="{
-               transform: isRotated[index] === true ?  `translate(-50%, -50%) rotate(0deg)` : `translate(-50%, -50%) rotate(${rot[index]}deg)`
+               transform: isRotated[index] === false ?  `translate(-50%, -50%) rotate(${rot[index]}deg)` : ``
               }"
-               class="rot-1"
               :question="item.type"
               :svgUrl="item.svgUrl"
               :flip="cardSelected[index] === 'not selected'"
               :cardColour="item.colour"
-              @click="cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points)"
+              @click="cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points) ; isRotated.forEach((value, i, array) => array[i] = true)"
               :class="[
                   cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
                   cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
@@ -177,6 +176,7 @@ if(processStage.value === 2) {
     processStage.value = 0
     startAnimation.value = true
     animationDelay()  
+    isRotated.value.forEach((value, index, array) => array[index] = false)
   }, 700)
 }
 }
@@ -533,7 +533,7 @@ position: absolute;
   left: 65%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all .5 ease;
+  transition: all .5s ease;
 }
 
 &-question {
@@ -544,7 +544,7 @@ position: absolute;
   left: 35%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all .5 ease;
+  transition: all .5s ease;
 }
 }
 
