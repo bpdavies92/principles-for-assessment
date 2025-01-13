@@ -1,4 +1,5 @@
 <template>
+ 
     <div class="overflow-hidden">
       <v-container color="#fafafa" ref="main" class="ml-auto mr-auto ">
         <v-sheet v-if="showAllAnswers" color="transparent" class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container" height="100vh" width="100vw">
@@ -8,9 +9,9 @@
           <MyPicks/>
         </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
-      
+        {{ isRotated }} 
         <!-------- QUESTION CARD ------>
-       <!-- {{ randomCard }} {{ numberAdder }} {{ cardSelected }} -->
+
         <FlashCard
            
             class="question-card-top"
@@ -32,7 +33,13 @@
         <!-------- ANSWER CARD ------>
         <FlashCard
               v-for="(item, index) in onlyAnswerCardsSixCards"
-              :key="index"
+              :key="index" 
+              
+              @mouseover="isRotated[index] = true"
+              @mouseleave="isRotated[index] = false"
+              :style="{
+               transform: isRotated[index] === true ?  `translate(-50%, -50%) rotate(0deg)` : `translate(-50%, -50%) rotate(${rot[index]}deg)`
+              }"
                class="rot-1"
               :question="item.type"
               :svgUrl="item.svgUrl"
@@ -69,11 +76,29 @@ import MyPicks from '@/components/MyPicks.vue'
 
 const store = useCardStore()
 
-const rot = ref([23, 2, 34, -3, -43, 12, -34])
+// const rot = ref([23, 70, 34, -3, -43, 12, -34])
+
+const rot = computed(() => {
+  let differentAngles = [-5, 10, 3, -3, -14, 12, -7]
+  
+  // Fisher-Yates Shuffle
+  for (let i = differentAngles.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [differentAngles[i], differentAngles[randomIndex]] = [differentAngles[randomIndex], differentAngles[i]];
+  }
+  console.log('differentAngle', differentAngles)
+  return differentAngles
+
+
+})
 
 const showAllAnswerCards = ref(false)
 
 const numberAdder = ref(1)
+
+const isRotated = ref([false, false, false, false, false, false])
+
+console.log(isRotated.value)
 
 const main = ref();
 let ctx;
@@ -211,7 +236,7 @@ position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
     transform: scale(1);
-    transition: all 1s ease;
+    transition: all .5s ease;
     animation: move-away-1 2s ease forwards ;
 }
 
@@ -222,7 +247,7 @@ position: absolute;
     right: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: all 1s ease;
+    transition: all .5s ease;
   
    //FAR LEFT
     &:nth-of-type(3) {
@@ -303,7 +328,7 @@ position: absolute;
       left: 1%;
       transform: translate(-50%, -50%);
       scale: scale(0.88, 0.88);
-      transition: all 1s ease;
+      transition: all .5s ease;
     } 
 
     &:nth-of-type(6) {
@@ -314,7 +339,7 @@ position: absolute;
       left: 40%;
       transform: translate(-50%, -70%);
       scale: scale(0.88, 0.88);
-      transition: all 1s ease;
+      transition: all .5s ease;
       // animation: move-away-6 1s ease ;
       // animation-delay: 1s;
     }
@@ -328,7 +353,7 @@ position: absolute;
       // animation: move-away-5 1s ease ;
       transform: translate(-50%, 20%);
       scale: scale(0.88, 0.88);
-      transition: all 1s ease;
+      transition: all .5s ease;
       // animation-delay: 1s;
     }
 
@@ -340,7 +365,7 @@ position: absolute;
       left: 50%;
       // animation: move-away-4 1s ease ;
       transform: translate(1%, 70%);
-      transition: all 1s ease;
+      transition: all .5s ease;
       // animation-delay: 1s;
     }
 
@@ -353,7 +378,7 @@ position: absolute;
       transform: translate(90%, -50%);
       // animation: move-away-7 2s ease;
       scale: scale(0.88, 0.88);
-      transition: all 1s ease;
+      transition: all .5s ease;
       // animation-delay: 1s;
     }
 
@@ -508,7 +533,7 @@ position: absolute;
   left: 65%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all 1s ease;
+  transition: all .5 ease;
 }
 
 &-question {
@@ -519,7 +544,7 @@ position: absolute;
   left: 35%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all 1s ease;
+  transition: all .5 ease;
 }
 }
 
