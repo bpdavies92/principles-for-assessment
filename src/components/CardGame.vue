@@ -34,11 +34,11 @@
         <FlashCard
               v-for="(item, index) in onlyAnswerCardsSixCards"
               :key="index" 
-              
+              class="scale-card"
               @mouseover="cardPicked === false ? isRotated[index] = true : null"
               @mouseleave="cardPicked === false ? isRotated[index] = false : null"
               :style="{
-               transform: isRotated[index] === false ?  `translate(-50%, -50%) rotate(${rot[index]}deg)` : ``
+               transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ``
               }"
               :question="item.type"
               :svgUrl="item.svgUrl"
@@ -50,7 +50,7 @@
                   cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
                   newGame === true ? 'new-canvas' : '',
                   startAnimation === true ? 'animation-start' : ''
-                ]"
+              ]"
           >
             <template v-slot:h1Title>Question</template>
             <template v-slot:bodyText>{{item.content}}</template>
@@ -228,16 +228,8 @@ transform-origin: center center;
 }
 }
 
-.test {
-position: absolute;
-    top: 50%;
-    bottom: 50%;
-    right: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transform: scale(1);
-    transition: all .5s ease;
-    animation: move-away-1 2s ease forwards ;
+.test:nth-of-type(3):hover {
+        transform: translate(-50%, -50%)  rotate(0deg) scale(1.5);
 }
 
 .card-question {
@@ -258,6 +250,9 @@ position: absolute;
       left: 0%;
       transform: translate(-50%, -50%) rotate(0deg);
       
+      &   {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }
     } 
 
     //LEFT TOP
@@ -268,7 +263,9 @@ position: absolute;
       right: 50%;
       left: 25%;
       transform: translate(-50%, -50%) rotate(0deg);
-      
+      & {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }      
     }
 
     //LEFT BOTTOM
@@ -279,6 +276,9 @@ position: absolute;
       right: 50%;
       left: 25%;
       transform: translate(-50%, -50%) rotate(0deg);
+      & {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }
     }
 
     //RIGHT TOP
@@ -289,6 +289,9 @@ position: absolute;
       right: 50%;
       left: 75%;
       transform: translate(-50%, -50%), rotate(0deg);
+      & {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }
     }
 
     //RIGHT BOTTOM
@@ -299,6 +302,9 @@ position: absolute;
       right: 50%;
       left: 75%;
       transform: translate(-50%, -50%) rotate(0deg);
+      & {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }
     }
 
     //FAR RIGHT
@@ -309,6 +315,9 @@ position: absolute;
       right: 50%;
       left: 100%;
       transform: translate(-50%, -50%);
+      & {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+      }
     }
   }
 
@@ -319,6 +328,7 @@ position: absolute;
     right: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 
     &:nth-of-type(3) {
       position: absolute;
@@ -327,8 +337,8 @@ position: absolute;
       right: 50%;
       left: 1%;
       transform: translate(-50%, -50%);
-      scale: scale(0.88, 0.88);
       transition: all .5s ease;
+      
     } 
 
     &:nth-of-type(6) {
@@ -337,11 +347,12 @@ position: absolute;
       bottom: 50%;
       right: 50%;
       left: 40%;
-      transform: translate(-50%, -70%);
-      scale: scale(0.88, 0.88);
+      transform: translate(-50%, -70%) scale(1);
       transition: all .5s ease;
-      // animation: move-away-6 1s ease ;
-      // animation-delay: 1s;
+
+      &:hover .scale-card {
+        transform:  translate(-50%, -70%) scale(1.5);
+      }
     }
 
     &:nth-of-type(5) {
@@ -352,9 +363,11 @@ position: absolute;
       left: 17%;
       // animation: move-away-5 1s ease ;
       transform: translate(-50%, 20%);
-      scale: scale(0.88, 0.88);
       transition: all .5s ease;
-      // animation-delay: 1s;
+
+      &:hover .scale-card {
+        transform: scale(1.5);
+      }
     }
 
     &:nth-of-type(4) {
@@ -363,10 +376,12 @@ position: absolute;
       bottom: 10%;
       right: 50%;
       left: 50%;
-      // animation: move-away-4 1s ease ;
       transform: translate(1%, 70%);
       transition: all .5s ease;
-      // animation-delay: 1s;
+      
+      &:hover .scale-card {
+        transform: scale(1.5);
+      }
     }
 
      &:nth-of-type(7) {
@@ -376,10 +391,11 @@ position: absolute;
       right: 50%;
       left: 50%;
       transform: translate(90%, -50%);
-      // animation: move-away-7 2s ease;
-      scale: scale(0.88, 0.88);
       transition: all .5s ease;
-      // animation-delay: 1s;
+     
+      &:hover .scale-card {
+        transform: scale(1.5);
+      }
     }
 
     &:nth-of-type(2) {
@@ -389,8 +405,11 @@ position: absolute;
       right: 50%;
       left: 70%;
       transform: translate(100%, -50%);
-      scale: scale(0.88, 0.88);
       transition: all 1s ease;
+
+      &:hover .scale-card {
+        transform: scale(1.5);
+      }
     }
   }
 
