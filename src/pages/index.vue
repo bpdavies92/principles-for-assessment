@@ -1,6 +1,6 @@
 <template>
   <div class="extra-space">
-    <CardGame/>
+    <CardGame />
     <Introduction />
     <Rules />
   </div>
