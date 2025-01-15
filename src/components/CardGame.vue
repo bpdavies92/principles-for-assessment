@@ -12,13 +12,14 @@
         </v-sheet>
         <v-sheet  color="transparent" class="position-fixed points">
           <v-progress-circular
+          :model-value="gameProgress"
           rotate="360"
           size="100"
           width="15"
-          color="teal"
+          color="#303030"
           class="position-absolute points"
         >
-          {{ gamePoints }}
+          {{ gameProgress }}
         </v-progress-circular>
         </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
@@ -68,7 +69,7 @@
             <template v-slot:h1Title>Question</template>
             <template v-slot:bodyText>{{item.content}}</template>
         </FlashCard>
-        <v-btn @click="newSelection" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
+        <v-btn @click="newSelection() ; gameProgress += 10" v-if="cardPicked" width="30%" rounded="xs" size="x-large" class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6">Next card</v-btn>
       </v-sheet>
       
         </v-container>
@@ -106,6 +107,12 @@ const rot = computed(() => {
 
 let gamePoints = ref(0)
 
+let gameProgress = ref(0)
+
+function progressGame() {
+  gameProgress.value += 10
+}
+ 
 function pointsCollector(points) {
   gamePoints.value += points
 }
