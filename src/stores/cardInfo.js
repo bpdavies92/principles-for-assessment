@@ -64,7 +64,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 6, 
@@ -75,7 +77,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 7, 
@@ -86,7 +90,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 8, 
@@ -97,7 +103,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 9, 
@@ -108,7 +116,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 10, 
@@ -119,7 +129,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 11, 
@@ -130,7 +142,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
         {
             id: 12, 
@@ -141,7 +155,9 @@ export const useCardStore = defineStore('cardInfo', {
             isFront: true, 
             isDouble: false,
             isTriple: false,
-            points: 10
+            points: 10, 
+            userInput: false, 
+            userInputText: 'test'
         },
     ],
     randomCard: 0,

@@ -1,4 +1,6 @@
 <template>
+
+  <AnswerInputBox /> 
  
     <div class="overflow-hidden">
       
@@ -23,9 +25,9 @@
         </v-progress-circular>
         </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
-        {{ isRotated }} 
+        <!-- {{ isRotated }}  -->
         <!-------- QUESTION CARD ------>
-        {{ cardPicked }}
+        <!-- {{ cardPicked }} -->
         <FlashCard
            
             class="question-card-top"
@@ -58,7 +60,7 @@
               :svgUrl="item.svgUrl"
               :flip="cardSelected[index] === 'not selected'"
               :cardColour="item.colour"
-              @click="cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points) ; isRotated.forEach((value, i, array) => array[i] = true) ; pointsCollector(item.points)"
+              @click="inputAnswerCard(index) ; cardChoice(index) ; cardPicked = true ;  questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points) ; isRotated.forEach((value, i, array) => array[i] = true) ; pointsCollector(item.points)"
               :class="[
                   cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
                   cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
@@ -101,13 +103,12 @@ const rot = computed(() => {
   }
   console.log('differentAngle', differentAngles)
   return differentAngles
-
-
 })
 
 let gamePoints = ref(0)
-
 let gameProgress = ref(0)
+
+const userInput = ref('')
 
 function progressGame() {
   gameProgress.value += 10
@@ -116,6 +117,8 @@ function progressGame() {
 function pointsCollector(points) {
   gamePoints.value += points
 }
+
+const cardInput = ref([false, false, false, false, false, false])
 
 const showAllAnswerCards = ref(false)
 
@@ -130,12 +133,12 @@ let ctx;
 var tl = gsap.timeline({paused: true, defaults: {ease: "power2.inOut"}});
 
 const { 
-cardInfo, 
 onlyQuestionCards, 
 questionAnswerPair
 } = store
 
 const { 
+cardInfo,
 processStage, 
 randomCard, 
 onlyQuestionCardsSingleRandom, 
@@ -164,6 +167,11 @@ onMounted(() => {
 onUnmounted(() => {
 ctx.revert(); // <- Easy Cleanup!
 });
+
+function inputAnswerCard(i) {
+
+  console.log(cardInfo.value[i].userInputText)
+}
 
 console.log('card info', processStage.value)
 let cardSelected = ref([null, null, null, null, null, null])
@@ -589,7 +597,7 @@ transform-origin: center center;
   left: 65%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all .5s ease;
+  transition: all 1s ease;
 }
 
 &-question {
@@ -600,7 +608,7 @@ transform-origin: center center;
   left: 35%;
   transform: translate(-50%, -50%);
   z-index: 200;
-  transition: all .5s ease;
+  transition: all 1s ease;
 }
 }
 
