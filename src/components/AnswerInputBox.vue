@@ -15,12 +15,11 @@
 
       <v-card>        
         <v-card-text>
-          {{indexNum}}
                 <v-textarea
+                v-model="modelText"
                 class="pb-1 mb-1"
                 clear-icon="mdi-close-circle"
                 label="Type your answer"
-                :model-value="modelText"
                 clearable
                 ></v-textarea>
         </v-card-text>
@@ -28,12 +27,8 @@
         <template v-slot:actions> 
 
         <v-spacer></v-spacer>
-        <v-btn >
-            Disagree
-        </v-btn>
-
-          <v-btn @click="test(indexNum)">
-            Agree
+          <v-btn @click="updateAnswer">
+            Confirm answer
           </v-btn>
         </template>
       </v-card>
@@ -43,6 +38,7 @@
 </template>
 
 <script setup>
+
 import { useCardStore } from '../stores/cardInfo';
 import { storeToRefs } from 'pinia';
 import {ref} from 'vue'
@@ -54,11 +50,12 @@ const {
     modelOpenClose,
     userInputText
 } = storeToRefs(store)
-const modelText = ref('...')
 
-function test(i) {
-  // cardInfo.value[props.indexNum].content =  cardInfo.value[props.indexNum].userInputText + cardInfo.value[props.indexNum].staticText
-  console.log(cardInfo.value[i].content)
+const modelText = ref('')
+
+function updateAnswer() {
+  cardInfo.value[props.indexNum].content =  modelText.value + cardInfo.value[props.indexNum].staticText
   modelOpenClose.value = false
 }
+
 </script>

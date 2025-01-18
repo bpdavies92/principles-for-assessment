@@ -59,6 +59,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
+          @click="userCardInput(item.id, index); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); pointsCollector(item.points)" 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -66,7 +67,6 @@
           :svgUrl="item.svgUrl"
           :flip="cardSelected[index] === 'not selected'"
           :cardColour="item.colour"
-          @click="userCardInput(index); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); pointsCollector(item.points)"
           :class="[
             cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
             cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
@@ -163,10 +163,11 @@ function pointsCollector(points) {
   gamePoints.value += points;
 }
 
-function userCardInput(i) {
+function userCardInput(id, i) {
+  if(cardInfo.value[id].userInput === false) return
   modelOpenClose.value = true
-  console.log('CardGame.vue', cardInfo.value[i])
-  modelIndex.value = i
+  console.log('CardGame.vue', id)
+  modelIndex.value = id
 }
 
 function animationDelay() {

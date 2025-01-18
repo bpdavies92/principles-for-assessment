@@ -67,7 +67,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 6, 
@@ -81,7 +81,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 7, 
@@ -95,7 +95,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 8, 
@@ -109,7 +109,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null       
         },
         {
             id: 9, 
@@ -123,7 +123,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 10, 
@@ -137,7 +137,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 11, 
@@ -151,7 +151,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: false, 
             userInputText: 'test',
-            staticText: ''        
+            staticText: null        
         },
         {
             id: 12, 
@@ -163,9 +163,9 @@ export const useCardStore = defineStore('cardInfo', {
             isDouble: false,
             isTriple: false,
             points: 10, 
-            userInput: false, 
+            userInput: true, 
             userInputText: 'test',
-            staticText: ''
+            staticText: ' is the key'
         },
     ],
     randomCard: 0,
