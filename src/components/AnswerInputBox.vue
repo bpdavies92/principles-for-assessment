@@ -5,6 +5,7 @@
       v-model="modelOpenClose"
       max-width="400"
       persistent
+      class="elevation-8"
     >
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn v-bind="activatorProps">
@@ -15,11 +16,12 @@
 
       <v-card>        
         <v-card-text>
+          <p class="text-body-1 mb-6">Answer the question by typing in the box below</p> 
                 <v-textarea
                 v-model="modelText"
                 class="pb-1 mb-1"
                 clear-icon="mdi-close-circle"
-                label="Type your answer"
+                :label="cardInfo[indexNum].content"
                 clearable
                 ></v-textarea>
         </v-card-text>
@@ -27,7 +29,7 @@
         <template v-slot:actions> 
 
         <v-spacer></v-spacer>
-          <v-btn @click="updateAnswer">
+          <v-btn block prepend-icon="mdi-cards" color="#303030" ripple variant="flat" @click="updateAnswer">
             Confirm answer
           </v-btn>
         </template>
@@ -54,7 +56,7 @@ const {
 const modelText = ref('')
 
 function updateAnswer() {
-  cardInfo.value[props.indexNum].content =  modelText.value + cardInfo.value[props.indexNum].staticText
+  cardInfo.value[props.indexNum].answer =  modelText.value + cardInfo.value[props.indexNum].staticText
   modelOpenClose.value = false
 }
 

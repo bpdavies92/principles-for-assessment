@@ -12,7 +12,7 @@
                             :cardColour="card[0].colour"
                         >
                             <template v-slot:h1Title>Question</template>
-                            <template v-slot:bodyText>{{card[0].content}}</template>
+                            <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
                         </FlashCard>
                     </v-col>
                     <v-col  cols="12" md="6">

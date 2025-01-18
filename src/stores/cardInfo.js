@@ -157,6 +157,7 @@ export const useCardStore = defineStore('cardInfo', {
             id: 12, 
             type: 'a',
             content: `“........................“ is the key`,
+            answer: null,
             colour: '#Afd3f0',
             svgUrl: '../../public/images/illustrations/key lady.svg',
             isFront: true, 

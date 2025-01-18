@@ -75,7 +75,7 @@
           ]"
         >
           <template v-slot:h1Title>Question</template>
-          <template v-slot:bodyText>{{ item.content }}</template>
+          <template v-slot:bodyText>{{ item.answer ? item.answer : item.content }}</template>
         </FlashCard>
 
         <v-btn
@@ -84,6 +84,7 @@
           width="30%"
           rounded="xs"
           size="x-large"
+          color="#303030"
           class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6"
         >
           Next card
@@ -624,19 +625,6 @@ transform-origin: center center;
 .new-canvas {
     animation: empty-scene 1s ease forwards;
   }
-
-  // .rot-1:nth-of-type(1) {
-  //   transform: translate(-50%, -50%) rotate(-5deg);
-  //   transition: all 1s ease;
-  //   transform-origin: bottom; /* Rotates around the top-left corner */
-  // }
-
-  // .rot-1:nth-of-type(4) {
-  //   transform: translate(-50%, -50%) rotate(-5deg);
-  //   transition: all 1s ease;
-  //   transform-origin: bottom; /* Rotates around the top-left corner */
-  // }
-
 
 </style>
 
