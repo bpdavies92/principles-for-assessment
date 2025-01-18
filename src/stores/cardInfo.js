@@ -66,7 +66,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 6, 
@@ -79,7 +80,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 7, 
@@ -92,7 +94,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 8, 
@@ -105,7 +108,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 9, 
@@ -118,7 +122,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 10, 
@@ -131,7 +136,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 11, 
@@ -144,12 +150,13 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''        
         },
         {
             id: 12, 
             type: 'a',
-            content: '“........................“ is the key',
+            content: `“........................“ is the key`,
             colour: '#Afd3f0',
             svgUrl: '../../public/images/illustrations/key lady.svg',
             isFront: true, 
@@ -157,7 +164,8 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test'
+            userInputText: 'test',
+            staticText: ''
         },
     ],
     randomCard: 0,
@@ -165,7 +173,8 @@ export const useCardStore = defineStore('cardInfo', {
     randomCardAnswers: [], 
     showAllAnswers: false,
     showAllPicks: false,
-    myQuestionAnswers: []
+    myQuestionAnswers: [],
+    modelOpenClose: false
     }),
     getters: { 
         onlyQuestionCards: (state) => {
