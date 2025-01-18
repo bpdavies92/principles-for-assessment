@@ -120,12 +120,11 @@ const {
   onlyAnswerCardsSixCards, 
   showAllAnswers, 
   showAllPicks, 
-  modelOpenClose 
+  modelOpenClose,
+  gameProgress
 } = storeToRefs(store);
 
 // Reactive Variables
-const gamePoints = ref(0);
-const gameProgress = ref(0);
 const userInput = ref('');
 const modelIndex = ref(null)
 const cardInput = ref([false, false, false, false, false, false]);

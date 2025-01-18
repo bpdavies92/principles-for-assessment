@@ -1,5 +1,3 @@
-
-import AllAnswers from '@/components/AllAnswers.vue'
 import { defineStore } from 'pinia'
 
 export const useCardStore = defineStore('cardInfo', {
@@ -175,7 +173,9 @@ export const useCardStore = defineStore('cardInfo', {
     showAllAnswers: false,
     showAllPicks: false,
     myQuestionAnswers: [],
-    modelOpenClose: false
+    modelOpenClose: false,
+    gameProgress: 0,
+    gamePoints: 0
     }),
     getters: { 
         onlyQuestionCards: (state) => {
