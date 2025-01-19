@@ -24,7 +24,7 @@
         Introduction
       </v-btn>
       <v-btn
-        @click="goTo('.scroll-to-rules', { offset: 1000, duration: 300, easing: 'easeInOutCubic' })"
+        @click="goTo('.scroll-to-rules', { offset: -30, duration: 300, easing: 'easeInOutCubic' })"
         size="small"
         prepend-icon="mdi-book-open-blank-variant"
       >

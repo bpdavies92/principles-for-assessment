@@ -30,7 +30,10 @@
           color="#303030"
           class="position-absolute points"
         >
-          {{ gamePoints }}
+          <div class="d-flex align-center justify-center flex-column mt-n1">
+            <div class="mb-n1">{{ gamePoints }}</div> 
+            <div>points</div>
+          </div>
         </v-progress-circular>
       </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
@@ -121,7 +124,8 @@ const {
   showAllAnswers, 
   showAllPicks, 
   modelOpenClose,
-  gameProgress
+  gameProgress,
+  gamePoints
 } = storeToRefs(store);
 
 // Reactive Variables

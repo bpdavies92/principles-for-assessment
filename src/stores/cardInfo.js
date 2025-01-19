@@ -174,7 +174,7 @@ export const useCardStore = defineStore('cardInfo', {
     showAllPicks: false,
     myQuestionAnswers: [],
     modelOpenClose: false,
-    gameProgress: 80,
+    gameProgress: 0,
     gamePoints: 0
     }),
     getters: { 

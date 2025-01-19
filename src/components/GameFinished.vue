@@ -1,11 +1,11 @@
 <template>
-        <v-sheet  color="transparent" class="overflow-y-hidden overflow-x-scroll d-flex flex-column justify-center align-start" height="100vh" >
+        <v-sheet  color="transparent" class="position-relative overflow-y-hidden overflow-x-scroll d-flex flex-column justify-center align-start" height="100vh" >
   
       
                      
                     <v-sheet color="transparent" class="ml-6 position-relative">
                         <h2 class="text-h3 send-to-front">Results</h2>
-                        <h3>{{gamePoints}}</h3>
+                        <h3>Your score: {{gamePoints}}</h3>
                         <v-img
                         class="position-absolute top-0 left-0 send-to-back"
                         width="1000"
@@ -38,8 +38,10 @@
                                 </FlashCard>
                     
                         </v-sheet>
+                        
                     </v-sheet>
-   
+                    
+                    <v-btn @click="resetGame" class="position-fixed restart-btn">Start a new game</v-btn>
 
         </v-sheet>
 
@@ -54,13 +56,36 @@
     const targetTwo = ref(null)
     const store = useCardStore()
 
-    const { myQuestionAnswers, cardInfo, showAllPicks, gamePoints } = storeToRefs(store)
+    const { 
+        myQuestionAnswers, 
+        cardInfo, 
+        showAllPicks, 
+        gamePoints, 
+        gameProgress,
+         
+    } = storeToRefs(store)
 
     onClickOutside(targetTwo, event => showAllPicks.value = false)
+
+    function resetGame() {
+        gameProgress.value = 0
+        gamePoints.value = 0
+        myQuestionAnswers.value = []
+    }
 
 </script>
 
 <style lang="scss" scoped>
+
+.restart-btn {
+    top: 83%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    width: min-content;
+}
+
 .back-img {
     transform: scale(10);
 }
