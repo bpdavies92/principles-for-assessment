@@ -30,7 +30,7 @@
           color="#303030"
           class="position-absolute points"
         >
-          {{ gameProgress }}
+          {{ gamePoints }}
         </v-progress-circular>
       </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">

@@ -1,36 +1,47 @@
 <template>
-        <v-sheet  color="transparent" class="overflow-y-hidden overflow-x-scroll curser-none" height="100vh">
-                <v-sheet class="d-flex align-center justify-start ml-12" height="100%" >
-                    <v-sheet class="d-flex mr-16 align-center justify-center" v-for="(card, index) of myQuestionAnswers" :key="index" >
-                            
-                            <!-- QUESTION CARD -->
-                            <FlashCard
-                                class="position-relative mr-auto mr-n6 rotate-card"
-                                :question="card[1].type"
-                                :svgUrl="card[1].svgUrl"
-                                :cardColour="card[1].colour"
-                            >
-                                <template v-slot:h1Title>Question</template>
-                                <template v-slot:bodyText>{{card[1].content}}</template>
-                            </FlashCard>
-
-                            <!-- ANSWER CARD -->
-                            <FlashCard
-                                class="position-relative ml-n6 ml-auto rotate-card"
-                                :question="card[0].type"
-                                :svgUrl="card[0].svgUrl"
-                                :cardColour="card[0].colour"
-                            >
-                                <template v-slot:h1Title>Question</template>
-                                <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
-                            </FlashCard>
-                       
+        <v-sheet  color="transparent" class="overflow-y-hidden overflow-x-scroll d-flex flex-column justify-center align-start" height="100vh" >
+  
+      
+                     
+                    <v-sheet color="transparent" class="ml-6 position-relative">
+                        <h2 class="text-h3 send-to-front">Results</h2>
+                        <h3>{{gamePoints}}</h3>
+                        <v-img
+                        class="position-absolute top-0 left-0 send-to-back"
+                        width="1000"
+                        height="1000"
+                        src="../../public/images/shapes/question card title graphic.svg"
+                        ></v-img>
                     </v-sheet>
-                </v-sheet>
-         
-            <div class="background-layer position-fixed"></div>
+                    <v-sheet color="transparent" class="d-flex ml-12 align-center justify-start flex-row">
+                        
+                        <v-sheet color="transparent" height="min-content" class="d-flex mr-16 align-center justify-center test" v-for="(card, index) of myQuestionAnswers" :key="index" >
+                                <!-- QUESTION CARD -->
+                                <FlashCard
+                                    class="position-relative mr-auto mr-n6 rotate-card"
+                                    :question="card[1].type"
+                                    :svgUrl="card[1].svgUrl"
+                                    :cardColour="card[1].colour"
+                                >
+                                    <template v-slot:h1Title>Question</template>
+                                    <template v-slot:bodyText>{{card[1].content}}</template>
+                                </FlashCard>
+                                <!-- ANSWER CARD -->
+                                <FlashCard
+                                    class="position-relative ml-n6 ml-auto rotate-card"
+                                    :question="card[0].type"
+                                    :svgUrl="card[0].svgUrl"
+                                    :cardColour="card[0].colour"
+                                >
+                                    <template v-slot:h1Title>Question</template>
+                                    <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
+                                </FlashCard>
+                    
+                        </v-sheet>
+                    </v-sheet>
+   
+
         </v-sheet>
-        <v-btn prepend-icon="mdi-close" @click="showAllPicks = false" class="close-btn">Close</v-btn>
 
 </template>
 
@@ -43,13 +54,32 @@
     const targetTwo = ref(null)
     const store = useCardStore()
 
-    const { myQuestionAnswers, cardInfo, showAllPicks } = storeToRefs(store)
+    const { myQuestionAnswers, cardInfo, showAllPicks, gamePoints } = storeToRefs(store)
 
     onClickOutside(targetTwo, event => showAllPicks.value = false)
 
 </script>
 
 <style lang="scss" scoped>
+.back-img {
+    transform: scale(10);
+}
+
+.send-to-back {
+z-index: 1;
+}
+
+.send-to-front {
+    z-index: 100;
+}
+
+.heading {
+  position: relative;
+  display: block;
+  flex-grow: 100%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Ensure it's on top of other elements */
+}
 
 .rotate-card:nth-of-type(1) {
     transform: rotate(-3deg);
