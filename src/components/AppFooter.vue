@@ -1,10 +1,17 @@
 <template>
   <v-footer class="pa-3" height="120" color="#303030" app>
-    <v-img
-    src="../../public/images/branding/clt logo with white text no outline.svg"  
-    class="pa-6"
-    >
-  </v-img>
+    <div class="d-flex align-center justify-center">
+      <v-img
+      src="../../public/images/branding/clt logo with white text no outline.svg"
+      class="pa-6"
+      >
+        </v-img>
+        <v-img
+      src="../../public/images/branding/clt logo with white text no outline.svg"
+      class="pa-6"
+      >
+        </v-img>
+    </div>
   </v-footer>
 </template>
 

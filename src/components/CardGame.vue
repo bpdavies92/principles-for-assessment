@@ -150,7 +150,6 @@ const rot = computed(() => {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     [differentAngles[i], differentAngles[randomIndex]] = [differentAngles[randomIndex], differentAngles[i]];
   }
-  console.log('differentAngle', differentAngles);
   return differentAngles;
 });
 
@@ -170,7 +169,6 @@ function pointsCollector(points) {
 function userCardInput(id, i) {
   if(cardInfo.value[id].userInput === false) return
   modelOpenClose.value = true
-  console.log('CardGame.vue', id)
   modelIndex.value = id
 }
 
@@ -229,6 +227,7 @@ store.reshuffleAnswerCard();
 store.reshuffleQuestionCard();
 console.log('card info', processStage.value);
 console.log(isRotated.value);
+
 </script>
 
 

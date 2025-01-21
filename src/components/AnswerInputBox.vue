@@ -56,8 +56,14 @@ const {
 const modelText = ref('')
 
 function updateAnswer() {
-  cardInfo.value[props.indexNum].answer =  modelText.value + cardInfo.value[props.indexNum].staticText
-  modelOpenClose.value = false
+  console.log(cardInfo.value[props.indexNum].reverseStaticText === true)
+  if(cardInfo.value[props.indexNum].reverseStaticText === true) {
+      cardInfo.value[props.indexNum].answer =  cardInfo.value[props.indexNum].staticText + modelText.value  
+  } else {
+      cardInfo.value[props.indexNum].answer =  modelText.value + cardInfo.value[props.indexNum].staticText
+  }
+  modelOpenClose.value = false    
+  modelText.value = ''
 }
 
 </script>

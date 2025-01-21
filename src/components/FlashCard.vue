@@ -63,8 +63,6 @@
 
 <script setup>
     const props = defineProps(['svgUrl', 'cardColour', 'question', 'dropshadow', 'topCard', 'cardFlip', 'flip'])
-
-    console.log('tis the one', props.flip)
 </script>
 
 <style lang="scss" scoped>

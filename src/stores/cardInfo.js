@@ -164,6 +164,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: true, 
             userInputText: '',
+            reverseStaticText: false,
             staticText: ' is the key'
         },
         {
