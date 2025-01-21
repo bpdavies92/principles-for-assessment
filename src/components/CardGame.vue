@@ -21,21 +21,7 @@
       >
         <MyPicks />
       </v-sheet>
-      <v-sheet color="transparent" class="position-fixed points">
-        <v-progress-circular
-          :model-value="gameProgress"
-          rotate="360"
-          size="100"
-          width="15"
-          color="#303030"
-          class="position-absolute points"
-        >
-          <div class="d-flex align-center justify-center flex-column mt-n1">
-            <div class="mb-n1">{{ gamePoints }}</div> 
-            <div>points</div>
-          </div>
-        </v-progress-circular>
-      </v-sheet>
+
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
         <FlashCard
           class="question-card-top"
@@ -75,8 +61,7 @@
             cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
             newGame === true ? 'new-canvas' : '',
             startAnimation === true ? 'animation-start' : ''
-          ]"
-        >
+          ]">
           <template v-slot:h1Title>Question</template>
           <template v-slot:bodyText>{{ item.answer ? item.answer : item.content }}</template>
         </FlashCard>
@@ -92,8 +77,26 @@
         >
           Next card
         </v-btn>
+        <v-sheet color="transparent" class="position-absolute points">
+          <v-progress-circular
+            :model-value="gameProgress"
+            rotate="360"
+            size="200"
+            width="30"
+            color="#303030"
+            class="mr-12"
+          >
+            <div class="d-flex align-center justify-center flex-column mt-n1">
+              <div class="mb-n1 text-body-1">{{ gamePoints }}</div> 
+              <div class="text-body-1">points</div>
+            </div>
+          </v-progress-circular>
+          <v-btn @click="reshuffleCards" color="#303030" size="x-large">Reshuffle</v-btn>
       </v-sheet>
+      </v-sheet>
+
     </v-container>
+
   </div>
 </template>
 
@@ -210,6 +213,19 @@ function newSelection() {
   }
 }
 
+function reshuffleCards() {
+  tl.revert();
+      newGame.value = false;
+      cardPicked.value = false;
+      cardSelected.value.fill(null);
+      store.reshuffleQuestionCard();
+      store.reshuffleAnswerCard();
+      processStage.value = 0;
+      startAnimation.value = true;
+      animationDelay();
+      isRotated.value.fill(false);
+}
+
 // Lifecycle Hooks
 onMounted(() => {
   ctx = gsap.context(() => {
@@ -235,12 +251,12 @@ console.log(isRotated.value);
 
 .points {
   position: absolute;
-  top: 90%;
+  top:85%;
   bottom:50%;
   right:50%;
-  left:70%;
+  left:0%;
   transform: translate(-50%, -50%);
-  width: 100%;
+
   z-index: 2;
 }
 
