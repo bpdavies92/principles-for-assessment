@@ -2,7 +2,7 @@
   <AnswerInputBox :indexNum="modelIndex" />
 
   <div class="overflow-hidden">
-    <v-container color="#fafafa" ref="main" class="ml-auto mr-auto">
+    <v-container color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
       <v-sheet
         v-if="showAllAnswers"
         color="transparent"

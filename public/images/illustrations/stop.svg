@@ -11,7 +11,7 @@
         fill: #26a8df;
       }
 
-      .st1 {  
+      .st1 {
         stroke: #303030;
         stroke-miterlimit: 10;
       }
