@@ -64,7 +64,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -78,7 +78,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -92,7 +92,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -106,7 +106,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null       
         },
         {
@@ -120,7 +120,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -134,7 +134,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -148,7 +148,7 @@ export const useCardStore = defineStore('cardInfo', {
             isTriple: false,
             points: 10, 
             userInput: false, 
-            userInputText: 'test',
+            userInputText: '',
             staticText: null        
         },
         {
@@ -159,7 +159,7 @@ export const useCardStore = defineStore('cardInfo', {
             colour: '#Afd3f0',
             svgUrl: '../../public/images/illustrations/key lady.svg',
             isFront: true, 
-            isDouble: false,
+            isDouble: true,
             isTriple: false,
             points: 10, 
             userInput: true, 
@@ -305,7 +305,7 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: true, 
             userInputText: '',
-            staticText: 'Stop doing', 
+            staticText: 'Stop doing ', 
             reverseStaticText: true
         },
         {
@@ -325,7 +325,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: true
         },
         {
-            id: 26, 
+            id: 24, 
             type: 'a',
             content: `Work with all module staff on the course`,
             answer: null,
@@ -341,7 +341,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 28, 
+            id: 25, 
             type: 'a',
             content: `Work with “........................................................”`,
             answer: null,
@@ -353,11 +353,11 @@ export const useCardStore = defineStore('cardInfo', {
             points: 10, 
             userInput: true, 
             userInputText: '',
-            staticText: 'Work with', 
+            staticText: 'Work with ', 
             reverseStaticText: true
         },
         {
-            id: 28, 
+            id: 26, 
             type: 'a',
             content: `Consult “.............................”`,
             answer: null,
@@ -373,7 +373,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: true
         },
         {
-            id: 29, 
+            id: 27, 
             type: 'a',
             content: `Negotiated assessments`,
             answer: null,
@@ -389,7 +389,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 30, 
+            id: 28, 
             type: 'a',
             content: `Pass/fail modules`,
             answer: null,
@@ -405,23 +405,23 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 31, 
+            id: 29, 
             type: 'a',
             content: `Including “................................................................”`,
             answer: null,
             colour: '#Afd3f0',
             svgUrl: '../../public/images/illustrations/including.svg',
             isFront: true, 
-            isDouble: false,
+            isDouble: true,
             isTriple: false,
             points: 10, 
-            userInput: false, 
+            userInput: true, 
             userInputText: '',
-            staticText: null, 
-            reverseStaticText: null
+            staticText: 'Including ', 
+            reverseStaticText: true
         },
         {
-            id: 32, 
+            id: 30, 
             type: 'a',
             content: `Peer assessment`,
             answer: null,
@@ -437,7 +437,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 34, 
+            id: 31, 
             type: 'a',
             content: `Ensure students understand the marking criteria`,
             answer: null,
@@ -453,7 +453,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 35, 
+            id: 32, 
             type: 'a',
             content: `Ensure that assessments are aligned with learning outcomes and teaching activities`,
             answer: null,
@@ -469,7 +469,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 36, 
+            id: 33, 
             type: 'a',
             content: `Incorporating a work placement`,
             answer: null,
@@ -485,7 +485,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 36, 
+            id: 34, 
             type: 'a',
             content: `Assessment support sessions at the end of the module`,
             answer: null,
@@ -501,7 +501,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 36, 
+            id: 35, 
             type: 'a',
             content: `Getting everything organised`,
             answer: null,
@@ -524,7 +524,7 @@ export const useCardStore = defineStore('cardInfo', {
             colour: '#Afd3f0',
             svgUrl: '../../public/images/illustrations/removing.svg',
             isFront: true, 
-            isDouble: false,
+            isDouble: true,
             isTriple: false,
             points: 10, 
             userInput: true, 
