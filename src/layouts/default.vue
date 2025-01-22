@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar elevation="0" class="position-fixed top-0">
+    <v-app-bar elevation="2" class="position-fixed top-0">
       <template v-slot:prepend></template>
 
       <v-app-bar-title>

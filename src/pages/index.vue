@@ -1,6 +1,7 @@
 <template>
   <div class="extra-space">
-    <GameFinished v-if="gameProgress === 100"/> 
+    <GameFinished /> 
+    <!-- <GameFinished v-if="gameProgress === 100"/>  -->
     <CardGame v-if="gameProgress < 100"/>
     <Introduction />
     <Rules />

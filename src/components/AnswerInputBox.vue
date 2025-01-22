@@ -8,10 +8,6 @@
       class="elevation-8"
     >
       <template v-slot:activator="{ props: activatorProps }">
-        <v-btn v-bind="activatorProps">
-          Open Dialog
-        </v-btn>
-
       </template>
 
       <v-card>        
