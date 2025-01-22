@@ -23,6 +23,7 @@
       </v-sheet>
 
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
+        {{ cardSelected }}
         <FlashCard
           class="question-card-top"
           :key="randomCard"
@@ -48,7 +49,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); pointsCollector(item.points)" 
+          @click="userCardInput(item.id, index); pointsCollector(item.points, index); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true);" 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -67,7 +68,7 @@
         </FlashCard>
 
         <v-btn
-          @click="newSelection(); gameProgress += 10"
+          @click="newSelection()"
           v-if="cardPicked"
           width="30%"
           rounded="xs"
@@ -165,12 +166,14 @@ function progressGame() {
   gameProgress.value += 10;
 }
 
-function pointsCollector(points) {
+function pointsCollector(points, i) {
+  if(cardSelected.value[i] != null) return
+  gameProgress.value += 10
   gamePoints.value += points;
 }
 
 function userCardInput(id, i) {
-  if(cardInfo.value[id].userInput === false) return
+  if(cardInfo.value[id].userInput === false || cardSelected.value[i] === 'not selected') return
   modelOpenClose.value = true
   modelIndex.value = id
 }
@@ -182,6 +185,7 @@ function animationDelay() {
 }
 
 function cardChoice(i) {
+  if(cardSelected.value[i] != null) return
   cardSelected.value[i] = 'answer';
   cardSelected.value.forEach((value, index, array) => {
     if (value === null) array[index] = 'not selected';
