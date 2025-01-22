@@ -565,7 +565,6 @@ export const useCardStore = defineStore('cardInfo', {
 
             return onlyImages.slice(0, 8)
         }
-
     },
     actions: {
         reshuffleQuestionCard() {

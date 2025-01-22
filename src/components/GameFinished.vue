@@ -18,17 +18,16 @@
   
         <v-window
             v-model="window"
-            show-arrows
             class='pa-12'
             continues
+            min-height='450px'
+            width='100%'
+            continuous
         >
         <v-window-item
           v-for="(card, index) in myQuestionAnswers" 
           :key="index" 
           class="overflow-visible"
-
-        
-          
         >
                   <!-- QUESTION CARD -->
           <v-sheet class="d-flex">
@@ -52,10 +51,13 @@
                 </template>
               </FlashCard>
           </v-sheet>
-        </v-window-item>
+        </v-window-item>    
+        {{ window }}
+        <v-btn @click="nextCard">Next</v-btn>
+        <v-btn @click="backCard">Back</v-btn>
     </v-window>
-    
-    <v-btn @click="resetGame" class="position-absolute restart-btn">Start a new game</v-btn>
+
+
   
     </v-sheet>
   </template>
@@ -87,6 +89,23 @@
     gamePoints.value = 0;
     myQuestionAnswers.value = [];
   }
+
+  function nextCard() {
+    if(window.value === myQuestionAnswers.value.length - 1) {
+      window.value = 0
+    } else {
+      window.value += 1
+    }
+  } 
+
+    function backCard() {
+    if(window.value <= 0) {
+      window.value = myQuestionAnswers.value.length -1
+    } else {
+      window.value =  window.value - 1
+    }
+  } 
+
   </script>
   
   <style lang="scss" scoped>
