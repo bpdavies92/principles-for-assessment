@@ -1,9 +1,52 @@
 <template>
     <v-sheet 
       color="transparent" 
-      class="d-flex justify-center align-center flex-column position-relative" 
+      class="d-flex justify-center align-center flex-column position-relative mx-auto" 
       height="100vh"
+      max-width="1000"
       >
+
+      <template>
+  <v-sheet
+ 
+    elevation="8"
+    max-width="300"
+  >
+    <v-slide-group   
+    class="ml-auto mr-auto"
+      v-model="model"
+      selected-class="bg-success"
+      show-arrows
+      max-width="300"
+    >
+      <v-slide-group-item
+        v-for="n in 15"
+        :key="n"
+        v-slot="{ isSelected, toggle, selectedClass }"
+      >
+        <v-card
+          :class="['ma-4', selectedClass]"
+          color="grey-lighten-1"
+          height="200"
+          width="100"
+          @click="toggle"
+        >
+          <div class="d-flex fill-height align-center justify-center">
+            <v-scale-transition>
+              <v-icon
+                v-if="isSelected"
+                color="white"
+                icon="mdi-close-circle-outline"
+                size="48"
+              ></v-icon>
+            </v-scale-transition>
+          </div>
+        </v-card>
+      </v-slide-group-item>
+    </v-slide-group>
+  </v-sheet>
+</template>
+
   
       <v-sheet color="transparent" class="ml-6 position-relative">
         <h2 class="text-h3 send-to-front">Results</h2>
@@ -16,18 +59,16 @@
         ></v-img> -->
       </v-sheet>
   
-        <v-window
+        <v-slide-group
             v-model="window"
-            class='pa-12'
-            continues
+            show-arrows
+            class='pa-12 mx-auto'
             min-height='450px'
-            width='100%'
-            continuous
+            max-width='1000'
         >
-        <v-window-item
+        <v-slide-group-item
           v-for="(card, index) in myQuestionAnswers" 
           :key="index" 
-          class="overflow-visible"
         >
                   <!-- QUESTION CARD -->
           <v-sheet class="d-flex">
@@ -51,12 +92,12 @@
                 </template>
               </FlashCard>
           </v-sheet>
-        </v-window-item>    
+        </v-slide-group-item>    
         {{ window }}
-        <v-btn @click="nextCard">Next</v-btn>
+     
+      </v-slide-group>
+   <v-btn @click="nextCard">Next</v-btn>
         <v-btn @click="backCard">Back</v-btn>
-    </v-window>
-
 
   
     </v-sheet>
@@ -71,6 +112,7 @@
   const targetTwo = ref(null);
   const store = useCardStore();
   const window = ref(0)
+  const model = ref(null)
   
   const { 
     myQuestionAnswers, 
