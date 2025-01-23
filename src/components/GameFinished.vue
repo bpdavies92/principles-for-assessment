@@ -1,106 +1,78 @@
 <template>
-    <v-sheet 
-      color="transparent" 
-      class="d-flex justify-center align-center flex-column position-relative mx-auto" 
-      height="100vh"
-      max-width="1000"
-      >
-
-      <template>
-  <v-sheet
- 
-    elevation="8"
-    max-width="300"
-  >
-    <v-slide-group   
-    class="ml-auto mr-auto"
-      v-model="model"
-      selected-class="bg-success"
-      show-arrows
-      max-width="300"
-    >
-      <v-slide-group-item
-        v-for="n in 15"
-        :key="n"
-        v-slot="{ isSelected, toggle, selectedClass }"
-      >
-        <v-card
-          :class="['ma-4', selectedClass]"
-          color="grey-lighten-1"
-          height="200"
-          width="100"
-          @click="toggle"
-        >
-          <div class="d-flex fill-height align-center justify-center">
-            <v-scale-transition>
-              <v-icon
-                v-if="isSelected"
-                color="white"
-                icon="mdi-close-circle-outline"
-                size="48"
-              ></v-icon>
-            </v-scale-transition>
-          </div>
-        </v-card>
-      </v-slide-group-item>
-    </v-slide-group>
-  </v-sheet>
-</template>
-
-  
-      <v-sheet color="transparent" class="ml-6 position-relative">
+  <v-sheet color="transparent" class="d-flex flex-column justify-center align-center" height="100vh" width="100vw">
+    <v-sheet class="position-relative pa-0 mb-n16" width="500" height="500">
+      <div width="100%" class="results-title">
         <h2 class="text-h3 send-to-front">Results</h2>
         <h3>Your score: {{ gamePoints }}</h3>
-        <!-- <v-img
-          class="position-absolute top-0 left-0 send-to-back"
-          width="1000"
-          height="1000"
-          src="../../public/images/shapes/question card title graphic.svg"
-        ></v-img> -->
-      </v-sheet>
-  
-        <v-slide-group
-            v-model="window"
-            show-arrows
-            class='pa-12 mx-auto'
-            min-height='450px'
-            max-width='1000'
-        >
-        <v-slide-group-item
-          v-for="(card, index) in myQuestionAnswers" 
-          :key="index" 
-        >
-                  <!-- QUESTION CARD -->
-          <v-sheet class="d-flex">
-              <FlashCard
-                class="position-relative mr-auto mr-n6 rotate-card"
-                :question="card[1].type"
-                :svgUrl="card[1].svgUrl"
-                :cardColour="card[1].colour">
-                <template v-slot:h1Title>Question</template>
-                <template v-slot:bodyText>{{ card[1].content }}</template>
-              </FlashCard>
-              <!-- ANSWER CARD -->
-              <FlashCard
-                class="position-relative ml-n6 ml-auto rotate-card"
-                :question="card[0].type"
-                :svgUrl="card[0].svgUrl"
-                :cardColour="card[0].colour">
-                <template v-slot:h1Title>Question</template>
-                <template v-slot:bodyText>
-                  {{ card[0].answer ? card[0].answer : card[0].content }}
-                </template>
-              </FlashCard>
-          </v-sheet>
-        </v-slide-group-item>    
-        {{ window }}
-     
-      </v-slide-group>
-   <v-btn @click="nextCard">Next</v-btn>
-        <v-btn @click="backCard">Back</v-btn>
-
-  
+      </div>
+      <v-img
+      src="../../public/images/shapes/question card title graphic.svg"
+      class="position-absolute results-title"
+      width="100%"
+      height="100%"
+      >        
+      </v-img>
     </v-sheet>
+    <v-sheet
+      width="100vw"
+      class="d-flex align-center justify-center"
+      color="transparent"
+    >
+      <v-slide-group
+        ref="scrollGroup"
+        class="ml-auto mr-auto pa-12"
+        show-arrows
+        center-active
+        width="100%"
+        mandatory
+        v-model="window"
+      >
+        <v-slide-group-item
+          v-for="(card, index) in myQuestionAnswers"
+          :key="index"
+        >
+          <v-card
+            :class="['ma-4', selectedClass]"
+            color="white pa-12"
+            elevation="0"
+            height="200%"
+            width="100%"
+            @click="toggle"
+          >
+          <v-sheet color="transparent" class="d-flex">
+                <FlashCard
+                  class="position-relative mr-auto mr-n6 rotate-card"
+                  :question="card[1].type"
+                  :svgUrl="card[1].svgUrl"
+                  :cardColour="card[1].colour">
+                  <template v-slot:h1Title>Question</template>
+                  <template v-slot:bodyText>{{ card[1].content }}</template>
+                </FlashCard>
+                <!-- ANSWER CARD -->
+                <FlashCard
+                  class="position-relative ml-n6 ml-auto rotate-card"
+                  :question="card[0].type"
+                  :svgUrl="card[0].svgUrl"
+                  :cardColour="card[0].colour">
+                  <template v-slot:h1Title>Question</template>
+                  <template v-slot:bodyText>
+                    {{ card[0].answer ? card[0].answer : card[0].content }}
+                  </template>
+                </FlashCard>
+            </v-sheet>
+          </v-card>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
+    <div class="d-flex justify-center start">
+      <div>
+        <v-btn :disabled="scrollGroup ? scrollGroup.hasNext : false" @click="backCard">Back</v-btn>
+      </div>
+      <div>
+        <v-btn :disabled="scrollGroup ? !scrollGroup.hasNext : false" @click="nextCard">Next</v-btn>
+      </div>
+    </div>
+  </v-sheet>
   </template>
   
   <script setup>
@@ -111,8 +83,8 @@
   
   const targetTwo = ref(null);
   const store = useCardStore();
-  const window = ref(0)
-  const model = ref(null)
+  const window = ref(1)
+  const scrollGroup = ref(null)
   
   const { 
     myQuestionAnswers, 
@@ -133,19 +105,11 @@
   }
 
   function nextCard() {
-    if(window.value === myQuestionAnswers.value.length - 1) {
-      window.value = 0
-    } else {
-      window.value += 1
-    }
+    scrollGroup.value.scrollTo('next')
   } 
 
-    function backCard() {
-    if(window.value <= 0) {
-      window.value = myQuestionAnswers.value.length -1
-    } else {
-      window.value =  window.value - 1
-    }
+  function backCard() {
+    scrollGroup.value.scrollTo('prev')
   } 
 
   </script>
@@ -218,5 +182,32 @@
   .scroll {
     overflow: scroll !important;
   }
+
+  .results-title {
+
+    &:nth-of-type(0) {
+      position: absolute;
+      z-index: 200;
+      top: 50%;
+      bottom: 50%;
+      left: 30%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+   
+    }
+
+    &:nth-of-type(1) {
+      position: absolute;
+      z-index: 400;
+      top: 60%;
+      bottom: 50%;
+      left: 35%;
+      text-align: center;
+      right: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+  }
+
   </style>
   
