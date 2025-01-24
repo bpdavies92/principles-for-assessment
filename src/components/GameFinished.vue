@@ -1,7 +1,7 @@
 <template>
   <v-sheet color="transparent" class="d-flex flex-column justify-center align-center" height="100vh" width="100vw">
-    <v-sheet class="position-relative pa-0 mb-n16" width="500" height="500">
-      <div width="100%" class="results-title">
+    <v-sheet color="transparent" class="position-relative pa-0 mb-n16" width="500" height="500">
+      <div width="500px" height="500px"  class="results-title">
         <h2 class="text-h3 send-to-front">Results</h2>
         <h3>Your score: {{ gamePoints }}</h3>
       </div>
@@ -19,12 +19,14 @@
       color="transparent"
     >
       <v-slide-group
+
         ref="scrollGroup"
-        class="ml-auto mr-auto pa-12"
+        class="ml-auto mr-auto pa-12 mt-n12"
         show-arrows
         center-active
         width="100%"
         mandatory
+        selected-class="slide-group-active"
         v-model="window"
       >
         <v-slide-group-item
@@ -33,7 +35,7 @@
         >
           <v-card
             :class="['ma-4', selectedClass]"
-            color="white pa-12"
+            color="transparent pa-12"
             elevation="0"
             height="200%"
             width="100%"
@@ -66,11 +68,14 @@
     </v-sheet>
     <div class="d-flex justify-center start">
       <div>
-        <v-btn :disabled="scrollGroup ? scrollGroup.hasNext : false" @click="backCard">Back</v-btn>
+        <v-btn  class="mr-3" :disabled="scrollGroup ? scrollGroup.hasNext : false" @click="backCard">Back</v-btn>
       </div>
       <div>
-        <v-btn :disabled="scrollGroup ? !scrollGroup.hasNext : false" @click="nextCard">Next</v-btn>
+        <v-btn  :disabled="scrollGroup ? !scrollGroup.hasNext : false" @click="nextCard">Next</v-btn>
       </div>
+    </div>
+    <div class="">
+      <v-btn class="mt-12" @click="resetGame" color="#303030">Play another game?</v-btn>
     </div>
   </v-sheet>
   </template>
@@ -184,6 +189,7 @@
   }
 
   .results-title {
+    color: #fafafa;
 
     &:nth-of-type(0) {
       position: absolute;
@@ -199,10 +205,10 @@
     &:nth-of-type(1) {
       position: absolute;
       z-index: 400;
-      top: 60%;
+      top: 56%;
       bottom: 50%;
-      left: 35%;
-      text-align: center;
+      left: 64%;
+      text-align: left;
       right: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
