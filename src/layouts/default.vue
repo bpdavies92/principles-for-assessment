@@ -16,6 +16,26 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
+      <v-menu
+      open-on-hover
+    >
+      <template v-slot:activator="{ props }">
+        <v-btn
+          prepend-icon="mdi-download"
+          size="small"
+          v-bind="props"
+        >
+          Download cards
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item lines="4">
+          <v-list-item-title>Print ready PDF</v-list-item-title>
+          <v-list-item-title>PDF without print marks</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
       <v-btn
         @click="goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
         size="small"

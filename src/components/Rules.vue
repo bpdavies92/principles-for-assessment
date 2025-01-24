@@ -1,5 +1,5 @@
 <template>
-        <v-sheet color="#ffd33c" min-height="100vh" min-width="100vw" class="d-flex justify-center position-relative align-center scroll-to-rules brint-to-top">
+        <v-sheet color="#7859a3" height="100%" min-width="100vw" class="pa-12 d-flex justify-center position-relative align-center scroll-to-rules brint-to-top">
             <v-img v-for="(item, index) in onlyNineImages" :key="index" class="position-absolute rules-images"
                         :src='item'
                         height="auto"

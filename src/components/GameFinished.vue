@@ -8,7 +8,7 @@
       <v-img
       src="../../public/images/shapes/question card title graphic.svg"
       class="position-absolute results-title"
-      width="100%"
+      width="800"
       height="100%"
       >        
       </v-img>
@@ -27,14 +27,12 @@
         width="100%"
         mandatory
         selected-class="slide-group-active"
-        v-model="window"
       >
         <v-slide-group-item
           v-for="(card, index) in myQuestionAnswers"
           :key="index"
         >
           <v-card
-            :class="['ma-4', selectedClass]"
             color="transparent pa-12"
             elevation="0"
             height="200%"
@@ -68,7 +66,7 @@
     </v-sheet>
     <div class="d-flex justify-center start">
       <div>
-        <v-btn  class="mr-3" :disabled="scrollGroup ? scrollGroup.hasNext : false" @click="backCard">Back</v-btn>
+        <v-btn  class="mr-3" :disabled="scrollGroup ? !scrollGroup.hasPrev : false" @click="backCard">Back</v-btn>
       </div>
       <div>
         <v-btn  :disabled="scrollGroup ? !scrollGroup.hasNext : false" @click="nextCard">Next</v-btn>

@@ -3,27 +3,8 @@
 
   <div class="overflow-hidden">
     <v-container color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
-      <v-sheet
-        v-if="showAllAnswers"
-        color="transparent"
-        class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container"
-        height="100vh"
-        width="100vw"
-      >
-        <AllAnswers />
-      </v-sheet>
-      <v-sheet
-        v-if="showAllPicks"
-        color="transparent"
-        class="position-fixed mr-auto ml-auto top-0 left-0 answer-cards-container"
-        height="100vh"
-        width="100vw"
-      >
-        <MyPicks />
-      </v-sheet>
-
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
-        {{ cardSelected }}
+ 
         <FlashCard
           class="question-card-top"
           :key="randomCard"

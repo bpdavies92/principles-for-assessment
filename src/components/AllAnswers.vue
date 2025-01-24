@@ -1,7 +1,7 @@
 <template>
     <v-overlay width="100vw" v-model="showAllAnswers" class="d-flex justify-center">
         <v-sheet height="100vh" width="99.5vw" color="transparent" class="overflow-y-scroll overflow-x-none curser-none">
-            <v-container  class="position-relative card-grid d-flex" max-width="1200"  width="100%" height="auto">
+            <v-container  class="position-relative card-grid d-flex mt-12 mb-12" max-width="1200"  width="100%" height="auto">
             
                 <v-row  ref="target">
                     <v-col v-for="(card, index) of onlyAnswerCards" :key="index" cols="12" sm="4">

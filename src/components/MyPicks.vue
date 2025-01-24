@@ -1,7 +1,7 @@
 <template>
     <v-overlay v-model="showAllPicks" class="d-flex flex-column align-center">
         <v-sheet height="100vh" width="99vw" color="transparent" class="overflow-y-scroll overflow-x-hidden curser-none">
-            <v-container  ref="targetTwo" class="position-relative card-grid" max-width="800"  width="100%" height="auto">
+            <v-container  ref="targetTwo" class="position-relative card-grid mb-12 mt-12" max-width="800"  width="100%" height="auto">
                 <v-icon class="position-fixed top-0 left-0" @click="overlay = false" icon="mdi-plus">Close</v-icon>
                 <v-row v-for="(card, index) of myQuestionAnswers" :key="index">
                     <v-col  cols="12" md="6">
