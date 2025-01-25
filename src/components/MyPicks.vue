@@ -22,9 +22,12 @@
                             :question="card[0].type"
                             :svgUrl="card[0].svgUrl"
                             :cardColour="card[0].colour"
+                            :hasDouble="card[0].isDouble"
+                            :hasTriple="card[0].isTriple"
                         >
                             <template v-slot:h1Title>Question</template>
                             <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
+                            <template v-if="card[0].isDouble || card[0].isTriple" v-slot:doubleTriple>{{ card[0].isDouble ? 'Double' : 'Triple' }}</template>
                         </FlashCard>
                     </v-col>
                 </v-row>
