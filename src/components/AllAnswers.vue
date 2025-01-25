@@ -9,12 +9,15 @@
                             class="position-relative mr-auto ml-auto"
                             :question="card.type"
                             :svgUrl="card.svgUrl"
+                            :hasTriple="card.isTriple"
+                            :hasDouble="card.isDouble"
                             :cardColour="card.colour"
                             :flip="flipOrNot[index]"
                             @click="flipOrNot[index] = !flipOrNot[index]"
                         >
                             <template v-slot:h1Title>Question</template>
                             <template v-slot:bodyText>{{card.content}}</template>
+                            <template v-if="card.isDouble || card.isTriple" v-slot:doubleTriple>{{ card.isDouble ? 'Double' : 'Triple' }}</template>
                         </FlashCard>
                     </v-col>
                 </v-row>

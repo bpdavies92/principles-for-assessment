@@ -30,7 +30,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); pointsCollector(item.points, index); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true);" 
+          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true);" 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -139,11 +139,6 @@ const rot = computed(() => {
   return differentAngles;
 });
 
-const doubleTriple = computed(() => {
-  if(cardInfo.value[index].isDouble) {
-    return 'DOUBLE'
-  }
-})
 
 // GSAP Timeline
 let ctx;
@@ -154,10 +149,23 @@ function progressGame() {
   gameProgress.value += 10;
 }
 
-function pointsCollector(points, i) {
+function pointsCollector(points, i, id) {
   if(cardSelected.value[i] != null) return
+
   gameProgress.value += 10
-  gamePoints.value += points;
+
+  if(!cardInfo.value[id].isDouble && !cardInfo.value[id].isTriple) {
+    gamePoints.value += points
+  } 
+
+  if(cardInfo.value[id].isDouble) {
+    gamePoints.value += points * 2
+  }
+
+  if(cardInfo.value[id].isTriple) {
+    gamePoints.value += points * 3 
+  }
+
 }
 
 function userCardInput(id, i) {

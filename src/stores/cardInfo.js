@@ -315,7 +315,7 @@ export const useCardStore = defineStore('cardInfo', {
             content: `Maximise “.................................”`,
             answer: null,
             colour: '#Afd3f0',
-            svgUrl: '../../public/images/illustrations/maximise.svg',
+            svgUrl: '../../public/images/illustrations/rocket.svg',
             isFront: true, 
             isDouble: true,
             isTriple: false,
@@ -533,6 +533,22 @@ export const useCardStore = defineStore('cardInfo', {
             staticText: 'Removing ', 
             reverseStaticText: true
         },
+        {
+            id: 37, 
+            type: 'a',
+            content: `“..................................................................................................................”`,
+            answer: null,
+            colour: '#Afd3f0',
+            svgUrl: '../../public/images/illustrations/maximise.svg',
+            isFront: true, 
+            isDouble: false,
+            isTriple: true,
+            points: 10, 
+            userInput: true, 
+            userInputText: '',
+            staticText: '', 
+            reverseStaticText: true
+        },
     ],
     randomCard: 0,
     processStage: 0,
@@ -541,7 +557,7 @@ export const useCardStore = defineStore('cardInfo', {
     showAllPicks: false,
     myQuestionAnswers: [],
     modelOpenClose: false,
-    gameProgress: 60,
+    gameProgress: 0,
     gamePoints: 0
     }),
     getters: { 

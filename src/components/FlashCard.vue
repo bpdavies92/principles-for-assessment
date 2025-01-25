@@ -15,8 +15,8 @@
                                 height="120"
                                 width="120"
                                 class="position-absolute card-sticker"
-                                v-if="hasDouble"
-                                ><div><slot name="doubleTriple"></slot></div></v-img>
+                                v-if="hasDouble || hasTriple"
+                                ><div class="text-uppercase"><slot name="doubleTriple"></slot></div></v-img>
                             <v-sheet class="pa-3 d-flex flex-column" rounded='xl' color="#fafafa" height="100%" >
                               
                                 <v-sheet v-if="question === 'q'" class="title-graphics-corner position-relative" :class="[question === 'q' ? 'mb-n10' : '']" color="transparent">
@@ -92,6 +92,7 @@
             justify-content: center;
             height: 100%;
             font-weight: bold;
+            font-size: 1.2rem;
         }
     }
 
