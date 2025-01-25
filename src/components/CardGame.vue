@@ -3,7 +3,7 @@
 
   <div class="overflow-hidden">
     <v-container color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
-      <v-sheet class="position-relative card-container mr-auto ml-auto" height="100vh" color="transparent">
+      <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
  
         <FlashCard
           class="question-card-top"
@@ -36,6 +36,8 @@
           }"
           :question="item.type"
           :svgUrl="item.svgUrl"
+          :hasDouble="item.isDouble"
+          :hasTriple="item.isTriple"
           :flip="cardSelected[index] === 'not selected'"
           :cardColour="item.colour"
           :class="[
@@ -46,6 +48,7 @@
           ]">
           <template v-slot:h1Title>Question</template>
           <template v-slot:bodyText>{{ item.answer ? item.answer : item.content }}</template>
+          <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
         </FlashCard>
 
         <v-btn
@@ -89,8 +92,6 @@ import FlashCard from '@/components/FlashCard.vue';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { storeToRefs } from 'pinia';
 import gsap from 'gsap';
-import AllAnswers from '@/components/AllAnswers.vue';
-import MyPicks from '@/components/MyPicks.vue';
 
 // Store
 const store = useCardStore();
@@ -137,6 +138,12 @@ const rot = computed(() => {
   }
   return differentAngles;
 });
+
+const doubleTriple = computed(() => {
+  if(cardInfo.value[index].isDouble) {
+    return 'DOUBLE'
+  }
+})
 
 // GSAP Timeline
 let ctx;
@@ -239,7 +246,7 @@ console.log(isRotated.value);
   top:85%;
   bottom:50%;
   right:50%;
-  left:0%;
+  left:10%;
   transform: translate(-50%, -50%);
 
   z-index: 2;

@@ -29,10 +29,12 @@
         </v-btn>
       </template>
 
-      <v-list>
-        <v-list-item lines="4">
+      <v-list lines="one">
+        <v-list-item>
           <v-list-item-title>Print ready PDF</v-list-item-title>
-          <v-list-item-title>PDF without print marks</v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>PDF with no print marks</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

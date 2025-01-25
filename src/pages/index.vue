@@ -26,6 +26,7 @@
       <v-parallax
       src="../assets/images/photographs/table game with hands.jpg"     
       aspect-ratio="16/9"
+      height="100%"
       ></v-parallax>
     </v-sheet>
 </div>

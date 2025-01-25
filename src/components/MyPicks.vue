@@ -7,17 +7,6 @@
                     <v-col  cols="12" md="6">
                         <FlashCard
                             class="position-relative mr-auto ml-auto"
-                            :question="card[0].type"
-                            :svgUrl="card[0].svgUrl"
-                            :cardColour="card[0].colour"
-                        >
-                            <template v-slot:h1Title>Question</template>
-                            <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
-                        </FlashCard>
-                    </v-col>
-                    <v-col  cols="12" md="6">
-                        <FlashCard
-                            class="position-relative mr-auto ml-auto"
                             :question="card[1].type"
                             :svgUrl="card[1].svgUrl"
                             :cardColour="card[1].colour"
@@ -25,6 +14,17 @@
                         >
                             <template v-slot:h1Title>Question</template>
                             <template v-slot:bodyText>{{card[1].content}}</template>
+                        </FlashCard>
+                    </v-col>
+                    <v-col  cols="12" md="6">
+                        <FlashCard
+                            class="position-relative mr-auto ml-auto"
+                            :question="card[0].type"
+                            :svgUrl="card[0].svgUrl"
+                            :cardColour="card[0].colour"
+                        >
+                            <template v-slot:h1Title>Question</template>
+                            <template v-slot:bodyText>{{card[0].answer ? card[0].answer : card[0].content}}</template>
                         </FlashCard>
                     </v-col>
                 </v-row>

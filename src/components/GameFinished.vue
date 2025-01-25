@@ -19,7 +19,6 @@
       color="transparent"
     >
       <v-slide-group
-
         ref="scrollGroup"
         class="ml-auto mr-auto pa-12 mt-n12"
         show-arrows
@@ -35,9 +34,6 @@
           <v-card
             color="transparent pa-12"
             elevation="0"
-            height="200%"
-            width="100%"
-            @click="toggle"
           >
           <v-sheet color="transparent" class="d-flex">
                 <FlashCard
@@ -79,7 +75,7 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useCardStore } from '../stores/cardInfo';
   import { onClickOutside } from '@vueuse/core';
@@ -115,6 +111,12 @@
     scrollGroup.value.scrollTo('prev')
   } 
 
+  const pointsSticker = computed((index) => {
+    if(cardInfo.value[index].isDouble) {
+      return 'DOUBLE'
+    }
+  })
+
   </script>
   
   <style lang="scss" scoped>
@@ -147,8 +149,9 @@
     z-index: 1000; /* Ensure it's on top of other elements */
   }
   
+  
   .rotate-card:nth-of-type(1) {
-    transform: rotate(-3deg);
+    transform: rotate(-3deg) scale(.8);
     transform-origin: bottom right;
   }
   
