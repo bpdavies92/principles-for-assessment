@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar v-resize="onResize" elevation="2" class="position-fixed" >
+    <v-app-bar :collapse="windowSize.x <= 900" v-resize="onResize" elevation="2" class="position-fixed" >
             <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
 
@@ -17,7 +17,7 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
-  {{ windowSize.x }}
+  <!-- {{ windowSize.x }} -->
       <MenuLinks v-if="windowSize.x >= 960" />
       
     </v-app-bar>

@@ -14,9 +14,11 @@
 
 .list-layout {
     display: flex;
+    z-index: 1000;
     @include breakpoints.respond('small') {
         flex-direction: column;
         align-items: start;
+        z-index: 1000;
     }
 }
 
@@ -36,10 +38,6 @@
     background-color: #7859a3;
     border-radius: 50%;
     }
-
-    &-2 {
-        flex-basis: 90%;
-    }
 }
 
 .rules {
@@ -57,53 +55,62 @@
         left: 20%;
         transform:translate(-50%, -50%);
         animation: wiggle 15s ease-in-out 5s infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(2) {
-        left: 80%;
+        left: 85%;
         animation: wiggle 15s ease-in-out 3s infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(3) {
-        left: 80%;
+        left: 79%;
         top: 80%;
         animation: wiggle 15s ease-in-out 1s infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(4) {
         left: 50%;
-        top: 10%;
+        top: 30%;
         animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(5) {
-        left: 20%;
+        left: 40%;
         top: 10%;
         animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(6) {
-        left: 80%;
+        left: 73%;
         top: 10%;
         animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(7) {
         left: 52%;
-        top: 86%;
+        top: 90%;
         animation: wiggle 15s ease-in-out infinite both;
+
     }
 
     &-images:nth-child(8) {
         left: 24%;
         top: 90%;
         animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
     }
 
     &-images:nth-child(9) {
         left: 20%;
         top: 90%;
         animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
     }
 }
 

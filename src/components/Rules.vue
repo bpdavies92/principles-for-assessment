@@ -10,27 +10,27 @@
             </div>
 
                 <v-sheet  class="mr-auto ml-auto pa-md-6 pa-sm-1 rules-container" rounded="xl">
-                    <h2 class="text-h2 mb-3 ml-sm-3 mt-3 ml-3">Rules</h2>
+                    <h2 class="text-h2 mb-3 ml-sm-3 mt-md-0 mt-sm-3 ml-3">Rules</h2>
                     
                     <v-list bg-color="transparent" lines="three" height="min-content" class="rules pa-0">
                         <v-list-item color="#fafafa" class="rules-top">
                             <div class="list-layout">
-                                <div class="number"><span>1</span></div> <div class="number-2">Read out a question one at a time. As a team, discuss and choose the most suitable answer</div>
+                                <div class="number"><span>1</span></div> <div><span style="background-color: #fafafa;;">Read out a question one at a time. As a team, discuss and choose the most suitable answer</span></div>
                             </div>
                         </v-list-item>
                         <v-list-item class="rules-top">
                             <div class="list-layout">
-                                <div class="number"><span>2</span></div> <div class="number-2">Only one answer per question. You cannot change your answer, once a card is played - it’s locked in, so choose wisely</div>
+                                <div class="number"><span>2</span></div> <div><span style="background-color: #fafafa;;">Only one answer per question. You cannot change your answer, once a card is played - it’s locked in, so choose wisely</span></div>
                             </div>
                         </v-list-item>
                         <v-list-item>
                             <div class="list-layout">
-                                <div class="number"><span>3</span></div> <div class="number-2">Select the next question and repeat the process with the remaining answers</div>
+                                <div class="number"><span>3</span></div> <div><span style="background-color: #fafafa;;">Select the next question and repeat the process with the remaining answers</span></div>
                             </div>
                         </v-list-item>
                         <v-list-item>
                              <div class="list-layout">
-                                 <div class="number"><span>4</span></div> <div class="number-2">You can write on some cards to earn double or triple points!</div>
+                                 <div class="number"><span>4</span></div> <div><span style="background-color: #fafafa;;">You can write on some cards to earn double or triple points!</span></div>
                              </div>
                         </v-list-item>
                         </v-list>
@@ -56,15 +56,4 @@ const imageStickerUrls = ref([
 ])
 
 </script>
-
-<style lang="scss">
-
-
-</style>
-
-
-<!-- 1. Read out a question one at a time. As a team, discuss and choose the most suitable answer
-2. Only one answer per question. You cannot change your answer, once a card is played - it’s locked in, so choose wisely
-3. Select the next question and repeat the process with the remaining answers
-4. You can write on some cards to earn double or triple points! -->
 

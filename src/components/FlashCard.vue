@@ -1,26 +1,28 @@
 <template>
     <v-sheet
       color="transparent"
-      class="cards-container cursor-pointer"
-      height="450px"
-      width="330px"
+      class="cards-container cursor-pointer card-mobile"
+      :height="cardHeight"
+      :width="cardWidth"
       :class="[topCard ? 'top-card' : '']"
     >
       <v-sheet
         color="transparent"
         class="card-inner"
         :class="[flip ? 'flip' : '']"
-        height="450px"
-        width="330px"
+        :height="cardHeight"
+        :width="cardWidth"
       >
         <v-card
+          v-resize="onResize"
           class="mx-auto pa-4 overflow-hidden card-front position-relative"
-          height="450px"
-          width="330px"
+          :height="cardHeight"
+          :width="cardWidth"
           rounded="xl"
           :color="cardColour"
           :elevation="dropshadow"
         >
+
           <v-img
             src="../../public/images/shapes/question card title graphic.svg"
             class="position-absolute question-shape"
@@ -33,8 +35,8 @@
   
           <v-img
             src="../../public/images/shapes/points star.png"
-            height="120"
-            width="120"
+            :height="cardStar"
+            :width="cardStar"
             class="position-absolute card-sticker"
             v-if="hasDouble || hasTriple"
           >
@@ -44,7 +46,7 @@
           </v-img>
   
           <v-sheet
-            class="pa-3 d-flex flex-column"
+            class="pa-md-3 pa-sm-1 d-flex flex-column"
             rounded="xl"
             color="#fafafa"
             height="100%"
@@ -69,7 +71,8 @@
   
             <v-img
               :src="svgUrl"
-              height="60%"
+              :height="`${cardImg}%`"
+              
               width="auto"
               class="mr-auto ml-auto"
               :class="{'question-card': hasQuestion === 'q'}"
@@ -115,6 +118,40 @@
   </template>
   
   <script setup>
+  import {ref, computed, onMounted} from 'vue'
+
+  let windowSize = ref({
+    x: 0,
+    y: 0,
+  })
+
+  onMounted(() => {
+    onResize()
+  })
+
+  const onResize = () => {
+    windowSize.value = { x: window.innerWidth, y: window.innerHeight }
+
+    return windowSize.value
+  }
+
+  const cardHeight = computed(() => {
+        return 450
+  })
+
+  const cardWidth = computed(() => {
+        return 330
+  })
+
+  const cardImg = computed(() => {
+    return 60
+  })
+
+  const cardStar = computed(() => {
+        return 120
+  })
+
+
   const props = defineProps([
     'svgUrl',
     'cardColour',
@@ -249,5 +286,7 @@
       right: 50%;
     }
   }
+
+
   </style>
   

@@ -1,10 +1,11 @@
 <template>
-    <v-sheet color="#e0d6eb" class="introduction-container">
+    <v-sheet color="#e0d6eb" class="introduction-container overflow-hidden">
         <v-row class="scroll-to-introduction">
-            <v-col cols="12" md="6" sm="12" class=" pa-0 ma-0">
+            <v-col cols="12" md="6" sm="12" class="pa-0 ma-0">
                 <v-parallax
                 src="../assets/images/photographs/cards layout out on table.jpg"
                 cover
+                width="100%"
                 height="100%"
                 aspect-ratio="16/9"
                 ></v-parallax>
