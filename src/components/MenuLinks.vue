@@ -1,6 +1,6 @@
 <template>
     <v-list-item nav>
-        <v-btn prepend-icon="mdi-download" size="small">
+        <v-btn variant="text" prepend-icon="mdi-download" size="small">
         Download
           <v-menu activator="parent">
           <v-list>
@@ -18,7 +18,8 @@
 
       <v-list-item nav>
         <v-btn
-          @click="goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
+          variant="texth"
+          @click="$emit('someEvent'); goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
           size="small"
           prepend-icon="mdi-cards-playing"
         >
@@ -28,6 +29,7 @@
 
       <v-list-item nav>
         <v-btn
+          variant="texth"
           @click="goTo('.scroll-to-rules', { offset: -30, duration: 300, easing: 'easeInOutCubic' })"
           size="small"
           prepend-icon="mdi-book-open-blank-variant"
@@ -38,6 +40,7 @@
 
       <v-list-item nav>
         <v-btn
+          variant="texth"
           @click="showAllAnswers = !showAllAnswers"
           size="small"
           prepend-icon="mdi-cards-playing"
@@ -48,6 +51,7 @@
 
       <v-list-item nav>
         <v-btn
+          variant="texth"
           @click="showPicksMenu()"
           size="small"
           prepend-icon="mdi-heart"

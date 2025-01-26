@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar elevation="2" class="position-fixed top-0">
-            <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar v-resize="onResize" elevation="2" class="position-fixed top-0" >
+            <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
 
-      <v-app-bar-title class="d-md-block d-sm-none">
+      <v-app-bar-title v-if="windowSize.x >= 960" >
         <div class="d-flex align-center">
           <div>
             <v-img
@@ -17,16 +17,16 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
-
-      <MenuLinks />
+  {{ windowSize.x }}
+      <MenuLinks v-if="windowSize.x >= 960" />
       
     </v-app-bar>
 
 
-    <v-navigation-drawer v-model="drawer">
+    <v-navigation-drawer v-model="drawer"  v-if="windowSize.x < 960"  >
       <v-list-item title="Principles Towards Assessment"></v-list-item>
       <v-divider></v-divider>
-        <MenuLinks />
+        <MenuLinks @someEvent="drawer = false"/>
     </v-navigation-drawer>
 
 
@@ -42,13 +42,32 @@
   import { useCardStore } from '@/stores/cardInfo';
   import { storeToRefs } from 'pinia';
   import { useGoTo } from 'vuetify';
-  import { ref } from 'vue';
+  import { ref, onMounted, computed, compile } from 'vue';
   import MenuLinks from '@/components/MenuLinks.vue';
+
+  onMounted(() => {
+    onResize()
+  })
 
   const store = useCardStore();
   const goTo = useGoTo();
-  const drawer = ref(false)
   const openDownloads = ref(false)
+  const drawer = ref(true)
+
+  let windowSize = ref({
+    x: 0,
+    y: 0,
+  })
+
+  const desktopMode = computed(() => {
+    return windowSize.value.x <= 960 ? true : false
+  })
+
+  const onResize = () => {
+    windowSize.value = { x: window.innerWidth, y: window.innerHeight }
+
+    return windowSize.value
+  }
 
   const { showAllAnswers, showAllPicks, myQuestionAnswers } = storeToRefs(store);
 
@@ -58,3 +77,7 @@
     }
   }
 </script>
+
+<style>
+
+</style>
