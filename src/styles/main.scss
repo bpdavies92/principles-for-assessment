@@ -1,3 +1,5 @@
+@use '../styles/breakpoints.scss';
+
 @font-face {
     font-family: "Aveny";
     src: url("../assets/AvenyTLBU-Medium.otf");
@@ -9,5 +11,15 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
 
 .text-body-1 {
     font-size: 1.2rem !important;
+}
+
+.footer .footer-img {
+    height: 6rem;
+    @include breakpoints.respond('tab-port') {
+        width: 10rem;
+    }
+    @include breakpoints.respond('phone') {
+        width: 100%;
+    }
 }
 

@@ -4,7 +4,7 @@
             <v-container  class="position-relative card-grid d-flex mt-12 mb-12" max-width="1200"  width="100%" height="auto">
             
                 <v-row  ref="target">
-                    <v-col v-for="(card, index) of onlyAnswerCards" :key="index" cols="12" sm="4">
+                    <v-col v-for="(card, index) of onlyAnswerCards" :key="index" cols="12" sm="12" md="6" lg="4">
                         <FlashCard
                             class="position-relative mr-auto ml-auto"
                             :question="card.type"
@@ -24,7 +24,7 @@
             </v-container>
             <div class="background-layer position-fixed"></div>
         </v-sheet>
-        <v-btn prepend-icon="mdi-close" @click="showAllAnswers = false" class="close-btn">Close</v-btn>
+        <v-btn prepend-icon="mdi-close" color="#303030" @click="showAllAnswers = false" class="close-btn">Close</v-btn>
     </v-overlay>
 
 
