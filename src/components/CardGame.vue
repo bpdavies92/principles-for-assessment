@@ -8,6 +8,7 @@
         <FlashCard
           class="question-card-top"
           :key="randomCard"
+          :hasQuestion="onlyQuestionCardsSingleRandom.type"
           :class="[
             cardPicked === true ? 'winning-card-question' : 'card-question',
             newGame === true ? 'new-canvas' : '',

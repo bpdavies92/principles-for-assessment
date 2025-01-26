@@ -6,7 +6,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 0, 
             type: 'q',
-            content: 'The most important aspect of a course assessment strategy is “.......................................................”',
+            content: 'The most important aspect of a course assessment strategy is “...................”',
             colour: '#26a8df',
             svgUrl: '../../public/images/illustrations/guy with chess piece.svg',
             isFront: true, 
@@ -36,7 +36,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 3, 
             type: 'q',
-            content: '“.............................” to avoid over-assessment',
+            content: '“................” to avoid over-assessment',
             colour: '#26a8df',
             svgUrl: '../../public/images/illustrations/unhappy assessment girl.svg',
             isFront: true, 
@@ -46,7 +46,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 4, 
             type: 'q',
-            content: 'Incorporate “................................” into assessments',
+            content: 'Incorporate “............” into assessments',
             colour: '#26a8df',
             svgUrl: '../../public/images/illustrations/girl with finger up.svg',
             isFront: true, 
