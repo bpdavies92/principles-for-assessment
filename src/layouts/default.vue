@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar v-resize="onResize" elevation="2" class="position-fixed top-0" >
+    <v-app-bar v-resize="onResize" elevation="2" class="position-fixed" >
             <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
 
@@ -23,7 +23,7 @@
     </v-app-bar>
 
 
-    <v-navigation-drawer v-model="drawer"  v-if="windowSize.x < 960"  >
+    <v-navigation-drawer class="position-fixed"  v-model="drawer"  v-if="windowSize.x < 960"  >
       <v-list-item title="Principles Towards Assessment"></v-list-item>
       <v-divider></v-divider>
         <MenuLinks @someEvent="drawer = false"/>

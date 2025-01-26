@@ -1,0 +1,126 @@
+@use './breakpoints.scss';
+
+.rules-top {
+    z-index: 399;
+}
+
+.sticker-img-container {
+    z-index: 300;
+}
+
+.bring-to-top {
+    z-index: 700;
+}
+
+.list-layout {
+    display: flex;
+    @include breakpoints.respond('small') {
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
+.number {
+    z-index: 2;
+    color: #fafafa; 
+    flex-basis: 10%;
+    justify-items: center;
+    margin-right: 1rem;
+
+    &  span { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 4rem;
+    background-color: #7859a3;
+    border-radius: 50%;
+    }
+
+    &-2 {
+        flex-basis: 90%;
+    }
+}
+
+.rules {
+    font-size: 2rem;
+
+    &-container {
+        max-width: 50rem;
+        
+        @include breakpoints.respond('small') {
+            
+        }
+    }
+
+    &-images:nth-child(1) {
+        left: 20%;
+        transform:translate(-50%, -50%);
+        animation: wiggle 15s ease-in-out 5s infinite both;
+    }
+
+    &-images:nth-child(2) {
+        left: 80%;
+        animation: wiggle 15s ease-in-out 3s infinite both;
+    }
+
+    &-images:nth-child(3) {
+        left: 80%;
+        top: 80%;
+        animation: wiggle 15s ease-in-out 1s infinite both;
+    }
+
+    &-images:nth-child(4) {
+        left: 50%;
+        top: 10%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+
+    &-images:nth-child(5) {
+        left: 20%;
+        top: 10%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+
+    &-images:nth-child(6) {
+        left: 80%;
+        top: 10%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+
+    &-images:nth-child(7) {
+        left: 52%;
+        top: 86%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+
+    &-images:nth-child(8) {
+        left: 24%;
+        top: 90%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+
+    &-images:nth-child(9) {
+        left: 20%;
+        top: 90%;
+        animation: wiggle 15s ease-in-out infinite both;
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(18px) rotate(12deg);
+    }
+    50% {
+        transform: translateY(25px) rotate(-15deg);
+    }
+    75% {
+        transform: translateY(18px) rotate(12deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
