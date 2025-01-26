@@ -15,11 +15,11 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
 
 .footer .footer-img {
     height: 6rem;
-    @include breakpoints.respond('tab-port') {
-        width: 10rem;
+    @include breakpoints.respond('medium') {
+        width: 6rem;
     }
-    @include breakpoints.respond('phone') {
-        width: 100%;
+    @include breakpoints.respond('small') {
+        width: 90%;
     }
 }
 

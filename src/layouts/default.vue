@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <v-app-bar elevation="2" class="position-fixed top-0">
-      <template v-slot:prepend></template>
+            <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>
+
+      <v-app-bar-title class="d-md-block d-sm-none">
         <div class="d-flex align-center">
           <div>
             <v-img
@@ -16,57 +17,20 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
-      <v-menu
-      open-on-hover
-    >
-      <template v-slot:activator="{ props }">
-        <v-btn
-          prepend-icon="mdi-download"
-          size="small"
-          v-bind="props"
-        >
-          Download cards
-        </v-btn>
-      </template>
 
-      <v-list lines="one">
-        <v-list-item>
-          <v-list-item-title>Print ready PDF</v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>PDF with no print marks</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-      <v-btn
-        @click="goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
-        size="small"
-        prepend-icon="mdi-cards-playing"
-      >
-        Introduction
-      </v-btn>
-      <v-btn
-        @click="goTo('.scroll-to-rules', { offset: -30, duration: 300, easing: 'easeInOutCubic' })"
-        size="small"
-        prepend-icon="mdi-book-open-blank-variant"
-      >
-        Rules
-      </v-btn>
-      <v-btn
-        @click="showAllAnswers = !showAllAnswers"
-        size="small"
-        prepend-icon="mdi-cards-playing"
-      >
-        Answers
-      </v-btn>
-      <v-btn
-        @click="showPicksMenu()"
-        size="small"
-        prepend-icon="mdi-heart"
-      >
-        My picks
-      </v-btn>
+      <MenuLinks />
+      
     </v-app-bar>
+
+
+    <v-navigation-drawer v-model="drawer">
+      <v-list-item title="Principles Towards Assessment"></v-list-item>
+      <v-divider></v-divider>
+        <MenuLinks />
+    </v-navigation-drawer>
+
+
+
     <v-main class="extra-space">
       <router-view />
     </v-main>
@@ -78,9 +42,13 @@
   import { useCardStore } from '@/stores/cardInfo';
   import { storeToRefs } from 'pinia';
   import { useGoTo } from 'vuetify';
+  import { ref } from 'vue';
+  import MenuLinks from '@/components/MenuLinks.vue';
 
   const store = useCardStore();
   const goTo = useGoTo();
+  const drawer = ref(false)
+  const openDownloads = ref(false)
 
   const { showAllAnswers, showAllPicks, myQuestionAnswers } = storeToRefs(store);
 
@@ -90,4 +58,3 @@
     }
   }
 </script>
-```
