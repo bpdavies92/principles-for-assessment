@@ -61,7 +61,7 @@ export default defineConfig({
       '.vue',
     ],
   },
-  base: '/bbcswebdav/institution/Online%20Learning/DLU/Website%20files/principles-towards-assessment',
+  // base: '/bbcswebdav/institution/Online%20Learning/DLU/Website%20files/principles-towards-assessment',
   server: {
     port: 3000,
   },

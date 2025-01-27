@@ -102,14 +102,14 @@
             class="d-flex flex-column justify-space-between align-space-between"
           >
             <v-img
-              src="../../public/images/branding/principles for assessment logo.svg"
+              src="../assets/images/branding/principles for assessment logo.svg"
               width="50%"
               height="auto"
               class="mr-auto ml-auto"
             ></v-img>
   
             <v-img
-              src="../../public/images/branding/clt logo with black text.svg"
+              src="../assets/images/branding/clt logo with black text.svg"
               width="50%"
               height="auto"
               class="mr-auto ml-auto"
