@@ -16,7 +16,7 @@
                     <p class="text-body-1">This is not just a game, it’s an opportunity to <strong>reflect</strong>, <strong>learn</strong>, and <strong>innovate</strong> in your approach to assessment
                     </p>
                     <v-img
-                    src="../../public/images/branding/principles for assessment logo.svg"
+                    src="../assets/images/branding/principles for assessment logo.svg"
                     class="mr-auto ml-auto mt-12"
                     max-width="500"
                     ></v-img>
@@ -25,3 +25,8 @@
         </v-row>
     </v-sheet>
 </template>
+
+<script setup>
+    import {ref} from 'vue'
+    const envLink = ref(import.meta.env.VITE_LINK)
+</script>

@@ -27,7 +27,7 @@
         >
 
           <v-img
-            src="../../public/images/shapes/question card title graphic.svg"
+            src="../assets/images/shapes/question card title graphic.svg"
             class="position-absolute question-shape"
             height="300"
             width="300"
@@ -37,7 +37,7 @@
           </v-img>
   
           <v-img
-            src="../../public/images/shapes/points star.png"
+            src="../assets/images/shapes/points star.png"
             :height="cardStar"
             :width="cardStar"
             class="position-absolute card-sticker"
@@ -62,7 +62,7 @@
             >
               <v-img
                 class="title-graphic"
-                src="../../public/images/shapes/question card title graphic.svg"
+                src="../assets/images/shapes/question card title graphic.svg"
                 height="100%"
                 width="auto"
               >

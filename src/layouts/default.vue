@@ -8,7 +8,7 @@
         <div class="d-flex align-center">
           <div>
             <v-img
-              src="../../public/images/branding/principles for assessment logo no text.svg"
+              src="../assets/images/branding/principles for assessment logo no text.svg"
               height="50"
               class="mr-5"
               width="50"
