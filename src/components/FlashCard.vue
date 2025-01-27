@@ -144,7 +144,7 @@
   })
 
   const cardImg = computed(() => {
-    return 60
+        return 60
   })
 
   const cardStar = computed(() => {

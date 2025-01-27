@@ -5,13 +5,7 @@
         <h2 class="text-h3 send-to-front">Results</h2>
         <h3>Your score: {{ gamePoints }}</h3>
       </div>
-      <v-img
-      src="../../public/images/shapes/question card title graphic.svg"
-      class="position-absolute results-title"
-      width="800"
-      height="100%"
-      >        
-      </v-img>
+
     </v-sheet>
     <v-sheet
       width="100vw"

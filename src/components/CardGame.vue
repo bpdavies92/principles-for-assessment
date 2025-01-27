@@ -2,7 +2,7 @@
   <AnswerInputBox :indexNum="modelIndex" />
 
   <div class="overflow-hidden">
-    <v-container color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
+    <v-container  v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
  
         <FlashCard
@@ -59,11 +59,12 @@
           rounded="xs"
           size="x-large"
           color="#303030"
-          class="position-absolute bottom-0 left-0 right-0 next-button mr-auto ml-auto mb-6"
+          class="next-btn"
         >
           Next card
         </v-btn>
-        <v-sheet width="100%" color="transparent" class="points d-sm-none">
+        {{ windowSize.x }}
+        <v-sheet v-if="windowSize.x >= 600" width="100%" color="transparent" class="points">
           <v-progress-circular
             :model-value="gameProgress"
             rotate="360"
@@ -79,25 +80,8 @@
           </v-progress-circular>
           <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="large">Reshuffle</v-btn>
       </v-sheet>
-      </v-sheet>
-      <v-sheet width="100%" color="transparent" class="points">
-          <v-progress-circular
-            :model-value="gameProgress"
-            rotate="360"
-            size="200"
-            width="30"
-            color="#303030"
-        
-          >
-            <div class="d-flex align-center justify-center flex-column mt-n1">
-              <div class="mb-n1 text-body-1">{{ gamePoints }}</div> 
-              <div class="text-body-1">points</div>
-            </div>
-          </v-progress-circular>
-          <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="large">Reshuffle</v-btn>
       </v-sheet>
     </v-container>
-
   </div>
 </template>
 
@@ -109,12 +93,27 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { storeToRefs } from 'pinia';
 import gsap from 'gsap';
 
+onMounted(() => {
+  onResize()
+})
+
 // Store
 const store = useCardStore();
 const { 
   onlyQuestionCards, 
   questionAnswerPair 
 } = store;
+
+let windowSize = ref({
+    x: 0,
+    y: 0,
+  })
+
+  const onResize = () => {
+    windowSize.value = { x: window.innerWidth, y: window.innerHeight }
+
+    return windowSize.value
+  }
 
 const { 
   cardInfo, 

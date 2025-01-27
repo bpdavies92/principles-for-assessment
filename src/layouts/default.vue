@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar :collapse="windowSize.x <= 900" v-resize="onResize" elevation="2" class="position-fixed" >
-            <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon class="d-sm-block d-md-none mr-auto" variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
 
       <v-app-bar-title v-if="windowSize.x >= 960" >

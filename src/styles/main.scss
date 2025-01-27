@@ -16,13 +16,42 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
     font-size: 1.2rem !important;
 }
 
-.footer .footer-img {
-    height: 6rem;
+.footer {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     @include breakpoints.respond('medium') {
-        width: 6rem;
+        flex-direction: column;
     }
-    @include breakpoints.respond('small') {
-        width: 50%;
+
+    &-img {
+        height: 6rem;
+        margin-bottom: 0rem;
+        
+        &:not(:last-child) {
+            margin-left: 3rem; 
+            margin-bottom: 0rem;
+        }
+
+        @include breakpoints.respond('medium') {
+            width: 12rem;
+          
+
+            &:not(:last-child) {
+                margin-left: 0rem;
+                margin-bottom: 6rem;
+            }
+        }
+        @include breakpoints.respond('small') {
+            width: 90%;
+
+            &:not(:last-child) {
+                margin-left: 0rem;
+                margin-bottom: 3rem;
+            }
+        }
     }
 }
 

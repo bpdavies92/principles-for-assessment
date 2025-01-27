@@ -34,7 +34,7 @@
             </v-container>
             <div class="background-layer position-fixed"></div>
         </v-sheet>
-        <v-btn prepend-icon="mdi-close" @click="showAllPicks = false" class="close-btn">Close</v-btn>
+        <v-btn color="#303030" prepend-icon="mdi-close" @click="showAllPicks = false" class="close-btn">Close</v-btn>
     </v-overlay>
 
 </template>

@@ -51,6 +51,13 @@
         }
     }
 
+    &-images:nth-child(0) {
+        left: 20%;
+        top: 90%;
+        animation: wiggle 15s ease-in-out infinite both;
+        z-index: 20;
+    }
+
     &-images:nth-child(1) {
         left: 20%;
         transform:translate(-50%, -50%);
@@ -106,12 +113,7 @@
         z-index: 20;
     }
 
-    &-images:nth-child(9) {
-        left: 20%;
-        top: 90%;
-        animation: wiggle 15s ease-in-out infinite both;
-        z-index: 20;
-    }
+  
 }
 
 @keyframes wiggle {

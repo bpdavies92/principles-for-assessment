@@ -12,6 +12,10 @@
     display: flex;
 
     @include breakpoints.respond('small') {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       margin-top: 6rem;
     }
@@ -35,27 +39,27 @@
   }
   
   .animation-start {
-  &:nth-of-type(1) {
-    animation: move-away-1 .5s ease forwards;
-  }
-  &:nth-of-type(2) {
-    animation: move-away-2 .5s ease .7s both;
-  }
-  &:nth-of-type(3) {
-    animation: move-away-3 .5s ease .7s both;
-  }
-  &:nth-of-type(4) {
-    animation: move-away-4 .5s ease .7s both;
-  }
-  &:nth-of-type(5) {
-    animation: move-away-5 .5s ease .7s both;
-  }
-  &:nth-of-type(6) {
-    animation: move-away-6 .5s ease .7s both;
-  }
-  &:nth-of-type(7) {
-    animation: move-away-7 .5s ease .7s both;
-  }
+    &:nth-of-type(1) {
+      animation: move-away-1 .5s ease forwards;
+    }
+    &:nth-of-type(2) {
+      animation: move-away-2 .5s ease .7s both;
+    }
+    &:nth-of-type(3) {
+      animation: move-away-3 .5s ease .7s both;
+    }
+    &:nth-of-type(4) {
+      animation: move-away-4 .5s ease .7s both;
+    }
+    &:nth-of-type(5) {
+      animation: move-away-5 .5s ease .7s both;
+    }
+    &:nth-of-type(6) {
+      animation: move-away-6 .5s ease .7s both;
+    }
+    &:nth-of-type(7) {
+      animation: move-away-7 .5s ease .7s both;
+    }
   }
   
   .test:nth-of-type(3):hover {
@@ -190,6 +194,10 @@
       right: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+
+      @include breakpoints.respond('small') {
+        opacity: 0;
+      }
       
   
       &:nth-of-type(3) {
@@ -415,6 +423,10 @@
     transform: translate(-50%, -50%);
     z-index: 200;
     transition: all 1s ease;
+
+    @include breakpoints.respond('small') {
+      left: 72%;
+    }
   }
   
   &-question {
@@ -426,6 +438,10 @@
     transform: translate(-50%, -50%);
     z-index: 200;
     transition: all 1s ease;
+
+    @include breakpoints.respond('small') {
+      left: 28%;
+    }
   }
   }
   
@@ -439,5 +455,18 @@
           transform: translate(-50%, -50%) scale(.8) !important;
       }
     
+    }
+
+    .next-btn {
+      position: absolute;
+      top: 85%;
+      bottom: 0%;
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+
+      @include breakpoints.respond('small') {
+        top: 80%;
+      }
     }
   
