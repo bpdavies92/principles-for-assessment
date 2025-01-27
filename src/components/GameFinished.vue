@@ -2,6 +2,7 @@
   <v-sheet v-resize="onResize" color="transparent" class="d-flex flex-column justify-center align-center mb-16" height="100vh" width="100vw">
     <v-sheet color="transparent" class="pa-0 mt-n15" width="100%">
       {{ windowSize.x }}
+
       <v-sheet class="results-title">
         <h2 class="text-h3 send-to-front">Results</h2>
         <h3 class="text-body-1">Your score: {{ gamePoints }}</h3>
@@ -16,12 +17,9 @@
 
       <v-slide-group
         ref="scrollGroup"
-        class="ml-auto mr-auto pa-12"
-        show-arrows
-        center-active
+        class="ml-auto mr-auto pa-sm-0"
+        :show-arrows="windowSize.x <= 600"
         width="100%"
-        mandatory
-        selected-class="slide-group-active"
       >
         <v-slide-group-item
           v-for="(card, index) in myQuestionAnswers"
@@ -46,7 +44,7 @@
                     :cardColour="card[0].colour">
                     <template v-slot:h1Title>Question</template>
                     <template v-slot:bodyText>
-                      {{ card[0].answer ? card[0].answer : card[0].content }}
+                    {{ card[0].answer ? card[0].answer : card[0].content }}
                     </template>
                   </FlashCard>
             </v-sheet>
@@ -57,7 +55,7 @@
     </v-sheet> 
 
 
-    <div class="d-flex flex-column justify-center align-center mt-n10">
+    <div class="d-flex flex-column justify-center align-center mt-0">
       <div class="d-flex">
           <v-btn prepend-icon="mdi-arrow-left" class="mr-3" :disabled="scrollGroup ? !scrollGroup.hasPrev : false" @click="backCard">Back</v-btn>
           <v-btn append-icon="mdi-arrow-right" :disabled="scrollGroup ? !scrollGroup.hasNext : false" @click="nextCard">Next</v-btn>
@@ -109,7 +107,7 @@
   function resetGame() {
     gameProgress.value = 0;
     gamePoints.value = 0;
-    myQuestionAnswers.value = [];
+    // myQuestionAnswers.value = [];
   }
 
   function nextCard() {

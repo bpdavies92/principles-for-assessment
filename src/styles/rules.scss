@@ -29,7 +29,7 @@
     justify-items: center;
     margin-right: 1rem;
 
-    &  span { 
+    & span { 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,12 +43,13 @@
 .rules {
     font-size: 2rem;
 
+    @include breakpoints.respond('small') {
+        font-size: 1.2rem;
+    }
+
     &-container {
         max-width: 50rem;
         
-        @include breakpoints.respond('small') {
-            
-        }
     }
 
     &-images:nth-child(0) {
@@ -100,7 +101,7 @@
     }
 
     &-images:nth-child(7) {
-        left: 52%;
+        left: 92%;
         top: 90%;
         animation: wiggle 15s ease-in-out infinite both;
 

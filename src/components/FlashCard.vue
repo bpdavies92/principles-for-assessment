@@ -49,7 +49,7 @@
           </v-img>
   
           <v-sheet
-            class="pa-md-3 pa-sm-1 d-flex flex-column"
+            class="pa-md-3 pa-sm-1 d-flex flex-column align-center justify-center "
             rounded="xl"
             color="#fafafa"
             height="100%"
@@ -65,6 +65,7 @@
                 src="../assets/images/shapes/question card title graphic.svg"
                 height="100%"
                 width="auto"
+
               >
                 <h3 class="text-h5">
                   <slot name="h1Title"></slot>
@@ -72,20 +73,21 @@
               </v-img>
             </v-sheet>
   
-            <v-img
-              :src="svgUrl"
-              :height="`${cardImg}%`"
-              
-              width="auto"
-              class="mr-auto ml-auto"
-              :class="{'question-card': hasQuestion === 'q'}"
-            ></v-img>
-  
-            <v-card-text class="mt-n12">
-              <p class="text-body-1 card-body-text">
-                <slot name="bodyText"></slot>
-              </p>
-            </v-card-text>
+            <div>
+              <v-img
+                :src="svgUrl"
+                height="auto"
+                :width="`${cardImg}`"
+                class="mr-auto ml-auto mb-6"
+                :class="{'question-card': hasQuestion === 'q'}"
+              ></v-img>
+                  <v-sheet color="transparent" max-width="250" width="100%">
+                    <p class="text-body-1 card-body-text">
+                      <slot name="bodyText"></slot>
+                    </p>
+                  </v-sheet>
+            </div>
+            
           </v-sheet>
         </v-card>
   
@@ -121,6 +123,7 @@
   </template>
   
   <script setup>
+
   import {ref, computed, onMounted} from 'vue'
 
   let windowSize = ref({
@@ -134,7 +137,6 @@
 
   const onResize = () => {
     windowSize.value = { x: window.innerWidth, y: window.innerHeight }
-
     return windowSize.value
   }
 
@@ -147,7 +149,7 @@
   })
 
   const cardImg = computed(() => {
-        return 60
+        return 180
   })
 
   const cardStar = computed(() => {
@@ -168,6 +170,7 @@
     'hasQuestion',
     'mobileSize'
   ]);
+
   </script>
   
   <style lang="scss" scoped>
@@ -230,10 +233,8 @@
     }
   }
 
-  .card-body-text {
-    overflow-wrap: break-word !important;
-    word-wrap: break-word;
-  }
+  
+
   
   .card-inner {
     position: relative;

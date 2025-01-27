@@ -17,22 +17,50 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
-  <!-- {{ windowSize.x }} -->
       <MenuLinks v-if="windowSize.x >= 960" />
       
     </v-app-bar>
 
 
-    <v-navigation-drawer class="position-fixed"  v-model="drawer"  v-if="windowSize.x < 960"  >
-      <v-list-item title="Principles Towards Assessment"></v-list-item>
-      <v-divider></v-divider>
-        <MenuLinks @closeMenu="drawer = false"/>
-    </v-navigation-drawer>
+
+
+    <div class="text-center pa-4">
+    <v-dialog
+      v-model="drawer"
+      transition="dialog-bottom-transition"
+      fullscreen
+    >
+ 
+
+      <v-card>
+        <v-toolbar>
+
+
+          <v-toolbar-title>Principles Towards Assessment</v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <v-toolbar-items>
+            <v-btn
+              text="Close"
+              variant="text"
+              @click="drawer = false"
+              class="mr-n3"
+            ></v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+
+        <MenuLinks @closeMenu="goIntro" :lines="three" :alignText="center" :fontSize="x-large" :isBlock="true"/>
+    
+          
+      </v-card>
+    </v-dialog>
+  </div>
 
 
 
     <v-main class="extra-space">
-      <router-view />
+      <router-view class="overflow-hidden" />
     </v-main>
     <AppFooter/>
   </v-app>
@@ -52,7 +80,6 @@
   const store = useCardStore();
   const goTo = useGoTo();
   const openDownloads = ref(false)
-  const drawer = ref(true)
 
   let windowSize = ref({
     x: 0,
@@ -69,7 +96,9 @@
     return windowSize.value
   }
 
-  const { showAllAnswers, showAllPicks, myQuestionAnswers } = storeToRefs(store);
+  const { showAllAnswers, showAllPicks, myQuestionAnswers, drawer } = storeToRefs(store);
+
+
 
   function showPicksMenu() {
     if (myQuestionAnswers.value.length > 0) {

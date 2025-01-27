@@ -559,6 +559,7 @@ export const useCardStore = defineStore('cardInfo', {
     modelOpenClose: false,
     gameProgress: 0,
     gamePoints: 0, 
+    drawer: false
     }),
     getters: { 
         onlyQuestionCards: (state) => {

@@ -17,6 +17,15 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
     font-size: 1.2rem !important;
 }
 
+.extra-space {
+    margin-top: -4rem;
+
+    @include breakpoints.respond('small') {
+        margin-top: -6rem;
+    }
+  }
+
+
 .footer {
 
     display: flex;

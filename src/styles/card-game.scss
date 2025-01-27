@@ -452,7 +452,7 @@
     .card-mobile {
 
       @include breakpoints.respond('small') {
-          transform: translate(-50%, -50%) scale(.8) !important;          
+          transform: translate(-50%, -50%) scale(.5) !important;          
       }
     }
 

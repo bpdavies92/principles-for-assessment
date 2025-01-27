@@ -49,7 +49,5 @@
 </script>
 
 <style>
-.extra-space {
-  margin-top: -4rem;
-}
+
 </style>

@@ -41,7 +41,7 @@
           :svgUrl="item.svgUrl"
           :hasDouble="item.isDouble"
           :hasTriple="item.isTriple"
-          :flip="cardSelected[index] === 'not selected'"
+          :flip="cardSelected[index] === 'not selected' && windowSize.x >= 960"
           :cardColour="item.colour"
           :class="[
             cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
@@ -57,6 +57,7 @@
         <v-btn
           @click="newSelection()"
           v-if="cardPicked"
+          :block="windowSize.x <= 600"
           width="30%"
           rounded="xs"
           size="x-large"
@@ -65,8 +66,8 @@
         >
           Next card
         </v-btn>
-        {{ windowSize.x }}
-        <v-sheet v-if="windowSize.x >= 600" width="100%" color="transparent" class="points">
+
+        <v-sheet v-if="windowSize.x >= 960" width="100%" color="transparent" class="points">
           <v-progress-circular
             :model-value="gameProgress"
             rotate="360"
