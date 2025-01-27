@@ -21,20 +21,15 @@
       
     </v-app-bar>
 
-
-
-
     <div class="text-center pa-4">
     <v-dialog
       v-model="drawer"
       transition="dialog-bottom-transition"
       fullscreen
     >
- 
 
       <v-card>
         <v-toolbar>
-
 
           <v-toolbar-title>Principles Towards Assessment</v-toolbar-title>
 

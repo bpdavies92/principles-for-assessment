@@ -2,23 +2,13 @@
 
 .points {
     position: absolute;
-    top:85%;
-    bottom:50%;
-    right:50%;
-    left:50%;
+    left: 50%;
+    right: 50%;
+    bottom: 50%;
+    top: 76%;
     transform: translate(-50%, -50%);
-    z-index: 2;
-    margin-right: auto;
-    display: flex;
-
-    @include breakpoints.respond('small') {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-top: 6rem;
-    }
+    width: max-content;
+    z-index: 400;
   }
   
   .question-card-top {

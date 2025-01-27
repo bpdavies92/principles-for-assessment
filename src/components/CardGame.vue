@@ -1,8 +1,24 @@
 <template>
   <AnswerInputBox :indexNum="modelIndex" />
 
-  <div class="overflow-hidden">
+  <div class="overflow-hidden position-relative" >
     <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
+          <v-sheet v-if="windowSize.x >= 960"  color="transparent" class="points">
+          <v-progress-circular
+            :model-value="gameProgress"
+            rotate="360"
+            size="120"
+            width="14"
+            color="#303030"
+        
+          >
+            <div class="d-flex align-center justify-center flex-column mt-n1">
+              <div class="mb-n1 text-body-1">{{ gamePoints }}</div> 
+              <div class="text-body-1">points</div>
+            </div>
+          </v-progress-circular>
+          <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+      </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
  
         <FlashCard
@@ -67,24 +83,10 @@
           Next card
         </v-btn>
 
-        <v-sheet v-if="windowSize.x >= 960" width="100%" color="transparent" class="points">
-          <v-progress-circular
-            :model-value="gameProgress"
-            rotate="360"
-            size="200"
-            width="30"
-            color="#303030"
-        
-          >
-            <div class="d-flex align-center justify-center flex-column mt-n1">
-              <div class="mb-n1 text-body-1">{{ gamePoints }}</div> 
-              <div class="text-body-1">points</div>
-            </div>
-          </v-progress-circular>
-          <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="large">Reshuffle</v-btn>
-      </v-sheet>
+
       </v-sheet>
     </v-container>
+
   </div>
 </template>
 

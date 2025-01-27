@@ -2,6 +2,9 @@
 
 .rules-top {
     z-index: 399;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin: 0;
 }
 
 .sticker-img-container {
@@ -42,6 +45,8 @@
 
 .rules {
     font-size: 2rem;
+    padding: 0;
+    margin: 0;
 
     @include breakpoints.respond('small') {
         font-size: 1.2rem;
@@ -49,6 +54,7 @@
 
     &-container {
         max-width: 50rem;
+        padding: 1rem;
         
     }
 
@@ -101,8 +107,8 @@
     }
 
     &-images:nth-child(7) {
-        left: 92%;
-        top: 90%;
+        left: 2%;
+        top: 80%;
         animation: wiggle 15s ease-in-out infinite both;
 
     }

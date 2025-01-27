@@ -9,13 +9,13 @@
             class="mr-auto ml-auto pa-md-6 pa-sm-1 rules-container" 
             rounded="xl"
         >
-            <h2 class="text-h2 mb-3 ml-sm-3 mt-md-0 mt-sm-3 ml-3">Rules</h2>
+            <h2 class="text-h2">Rules</h2>
 
             <v-list 
                 bg-color="transparent" 
                 lines="three" 
                 height="min-content" 
-                class="rules pa-0"
+                class="rules"
             >
                 <v-list-item color="#fafafa" class="rules-top">
                     <div class="list-layout">
@@ -39,7 +39,7 @@
                     </div>
                 </v-list-item>
 
-                <v-list-item>
+                <v-list-item class="rules-top">
                     <div class="list-layout">
                         <div class="number"><span>3</span></div>
                         <div>
@@ -50,7 +50,7 @@
                     </div>
                 </v-list-item>
 
-                <v-list-item>
+                <v-list-item class="rules-top">
                     <div class="list-layout">
                         <div class="number"><span>4</span></div>
                         <div>
