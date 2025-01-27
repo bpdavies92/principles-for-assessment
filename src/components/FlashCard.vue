@@ -1,10 +1,13 @@
 <template>
     <v-sheet
       color="transparent"
-      class="cards-container cursor-pointer card-mobile"
+      class="cards-container cursor-pointer"
       :height="cardHeight"
       :width="cardWidth"
-      :class="[topCard ? 'top-card' : '']"
+      :class="
+      [topCard ? 'top-card' : ''],
+      [mobileSize ? 'card-mobile' : '']
+      "
     >
       <v-sheet
         color="transparent"
@@ -163,6 +166,7 @@
     'hasDouble',
     'hasTriple',
     'hasQuestion',
+    'mobileSize'
   ]);
   </script>
   

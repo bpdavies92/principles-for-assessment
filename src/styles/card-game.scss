@@ -63,7 +63,7 @@
   }
   
   .test:nth-of-type(3):hover {
-          transform: translate(-50%, -50%)  rotate(0deg) scale(1.5);
+      transform: translate(-50%, -50%)  rotate(0deg) scale(1.5);
   }
   
   .card-question {
@@ -452,9 +452,8 @@
     .card-mobile {
 
       @include breakpoints.respond('small') {
-          transform: translate(-50%, -50%) scale(.8) !important;
+          transform: translate(-50%, -50%) scale(.8) !important;          
       }
-    
     }
 
     .next-btn {

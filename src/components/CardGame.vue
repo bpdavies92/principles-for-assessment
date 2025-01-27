@@ -2,7 +2,7 @@
   <AnswerInputBox :indexNum="modelIndex" />
 
   <div class="overflow-hidden">
-    <v-container  v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
+    <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
  
         <FlashCard
@@ -15,6 +15,7 @@
             startAnimation === true ? 'animation-start' : '',
             startAnimation === true ? 'test' : ''
           ]"
+          :mobileSize="true"
           :dropshadow="10"
           :question="onlyQuestionCardsSingleRandom.type"
           :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
@@ -28,6 +29,7 @@
         <FlashCard
           v-for="(item, index) in onlyAnswerCardsSixCards"
           :key="index"
+          :mobileSize="true"
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
@@ -99,6 +101,7 @@ onMounted(() => {
 
 // Store
 const store = useCardStore();
+
 const { 
   onlyQuestionCards, 
   questionAnswerPair 
@@ -111,23 +114,22 @@ let windowSize = ref({
 
   const onResize = () => {
     windowSize.value = { x: window.innerWidth, y: window.innerHeight }
-
     return windowSize.value
   }
 
-const { 
-  cardInfo, 
-  processStage, 
-  randomCard, 
-  onlyQuestionCardsSingleRandom, 
-  randomCardAnswers, 
-  onlyAnswerCardsSixCards, 
-  showAllAnswers, 
-  showAllPicks, 
-  modelOpenClose,
-  gameProgress,
-  gamePoints
-} = storeToRefs(store);
+  const { 
+    cardInfo, 
+    processStage, 
+    randomCard, 
+    onlyQuestionCardsSingleRandom, 
+    randomCardAnswers, 
+    onlyAnswerCardsSixCards, 
+    showAllAnswers, 
+    showAllPicks, 
+    modelOpenClose,
+    gameProgress,
+    gamePoints
+  } = storeToRefs(store);
 
 // Reactive Variables
 const userInput = ref('');
@@ -154,34 +156,33 @@ const rot = computed(() => {
   return differentAngles;
 });
 
-
 // GSAP Timeline
 let ctx;
 const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
 
-// Functions
-function progressGame() {
-  gameProgress.value += 10;
-}
-
-function pointsCollector(points, i, id) {
-  if(cardSelected.value[i] != null) return
-
-  gameProgress.value += 10
-
-  if(!cardInfo.value[id].isDouble && !cardInfo.value[id].isTriple) {
-    gamePoints.value += points
-  } 
-
-  if(cardInfo.value[id].isDouble) {
-    gamePoints.value += points * 2
+  // Functions
+  function progressGame() {
+    gameProgress.value += 10;
   }
 
-  if(cardInfo.value[id].isTriple) {
-    gamePoints.value += points * 3 
-  }
+  function pointsCollector(points, i, id) {
+    if(cardSelected.value[i] != null) return
 
-}
+    gameProgress.value += 10
+
+    if(!cardInfo.value[id].isDouble && !cardInfo.value[id].isTriple) {
+      gamePoints.value += points
+    } 
+
+    if(cardInfo.value[id].isDouble) {
+      gamePoints.value += points * 2
+    }
+
+    if(cardInfo.value[id].isTriple) {
+      gamePoints.value += points * 3 
+    }
+
+  }
 
 function userCardInput(id, i) {
   if(cardInfo.value[id].userInput === false || cardSelected.value[i] === 'not selected') return

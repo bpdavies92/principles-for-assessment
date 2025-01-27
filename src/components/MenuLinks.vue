@@ -1,5 +1,5 @@
 <template>
-    <v-list-item nav>
+    <!-- <v-list-item nav>
         <v-btn variant="text" prepend-icon="mdi-download" size="small">
         Download
           <v-menu activator="parent">
@@ -13,34 +13,31 @@
           </v-list>
                 </v-menu>
         </v-btn>
-      </v-list-item>
-
-
+      </v-list-item> -->
+      
       <v-list-item nav>
         <v-btn
-          variant="texth"
-          @click="$emit('someEvent'); goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
+          variant="text"
+          @click="$emit('closeMenu'); goTo('.scroll-to-introduction', { offset: -60, duration: 300, easing: 'easeInOutCubic' })"
           size="small"
-          prepend-icon="mdi-cards-playing"
-        >
+          prepend-icon="mdi-cards-playing">
           Introduction
         </v-btn>
       </v-list-item>
 
       <v-list-item nav>
         <v-btn
-          variant="texth"
-          @click="goTo('.scroll-to-rules', { offset: -30, duration: 300, easing: 'easeInOutCubic' })"
+          variant="text"
+          @click="$emit('closeMenu'); goTo('.scroll-to-rules', { offset: -30, duration: 300, easing: 'easeInOutCubic' })"
           size="small"
-          prepend-icon="mdi-book-open-blank-variant"
-        >
+          prepend-icon="mdi-book-open-blank-variant">
           Rules
         </v-btn>
       </v-list-item>
 
       <v-list-item nav>
         <v-btn
-          variant="texth"
+          variant="text"
           @click="showAllAnswers = !showAllAnswers"
           size="small"
           prepend-icon="mdi-cards-playing"
@@ -51,7 +48,7 @@
 
       <v-list-item nav>
         <v-btn
-          variant="texth"
+          variant="text"
           @click="showPicksMenu()"
           size="small"
           prepend-icon="mdi-heart"
