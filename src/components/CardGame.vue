@@ -3,21 +3,33 @@
 
   <div class="overflow-hidden position-relative" >
     <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
-          <v-sheet v-if="windowSize.x >= 960"  color="transparent" class="points">
-          <v-progress-circular
-            :model-value="gameProgress"
-            rotate="360"
-            size="120"
-            width="14"
-            color="#303030"
-        
-          >
-            <div class="d-flex align-center justify-center flex-column mt-n1">
-              <div class="mb-n1 text-body-1">{{ gamePoints }}</div> 
-              <div class="text-body-1">points</div>
-            </div>
-          </v-progress-circular>
-          <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+          <v-sheet  v-if="windowSize.x >= 960"  color="transparent" class="points">
+          <v-btn
+            @click="newSelection()"
+            v-if="cardPicked"
+            :block="windowSize.x <= 600"
+            width="100%"
+            rounded="xs"
+            size="small"
+            class="mb-1 next-btn"
+            color="#303030">
+            Next card
+          </v-btn>
+          <div >
+            <v-progress-circular
+              :model-value="gameProgress"
+              rotate="360"
+              size="120"
+              width="14"
+              color="#303030"
+            >
+              <div class="d-flex align-center justify-center flex-column mt-n1">
+                <div class="mb-n1 text-body-1">{{ gamePoints }}</div>
+                <div class="text-body-1">points</div>
+              </div>
+            </v-progress-circular>
+            <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+          </div>
       </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
  
@@ -69,20 +81,6 @@
           <template v-slot:bodyText>{{ item.answer ? item.answer : item.content }}</template>
           <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
         </FlashCard>
-
-        <v-btn
-          @click="newSelection()"
-          v-if="cardPicked"
-          :block="windowSize.x <= 600"
-          width="30%"
-          rounded="xs"
-          size="x-large"
-          color="#303030"
-          class="next-btn"
-        >
-          Next card
-        </v-btn>
-
 
       </v-sheet>
     </v-container>
