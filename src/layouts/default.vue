@@ -17,7 +17,7 @@
           <div>Principles Towards Assessment</div>
         </div>
       </v-app-bar-title>
-      <MenuLinks v-if="windowSize.x >= 960" />
+      <MenuLinks :fontSize="small" :isSlim="true" v-if="windowSize.x >= 960" />
       
     </v-app-bar>
 
@@ -26,9 +26,10 @@
       v-model="drawer"
       transition="dialog-bottom-transition"
       fullscreen
+      
     >
 
-      <v-card>
+      <v-card color='#303030'>
         <v-toolbar>
 
           <v-toolbar-title>Principles Towards Assessment</v-toolbar-title>
@@ -45,7 +46,7 @@
           </v-toolbar-items>
         </v-toolbar>
 
-        <MenuLinks @closeMenu="goIntro" :lines="three" :alignText="center" :fontSize="x-large" :isBlock="true"/>
+        <MenuLinks @closeMenu="goIntro" :lines="three" :alignText="center" :fontSize="x-large" :isBlock="true" :isStacked="true"/>
     
           
       </v-card>

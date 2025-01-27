@@ -3,7 +3,7 @@
 
   <div class="overflow-hidden position-relative" >
     <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
-          <v-sheet  v-if="windowSize.x >= 960"  color="transparent" class="points">
+          <v-sheet  color="transparent" class="points">
           <v-btn
             @click="newSelection()"
             v-if="cardPicked"
@@ -17,18 +17,19 @@
           </v-btn>
           <div >
             <v-progress-circular
+              v-if="windowSize.x >= 960"
               :model-value="gameProgress"
               rotate="360"
               size="120"
               width="14"
               color="#303030"
             >
-              <div class="d-flex align-center justify-center flex-column mt-n1">
+              <div  class="d-flex align-center justify-center flex-column mt-n1">
                 <div class="mb-n1 text-body-1">{{ gamePoints }}</div>
                 <div class="text-body-1">points</div>
               </div>
             </v-progress-circular>
-            <v-btn class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+            <v-btn  v-if="windowSize.x >= 960" class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
           </div>
       </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
@@ -40,7 +41,7 @@
           :class="[
             cardPicked === true ? 'winning-card-question' : 'card-question',
             newGame === true ? 'new-canvas' : '',
-            startAnimation === true ? 'animation-start' : '',
+            startAnimation === true && windowSize.x >= 960 ? 'animation-start' : '',
             startAnimation === true ? 'test' : ''
           ]"
           :mobileSize="true"
@@ -192,6 +193,9 @@ function userCardInput(id, i) {
 }
 
 function animationDelay() {
+
+  if(windowSize.value.x <= 960) return
+
   setTimeout(() => {
     startAnimation.value = false;
   }, 1200);

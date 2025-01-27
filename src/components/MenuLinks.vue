@@ -17,6 +17,8 @@
       
       <v-list-item  nav>
         <v-btn
+          :slim="isSlim"
+          :staked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"
@@ -29,6 +31,8 @@
 
       <v-list-item nav>
         <v-btn
+          :slim="isSlim"
+          :staked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"
@@ -41,6 +45,8 @@
 
       <v-list-item nav>
         <v-btn
+          :slim="isSlim"
+          :staked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"
@@ -54,6 +60,8 @@
 
       <v-list-item nav>
         <v-btn
+          :slim="isSlim"
+          :stacked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"
@@ -73,13 +81,12 @@
   import { storeToRefs } from 'pinia';
   import { useGoTo } from 'vuetify';
   import { ref } from 'vue';
-import AllAnswers from './AllAnswers.vue';
 
   const store = useCardStore();
   const goTo = useGoTo();
   const openDownloads = ref(false)
 
-  const props = defineProps(['lines', 'alignText', 'fontSize', 'isBlock'])
+  const props = defineProps(['lines', 'alignText', 'fontSize', 'isBlock', 'isSlim', 'isStacked'])
 
 
   const { showAllAnswers, showAllPicks, myQuestionAnswers, drawer } = storeToRefs(store);

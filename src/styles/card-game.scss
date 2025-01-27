@@ -21,6 +21,10 @@
   
   .next-btn {
     z-index: 100;
+
+    @include breakpoints.respond('small') {
+      margin-top: -5rem;
+    }
   }
   
   .card-container  {
