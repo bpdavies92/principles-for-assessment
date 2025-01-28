@@ -488,22 +488,6 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 34, 
             type: 'a',
-            content: `Assessment support sessions at the end of the module`,
-            answer: null,
-            colour: '#Afd3f0',
-            svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/assessment support sesh.svg`,
-            isFront: true, 
-            isDouble: false,
-            isTriple: false,
-            points: 10, 
-            userInput: false, 
-            userInputText: '',
-            staticText: null, 
-            reverseStaticText: null
-        },
-        {
-            id: 35, 
-            type: 'a',
             content: `Getting everything organised`,
             answer: null,
             colour: '#Afd3f0',
@@ -518,7 +502,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: null
         },
         {
-            id: 36, 
+            id: 35, 
             type: 'a',
             content: `Removing “......................................................”`,
             answer: null,
@@ -534,7 +518,7 @@ export const useCardStore = defineStore('cardInfo', {
             reverseStaticText: true
         },
         {
-            id: 37, 
+            id: 36, 
             type: 'a',
             content: `“..................................................................................................................”`,
             answer: null,
@@ -556,6 +540,7 @@ export const useCardStore = defineStore('cardInfo', {
     showAllAnswers: false,
     showAllPicks: false,
     myQuestionAnswers: [],
+    currentQuestion: 4,
     modelOpenClose: false,
     gameProgress: 0,
     gamePoints: 0, 
@@ -569,8 +554,9 @@ export const useCardStore = defineStore('cardInfo', {
         return state.cardInfo.filter((i) => i.type === 'a')
         },
         onlyQuestionCardsSingleRandom: (state) => { 
-            const questionCards = state.cardInfo.filter((i) => {return i.type === 'q'})
-            return questionCards[state.randomCard]
+            const questionCards = state.cardInfo.filter((i) => { return i.type === 'q' })
+            
+            return questionCards[state.currentQuestion]
         },
         onlyAnswerCardsSixCards: (state) => {
             return state.randomCardAnswers.slice(0, 6);
@@ -592,6 +578,12 @@ export const useCardStore = defineStore('cardInfo', {
             this.randomCard = Math.floor(Math.random() * questionCards.length)
             console.log(this.randomCard)
             return this.randomCard
+        },
+        addNewQuestion() {
+            const questionCards = this.cardInfo.filter((i) => { return i.type === 'q' })
+            
+            this.currentQuestion <= 4 ?  this.currentQuestion++ : this.currentQuestion = 0
+
         },
         reshuffleAnswerCard() {
             const allCards = this.cardInfo; // Get all cards

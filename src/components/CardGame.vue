@@ -4,6 +4,7 @@
   <div class="overflow-hidden position-relative" >
     <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
           <v-sheet  color="transparent" class="points">
+            {{ currentQuestion }}
           <v-btn
             @click="newSelection()"
             v-if="cardPicked"
@@ -62,7 +63,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true);" 
+          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -122,6 +123,7 @@ let windowSize = ref({
   const { 
     cardInfo, 
     processStage, 
+    addNewQuestion,
     randomCard, 
     onlyQuestionCardsSingleRandom, 
     randomCardAnswers, 
@@ -130,7 +132,8 @@ let windowSize = ref({
     showAllPicks, 
     modelOpenClose,
     gameProgress,
-    gamePoints
+    gamePoints,
+    currentQuestion
   } = storeToRefs(store);
 
 // Reactive Variables
@@ -219,12 +222,13 @@ function newSelection() {
   }
 
   if (processStage.value === 2) {
+    store.addNewQuestion()
     setTimeout(() => {
       tl.revert();
       newGame.value = false;
       cardPicked.value = false;
       cardSelected.value.fill(null);
-      store.reshuffleQuestionCard();
+      // store.reshuffleQuestionCard();
       store.reshuffleAnswerCard();
       processStage.value = 0;
       startAnimation.value = true;
@@ -239,7 +243,7 @@ function reshuffleCards() {
       newGame.value = false;
       cardPicked.value = false;
       cardSelected.value.fill(null);
-      store.reshuffleQuestionCard();
+      // store.reshuffleQuestionCard();
       store.reshuffleAnswerCard();
       processStage.value = 0;
       startAnimation.value = true;
