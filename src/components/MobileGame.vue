@@ -1,7 +1,5 @@
 <template>
-
-<AnswerInputBox :indexNum="modelIndex" v-if="gameProgress < 100"/>
-
+  <AnswerInputBox :indexNum="modelIndex" v-if="gameProgress < 100"/>
    <v-container class="mobile-game-container position-relative scroll-to-question">
       <v-sheet class="position-fixed next-btn-container pl-6 pr-6">
         <v-btn
@@ -90,8 +88,6 @@
           </v-col>
       </v-row>
    </v-container>
-
-
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <AnswerInputBox :indexNum="modelIndex" />
+  <AnswerInputBox @givePoints="pointsCollector" :indexNum="modelIndex" :points="points"  />
 
   <div class="overflow-hidden position-relative" >
     <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
@@ -63,7 +63,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
+          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id, item.userInput); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -174,8 +174,8 @@ const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
     gameProgress.value += 10;
   }
 
-  function pointsCollector(points, i, id) {
-    if(cardSelected.value[i] != null) return
+  function pointsCollector(points, i, id, input) {
+    if(cardSelected.value[i] != null || input === true) return
 
     gameProgress.value += 10
 
