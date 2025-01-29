@@ -222,19 +222,22 @@ function newSelection() {
   }
 
   if (processStage.value === 2) {
-    store.addNewQuestion()
+
     setTimeout(() => {
-      tl.revert();
+      store.addNewQuestion();
+      cardSelected.value.fill(null);
+    }, 800)
+
+    setTimeout(() => {
       newGame.value = false;
       cardPicked.value = false;
       cardSelected.value.fill(null);
-      // store.reshuffleQuestionCard();
       store.reshuffleAnswerCard();
       processStage.value = 0;
       startAnimation.value = true;
       animationDelay();
       isRotated.value.fill(false);
-    }, 700);
+    }, 1000);
   }
 }
 
@@ -243,7 +246,6 @@ function reshuffleCards() {
       newGame.value = false;
       cardPicked.value = false;
       cardSelected.value.fill(null);
-      // store.reshuffleQuestionCard();
       store.reshuffleAnswerCard();
       processStage.value = 0;
       startAnimation.value = true;

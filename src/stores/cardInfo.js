@@ -540,7 +540,7 @@ export const useCardStore = defineStore('cardInfo', {
     showAllAnswers: false,
     showAllPicks: false,
     myQuestionAnswers: [],
-    currentQuestion: 4,
+    currentQuestion: 0,
     modelOpenClose: false,
     gameProgress: 0,
     gamePoints: 0, 
@@ -565,7 +565,7 @@ export const useCardStore = defineStore('cardInfo', {
             const onlyImages = state.cardInfo.map((value, index, array) => {
                 return value.svgUrl
             })
-
+            
             return onlyImages.slice(0, 8)
         }
     },
@@ -581,9 +581,9 @@ export const useCardStore = defineStore('cardInfo', {
         },
         addNewQuestion() {
             const questionCards = this.cardInfo.filter((i) => { return i.type === 'q' })
-            
-            this.currentQuestion <= 4 ?  this.currentQuestion++ : this.currentQuestion = 0
+            this.currentQuestion != questionCards.length - 1 ?  this.currentQuestion++ : this.currentQuestion = 0
 
+            console.log(questionCards.length, this.currentQuestion)
         },
         reshuffleAnswerCard() {
             const allCards = this.cardInfo; // Get all cards
