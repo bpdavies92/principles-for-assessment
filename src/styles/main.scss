@@ -25,9 +25,12 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
     }
   }
 
+  .font-typeface {
+    font-family: "Aveny" !important;
+    letter-spacing: 1px !important;
+  }
 
 .footer {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,10 +51,9 @@ h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {
         @include breakpoints.respond('medium') {
             width: 12rem;
           
-
             &:not(:last-child) {
                 margin-left: 0rem;
-                margin-bottom: 6rem;
+                margin-bottom: 3rem;
             }
         }
         @include breakpoints.respond('small') {

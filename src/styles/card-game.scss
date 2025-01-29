@@ -15,7 +15,40 @@
     transform: translate(-50%, -50%);
     width: max-content;
     z-index: 400;
+
+    @include breakpoints.respond('small') {
+      position: relative;
+      top: 50%;
+      height: max-content;
+      width: min-content;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
+
+  .game-scoreboard-info  {
+      & div:nth-of-type(1) {
+        margin-bottom: -.5rem;
+      @include breakpoints.respond('small') {
+        margin-bottom: -1rem;
+      }
+
+  }
+
+
+   & div {
+      font-family: "Aveny" !important;
+
+      @include breakpoints.respond('small') {
+        font-size: 2rem !important;
+      }
+    }
+
+  }
+  
+
   
   .question-card-top {
     z-index: 99;
@@ -28,8 +61,20 @@
   .next-btn {
     z-index: 100;
 
+    &-container {
+      position: fixed;
+      width: 100%;
+      top: 90%;
+      bottom: 50%;
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 888;
+    }
+
     @include breakpoints.respond('small') {
-      margin-top: -5rem;
+
+      z-index: 1000;
     }
   }
 
@@ -37,7 +82,7 @@
     position: absolute;
     perspective: 1000px;
 
-    @include breakpoints.respond('medium') {
+    @include breakpoints.respond('small') {
       position: relative;
     }
   
@@ -49,7 +94,7 @@
   transform: scale(.80);
   transform-origin: center center;
 
-  @include breakpoints.respond('medium') {
+  @include breakpoints.respond('small') {
     position: relative !important;
     display: flex;
  }
@@ -92,7 +137,7 @@
       transform: translate(-50%, -50%);
       transition: all .5s ease;
 
-      @include breakpoints.respond('medium') {
+      @include breakpoints.respond('small') {
         position: relative;
         display: flex;
      }
@@ -106,7 +151,7 @@
         left: 0%;
         transform: translate(-50%, -50%) rotate(0deg);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative !important;
           display: block;
           width: 100%;
@@ -130,7 +175,7 @@
         left: 25%;
         transform: translate(-50%, -50%) rotate(0deg);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative;
        }
 
@@ -153,7 +198,7 @@
         left: 25%;
         transform: translate(-50%, -50%) rotate(0deg);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative;
        }
 
@@ -175,7 +220,7 @@
         left: 75%;
         transform: translate(-50%, -50%), rotate(0deg);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative;
        }        
 
@@ -198,7 +243,7 @@
         left: 75%;
         transform: translate(-50%, -50%) rotate(0deg);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative;
        }
 
@@ -221,7 +266,7 @@
         left: 100%;
         transform: translate(-50%, -50%);
 
-        @include breakpoints.respond('medium') {
+        @include breakpoints.respond('small') {
           position: relative;
        }
 
@@ -243,7 +288,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
-      @include breakpoints.respond('medium') {
+      @include breakpoints.respond('small') {
         position: relative;
      }
 
@@ -420,6 +465,8 @@
     }
   
     .winning-card {
+
+
   &-answer {
     position: absolute;
     top: 50%;
@@ -430,13 +477,11 @@
     z-index: 200;
     transition: all 1s ease;
 
-    @include breakpoints.respond('medium') {
-      position: relative;
-   }
-
     @include breakpoints.respond('small') {
-      left: 72%;
-    }
+      position: relative;
+      display: block;
+      left: 50%;
+   }
   }
   
   &-question {
@@ -449,13 +494,11 @@
     z-index: 200;
     transition: all 1s ease;
 
-    @include breakpoints.respond('medium') {
+    @include breakpoints.respond('small') {
       position: relative;
+      left: 50%;
    }
 
-    @include breakpoints.respond('small') {
-      left: 28%;
-    }
   }
   }
   

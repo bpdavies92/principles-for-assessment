@@ -41,6 +41,7 @@
             :height="cardStar"
             :width="cardStar"
             class="position-absolute card-sticker"
+            alt=""
             v-if="hasDouble || hasTriple"
           >
             <div class="text-uppercase title">
@@ -65,7 +66,7 @@
                 src="../assets/images/shapes/question card title graphic.svg"
                 height="100%"
                 width="auto"
-
+                alt=""
               >
                 <h3 class="text-h5">
                   <slot name="h1Title"></slot>
@@ -80,6 +81,7 @@
                 :width="`${cardImg}`"
                 class="mr-auto ml-auto mb-6"
                 :class="{'question-card': hasQuestion === 'q'}"
+                alt=""
               ></v-img>
                   <v-sheet color="transparent" max-width="250" width="100%">
                     <p class="text-body-1 card-body-text">
@@ -108,6 +110,7 @@
               width="50%"
               height="auto"
               class="mr-auto ml-auto"
+              alt=""
             ></v-img>
   
             <v-img
@@ -115,6 +118,7 @@
               width="50%"
               height="auto"
               class="mr-auto ml-auto"
+              alt=""
             ></v-img>
           </v-sheet>
         </v-card>

@@ -1,5 +1,5 @@
 <template>
-  <v-sheet v-resize="onResize" color="transparent" class="d-flex flex-column justify-center align-center mb-16" height="100vh" width="100vw">
+  <v-sheet v-resize="onResize" color="transparent" class="d-flex flex-column justify-center align-center mb-16 scroll-to-finished" height="min-content" width="100vw">
     <v-sheet color="transparent" class="pa-0 mt-n15" width="100%">
       {{ windowSize.x }}
 
@@ -25,7 +25,7 @@
           v-for="(card, index) in myQuestionAnswers"
           :key="index"
         >
-          <v-card color="transparent pa-12" elevation="0">
+          <v-card color="transparent pa-12" elevation="0" class="finish-card">
             <v-sheet color="transparent" class="d-flex">
                   <FlashCard
                     class="position-relative mr-auto mr-n6 rotate-card"
@@ -72,10 +72,20 @@
   import { storeToRefs } from 'pinia';
   import { useCardStore } from '../stores/cardInfo';
   import { onClickOutside } from '@vueuse/core';
+  import { useGoTo } from 'vuetify'
+
+  const goTo = useGoTo()
+
+  const gameIntro = () => {
+    return goTo(".scroll-to-finished", { offset: -450, duration: 300, easing: 'easeInOutCubic' })
+  }
+
+  gameIntro()
 
   onMounted(() => {
     onResize()
     modelOpenClose.value = false
+    modelIndex.value = null
   })
   
   const targetTwo = ref(null);
@@ -99,7 +109,8 @@
     showAllPicks, 
     gamePoints, 
     gameProgress,
-    modelOpenClose
+    modelOpenClose,
+    modelIndex
   } = storeToRefs(store);
   
   onClickOutside(targetTwo, (event) => {

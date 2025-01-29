@@ -4,6 +4,7 @@
       src='../assets/images/branding/clt logo with white text no outline.svg'
       class="footer-img"
       aspect-ratio="16/9"
+      alt="Centre for Learning & Teaching logo"
       >
       </v-img>
 
@@ -11,6 +12,7 @@
       src="../assets/images/branding/lbu logo.svg"
       class="footer-img"
       aspect-ratio="16/9" 
+      alt="Leeds Beckett University logo"
       >
       </v-img>
 

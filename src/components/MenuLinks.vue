@@ -25,7 +25,7 @@
       <v-list-item  nav>
         <v-btn
           :slim="isSlim"
-          :staked="isStacked"
+          :stacked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           :size="fontSize"
@@ -39,7 +39,7 @@
       <v-list-item nav>
         <v-btn
           :slim="isSlim"
-          :staked="isStacked"
+          :stacked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"
@@ -53,7 +53,7 @@
       <v-list-item nav>
         <v-btn
           :slim="isSlim"
-          :staked="isStacked"
+          :stacked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
           variant="text"

@@ -544,7 +544,8 @@ export const useCardStore = defineStore('cardInfo', {
     modelOpenClose: false,
     gameProgress: 70,
     gamePoints: 0, 
-    drawer: false
+    drawer: false,
+    modelIndex: null
     }),
     getters: { 
         onlyQuestionCards: (state) => {

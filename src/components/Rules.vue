@@ -14,7 +14,7 @@
 
             <v-list 
                 bg-color="transparent" 
-                lines="three" 
+                lines="three"   
                 height="min-content" 
                 class="rules"
             >
@@ -73,6 +73,7 @@
                 height="auto"
                 width="70"
                 cover
+                alt=""
             ></v-img>
         </div>
     </v-sheet>

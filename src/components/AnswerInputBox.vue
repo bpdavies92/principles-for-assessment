@@ -15,7 +15,7 @@
           <p class="text-body-1 mb-6">Answer the question by typing in the box below</p> 
                 <v-textarea
                 v-model="modelText"
-                class="pb-1 mb-1"
+                class="pb-1 mb-1 text-lowercase"
                 clear-icon="mdi-close-circle"
                 :label="cardInfo[indexNum].content ? cardInfo[indexNum].content : ''"
                 clearable
@@ -49,11 +49,11 @@ const {
     userInputText
 } = storeToRefs(store)
 
-console.log('ModelOpenClose', modelOpenClose.value, 'indexNum', props.indexNum )
 
 const modelText = ref('')
 
 function updateAnswer() {
+
   if(cardInfo.value[props.indexNum].reverseStaticText === true) {
       cardInfo.value[props.indexNum].answer =  cardInfo.value[props.indexNum].staticText + modelText.value  
   } else {
@@ -61,6 +61,7 @@ function updateAnswer() {
   }
   modelOpenClose.value = false    
   modelText.value = ''
+
 }
 
 </script>

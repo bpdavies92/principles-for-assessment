@@ -1,70 +1,106 @@
 <template>
 
- <v-container class="mobile-game-container position-relative" height="min-height">
-    <v-row class="mb-12">
-            <v-col cols="12" md="12">
-                <FlashCard
-                class="question-card-top"
-                :key="randomCard"
-                :hasQuestion="onlyQuestionCardsSingleRandom.type"
-                :class="[
-                    cardPicked === true ? 'winning-card-question' : 'card-question',
-                    newGame === true ? 'new-canvas' : '',
-                        startAnimation === true && windowSize.x >= 960 ? 'animation-start' : '',
-                    startAnimation === true ? 'test' : ''
-                ]"
-                :mobileSize="true"
-                :dropshadow="10"
-                :question="onlyQuestionCardsSingleRandom.type"
-                :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
-                :cardColour="onlyQuestionCardsSingleRandom.colour"
-                :topCard="true"
-                >
-                <template v-slot:h1Title>Question</template>
-                <template v-slot:bodyText>{{ onlyQuestionCardsSingleRandom.content }}</template>
-                </FlashCard>
-            </v-col>
-        </v-row>
-    <v-row>
-        <v-col cols="12" xs="12" sm="6" md="4" v-for="(item, index) in onlyAnswerCardsSixCards"  :key="index">
-            <FlashCard
-            :key="index"
-            :mobileSize="true"
-            class="scale-card"
-            @mouseover="cardPicked === false ? isRotated[index] = true : null"
-            @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-            @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
-            :style="{
-                transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
-            }"
-            :question="item.type"
-            :svgUrl="item.svgUrl"
-            :hasDouble="item.isDouble"
-            :hasTriple="item.isTriple"
-            :flip="cardSelected[index] === 'not selected' && windowSize.x >= 960"
-            :cardColour="item.colour"
-            :class="[
-                cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
-                cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
-                newGame === true ? 'new-canvas' : '',
-                startAnimation === true ? 'animation-start' : ''
-            ]">
-            <template v-slot:h1Title>Question</template>
-            <template v-slot:bodyText>{{ item.content }}</template>
-            <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
-            </FlashCard>
-        </v-col>
-    </v-row>
- </v-container>
+<AnswerInputBox :indexNum="modelIndex" v-if="gameProgress < 100"/>
+
+   <v-container class="mobile-game-container position-relative scroll-to-question">
+      <v-sheet class="position-fixed next-btn-container pl-6 pr-6">
+        <v-btn
+            @click="newSelection()"
+            v-if="cardPicked"
+            block
+            rounded="xs"
+            size="large"
+            class="mb-1 next-btn"
+            color="#303030">
+              Next card
+        </v-btn>
+      </v-sheet>
+      <v-row >
+              <v-col cols="12" sm="6">
+                  <FlashCard
+                  class="question-card-top "
+                  :key="randomCard"
+                  :hasQuestion="onlyQuestionCardsSingleRandom.type"
+                  :class="[
+                      cardPicked === true ? 'winning-card-question' : 'card-question',
+                  ]"
+                  :mobileSize="true"
+                  :dropshadow="10"
+                  :question="onlyQuestionCardsSingleRandom.type"
+                  :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
+                  :cardColour="onlyQuestionCardsSingleRandom.colour"
+                  :topCard="true"
+                  >
+                  <template v-slot:h1Title>Question</template>
+                  <template v-slot:bodyText>{{ onlyQuestionCardsSingleRandom.content }}</template>
+                  </FlashCard>
+              </v-col>
+              <v-col class="" cols="12" sm="6">
+            <v-sheet  color="transparent" class="points">
+       
+            <div >
+              <v-progress-circular
+                :model-value="gameProgress"
+                rotate="360"
+                size="300"
+                width="17"
+                color="#303030"
+              >
+                <div  class="d-flex align-center justify-center flex-column mt-n1 game-scoreboard-info">
+                  <div class="text-body-1">{{ gamePoints }}</div>
+                  <div class="text-body-1">points</div>
+            <v-btn v-if="!cardPicked" class="mt-3" block @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+                </div>
+              </v-progress-circular>
+   
+            </div>
+        </v-sheet>
+              </v-col>
+          </v-row>
+          <hr class="mb-6 mt-6"/>
+      <v-row>
+          <v-col cols="12" xs="12" sm="6" md="4" v-for="(item, index) in onlyAnswerCardsSixCards" :key="index">
+   
+              <FlashCard
+              :key="index"
+              :mobileSize="true"
+              :dropshadow="5"
+              class="scale-card"
+              @mouseover="cardPicked === false ? isRotated[index] = true : null"
+              @mouseleave="cardPicked === false ? isRotated[index] = false : null"
+              @click="goIntro(item.id); userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); "
+              :style="{
+                  transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
+              }"
+              :question="item.type"
+              :svgUrl="item.svgUrl"
+              :hasDouble="item.isDouble"
+              :hasTriple="item.isTriple"
+              :flip="cardSelected[index] === 'not selected'"
+              :cardColour="item.colour"
+              :class="[
+                  cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
+                  `scroll-to-answer-${item.id}`
+                 
+              ]">
+              <template v-slot:h1Title>Question</template>
+              <template v-slot:bodyText>{{ item.content }}</template>
+              <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
+              </FlashCard>
+          </v-col>
+      </v-row>
+   </v-container>
+
 
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted, onBeforeMount } from 'vue';
 import { useCardStore } from '../stores/cardInfo';
 import FlashCard from '@/components/FlashCard.vue';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { storeToRefs } from 'pinia';
+import { useGoTo } from 'vuetify'
 import gsap from 'gsap';
 
 onMounted(() => {
@@ -75,8 +111,17 @@ onMounted(() => {
   animationDelay();
 })
 
+onBeforeMount(() => {
+  modelOpenClose.value = false
+  modelIndex.value = null
+})
+
+
+
 // Store
 const store = useCardStore();
+const goTo = useGoTo()
+
 
 const { 
   onlyQuestionCards, 
@@ -106,12 +151,12 @@ let windowSize = ref({
     modelOpenClose,
     gameProgress,
     gamePoints,
-    currentQuestion
+    currentQuestion,
+    modelIndex
   } = storeToRefs(store);
 
   // Reactive Variables
   const userInput = ref('');
-  const modelIndex = ref(null)
   const cardInput = ref([false, false, false, false, false, false]);
   const showAllAnswerCards = ref(false);
   const numberAdder = ref(1);
@@ -126,7 +171,7 @@ let windowSize = ref({
 
 // Computed Properties
 const rot = computed(() => {
-  let differentAngles = [-5, 10, 3, -3, -14, 12, -7];
+  let differentAngles = [-5, 8, 3, -3, -4, 4, -7];
   for (let i = differentAngles.length - 1; i > 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     [differentAngles[i], differentAngles[randomIndex]] = [differentAngles[randomIndex], differentAngles[i]];
@@ -159,10 +204,20 @@ const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
     if(cardInfo.value[id].isTriple) {
       gamePoints.value += points * 3 
     }
-
   }
 
-function userCardInput(id, i) {
+  const goIntro = (id) => {
+   return goTo(`.scroll-to-answer-${id}`, { offset: -450, duration: 300, easing: 'easeInOutCubic' })
+  }
+
+  const scrollToTop = () => {
+   return goTo(".scroll-to-question", { offset: -100, duration: 300, easing: 'easeInOutCubic' })
+  }
+
+  scrollToTop()
+
+const userCardInput = async (id, i) => {
+  await goTo(`.scroll-to-answer-${id}`, { offset: -450, duration: 300, easing: 'easeInOutCubic' })
   if(cardInfo.value[id].userInput === false || cardSelected.value[i] === 'not selected' || modelIndex.value === false) return
   modelOpenClose.value = true
   modelIndex.value = id
@@ -197,11 +252,12 @@ function newSelection() {
   }
 
   if (processStage.value === 2) {
-
+    
     setTimeout(() => {
+      goTo('.scroll-to-question', { offset: -100, duration: 300, easing: 'easeInOutCubic' })
       store.addNewQuestion();
       cardSelected.value.fill(null);
-    }, 800)
+    }, 100)
 
     setTimeout(() => {
       newGame.value = false;
@@ -211,7 +267,7 @@ function newSelection() {
       startAnimation.value = true;
       animationDelay();
       isRotated.value.fill(false);
-    }, 1000);
+    }, 300);
   }
 }
 

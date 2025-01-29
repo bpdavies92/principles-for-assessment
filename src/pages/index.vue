@@ -1,5 +1,5 @@
 <template>
-  <div class="extra-space">
+  <div class="extra-space" v-resize="onResize">
     <v-sheet
         v-if="showAllAnswers"
         color="transparent"
@@ -19,8 +19,8 @@
         <MyPicks />
     </v-sheet>
     <GameFinished v-if="gameProgress === 100"/>  
-    <MobileGame/>
-    <!-- <CardGame v-if="gameProgress < 100"/> -->
+    <MobileGame v-if="gameProgress < 100 && windowSize.x < 960"/>
+    <CardGame v-if="gameProgress < 100 && windowSize.x >= 960"/>
     <Introduction />
     <Rules />
     <v-sheet width="100vw" height="700">
@@ -28,6 +28,7 @@
       src="../assets/images/photographs/table game with hands.jpg"     
       aspect-ratio="16/9"
       height="100%"
+      alt=""
       ></v-parallax>
     </v-sheet>
 </div>
@@ -36,6 +37,22 @@
 <script setup>
   import { useCardStore } from '@/stores/cardInfo';
   import { storeToRefs } from 'pinia'
+  import {ref, onMounted} from 'vue'
+
+  onMounted(() => {
+    onResize()
+  })
+
+  const windowSize = ref({
+    x: 0, 
+    y: 0
+  })
+
+  const onResize = () => {
+    windowSize.value = { x: window.innerWidth, y: window.innerHeight }
+    return windowSize.value
+  }
+
 
   const store = useCardStore()
   const {
