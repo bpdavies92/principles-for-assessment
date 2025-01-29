@@ -55,7 +55,6 @@
     &-container {
         max-width: 50rem;
         padding: 1rem;
-        
     }
 
     &-images:nth-child(0) {
@@ -119,8 +118,6 @@
         animation: wiggle 15s ease-in-out infinite both;
         z-index: 20;
     }
-
-  
 }
 
 @keyframes wiggle {

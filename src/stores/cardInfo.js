@@ -542,7 +542,7 @@ export const useCardStore = defineStore('cardInfo', {
     myQuestionAnswers: [],
     currentQuestion: 0,
     modelOpenClose: false,
-    gameProgress: 0,
+    gameProgress: 70,
     gamePoints: 0, 
     drawer: false
     }),

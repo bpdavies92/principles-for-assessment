@@ -19,7 +19,8 @@
         <MyPicks />
     </v-sheet>
     <GameFinished v-if="gameProgress === 100"/>  
-    <CardGame v-if="gameProgress < 100"/>
+    <MobileGame/>
+    <!-- <CardGame v-if="gameProgress < 100"/> -->
     <Introduction />
     <Rules />
     <v-sheet width="100vw" height="700">

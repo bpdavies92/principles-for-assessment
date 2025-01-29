@@ -6,9 +6,10 @@
     >
         <v-sheet 
             color="#fafafa" 
-            class="mr-auto ml-auto pa-md-6 pa-sm-1 rules-container" 
+            class="mr-auto ml-auto pa-md-6 pa-sm-3 rules-container" 
             rounded="xl"
         >
+        
             <h2 class="text-h2">Rules</h2>
 
             <v-list 

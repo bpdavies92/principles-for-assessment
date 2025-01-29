@@ -224,18 +224,6 @@
     }
   }
   
-  .cards-container {
-    position: absolute;
-    perspective: 1000px;
-  
-    &:hover {
-      z-index: 100;
-    }
-  }
-
-  
-
-  
   .card-inner {
     position: relative;
     transform-style: preserve-3d;

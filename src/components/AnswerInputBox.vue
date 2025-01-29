@@ -17,7 +17,7 @@
                 v-model="modelText"
                 class="pb-1 mb-1"
                 clear-icon="mdi-close-circle"
-                :label="cardInfo[indexNum].content"
+                :label="cardInfo[indexNum].content ? cardInfo[indexNum].content : ''"
                 clearable
                 ></v-textarea>
         </v-card-text>
@@ -49,10 +49,11 @@ const {
     userInputText
 } = storeToRefs(store)
 
+console.log('ModelOpenClose', modelOpenClose.value, 'indexNum', props.indexNum )
+
 const modelText = ref('')
 
 function updateAnswer() {
-  console.log(cardInfo.value[props.indexNum].reverseStaticText === true)
   if(cardInfo.value[props.indexNum].reverseStaticText === true) {
       cardInfo.value[props.indexNum].answer =  cardInfo.value[props.indexNum].staticText + modelText.value  
   } else {

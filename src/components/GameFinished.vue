@@ -36,7 +36,7 @@
                     <template v-slot:bodyText>{{ card[1].content }}</template>
                   </FlashCard>
 
-                  <!-- ANSWER CARD -->
+                  <!-- ANSWER CARD -->  
                   <FlashCard
                     class="position-relative ml-n6 ml-auto rotate-card"
                     :question="card[0].type"
@@ -75,6 +75,7 @@
 
   onMounted(() => {
     onResize()
+    modelOpenClose.value = false
   })
   
   const targetTwo = ref(null);
@@ -97,7 +98,8 @@
     cardInfo, 
     showAllPicks, 
     gamePoints, 
-    gameProgress 
+    gameProgress,
+    modelOpenClose
   } = storeToRefs(store);
   
   onClickOutside(targetTwo, (event) => {
@@ -107,7 +109,7 @@
   function resetGame() {
     gameProgress.value = 0;
     gamePoints.value = 0;
-    // myQuestionAnswers.value = [];
+    myQuestionAnswers.value = [];
   }
 
   function nextCard() {

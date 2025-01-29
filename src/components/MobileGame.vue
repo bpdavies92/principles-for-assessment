@@ -1,93 +1,62 @@
 <template>
-  <AnswerInputBox :indexNum="modelIndex" />
 
-  <div class="overflow-hidden position-relative" >
-    <v-container v-resize="onResize" color="#fafafa" ref="main" class="ml-auto mr-auto" max-width="1350">
-          <v-sheet  color="transparent" class="points">
-            {{ currentQuestion }}
-          <v-btn
-            @click="newSelection()"
-            v-if="cardPicked"
-            :block="windowSize.x <= 600"
-            width="100%"
-            rounded="xs"
-            size="small"
-            class="mb-1 next-btn"
-            color="#303030">
-            Next card
-          </v-btn>
-          <div >
-            <v-progress-circular
-              v-if="windowSize.x >= 960"
-              :model-value="gameProgress"
-              rotate="360"
-              size="120"
-              width="14"
-              color="#303030"
-            >
-              <div  class="d-flex align-center justify-center flex-column mt-n1">
-                <div class="mb-n1 text-body-1">{{ gamePoints }}</div>
-                <div class="text-body-1">points</div>
-              </div>
-            </v-progress-circular>
-            <v-btn  v-if="windowSize.x >= 960" class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
-          </div>
-      </v-sheet>
-      <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
- 
-        <FlashCard
-          class="question-card-top"
-          :key="randomCard"
-          :hasQuestion="onlyQuestionCardsSingleRandom.type"
-          :class="[
-            cardPicked === true ? 'winning-card-question' : 'card-question',
-            newGame === true ? 'new-canvas' : '',
-            startAnimation === true && windowSize.x >= 960 ? 'animation-start' : '',
-            startAnimation === true ? 'test' : ''
-          ]"
-          :mobileSize="true"
-          :dropshadow="10"
-          :question="onlyQuestionCardsSingleRandom.type"
-          :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
-          :cardColour="onlyQuestionCardsSingleRandom.colour"
-          :topCard="true"
-        >
-          <template v-slot:h1Title>Question</template>
-          <template v-slot:bodyText>{{ onlyQuestionCardsSingleRandom.content }}</template>
-        </FlashCard>
+ <v-container class="mobile-game-container position-relative" height="min-height">
+    <v-row class="mb-12">
+            <v-col cols="12" md="12">
+                <FlashCard
+                class="question-card-top"
+                :key="randomCard"
+                :hasQuestion="onlyQuestionCardsSingleRandom.type"
+                :class="[
+                    cardPicked === true ? 'winning-card-question' : 'card-question',
+                    newGame === true ? 'new-canvas' : '',
+                        startAnimation === true && windowSize.x >= 960 ? 'animation-start' : '',
+                    startAnimation === true ? 'test' : ''
+                ]"
+                :mobileSize="true"
+                :dropshadow="10"
+                :question="onlyQuestionCardsSingleRandom.type"
+                :svgUrl="onlyQuestionCardsSingleRandom.svgUrl"
+                :cardColour="onlyQuestionCardsSingleRandom.colour"
+                :topCard="true"
+                >
+                <template v-slot:h1Title>Question</template>
+                <template v-slot:bodyText>{{ onlyQuestionCardsSingleRandom.content }}</template>
+                </FlashCard>
+            </v-col>
+        </v-row>
+    <v-row>
+        <v-col cols="12" xs="12" sm="6" md="4" v-for="(item, index) in onlyAnswerCardsSixCards"  :key="index">
+            <FlashCard
+            :key="index"
+            :mobileSize="true"
+            class="scale-card"
+            @mouseover="cardPicked === false ? isRotated[index] = true : null"
+            @mouseleave="cardPicked === false ? isRotated[index] = false : null"
+            @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
+            :style="{
+                transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
+            }"
+            :question="item.type"
+            :svgUrl="item.svgUrl"
+            :hasDouble="item.isDouble"
+            :hasTriple="item.isTriple"
+            :flip="cardSelected[index] === 'not selected' && windowSize.x >= 960"
+            :cardColour="item.colour"
+            :class="[
+                cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
+                cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
+                newGame === true ? 'new-canvas' : '',
+                startAnimation === true ? 'animation-start' : ''
+            ]">
+            <template v-slot:h1Title>Question</template>
+            <template v-slot:bodyText>{{ item.content }}</template>
+            <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
+            </FlashCard>
+        </v-col>
+    </v-row>
+ </v-container>
 
-        <FlashCard
-          v-for="(item, index) in onlyAnswerCardsSixCards"
-          :key="index"
-          :mobileSize="true"
-          class="scale-card"
-          @mouseover="cardPicked === false ? isRotated[index] = true : null"
-          @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
-          :style="{
-            transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
-          }"
-          :question="item.type"
-          :svgUrl="item.svgUrl"
-          :hasDouble="item.isDouble"
-          :hasTriple="item.isTriple"
-          :flip="cardSelected[index] === 'not selected' && windowSize.x >= 960"
-          :cardColour="item.colour"
-          :class="[
-            cardSelected[index] === 'answer' ? 'winning-card-answer' : 'card-question',
-            cardSelected[index] === 'not selected' ? 'move-cards-away' : '',
-            newGame === true ? 'new-canvas' : '',
-            startAnimation === true ? 'animation-start' : ''
-          ]">
-          <template v-slot:h1Title>Question</template>
-          <template v-slot:bodyText>{{ item.content }}</template>
-          <template v-if="item.isDouble || item.isTriple" v-slot:doubleTriple>{{ item.isDouble ? 'Double' : 'Triple' }}</template>
-        </FlashCard>
-
-      </v-sheet>
-    </v-container>
-
-  </div>
 </template>
 
 <script setup>
@@ -262,7 +231,3 @@ function reshuffleCards() {
 store.reshuffleAnswerCard();
 
 </script>
-
-
-
-

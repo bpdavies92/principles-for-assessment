@@ -1,6 +1,13 @@
 <template>
-    <!-- <v-list-item nav>
-        <v-btn variant="text" prepend-icon="mdi-download" size="small">
+    <v-list-item nav>
+        <v-btn 
+          variant="text" 
+          prepend-icon="mdi-download" 
+          :slim="isSlim"
+          :staked="isStacked"
+          :class="{'mb-12 mt-12' : isBlock}"
+          :block="isBlock"
+          :size="fontSize">
         Download
           <v-menu activator="parent">
           <v-list>
@@ -13,7 +20,7 @@
           </v-list>
                 </v-menu>
         </v-btn>
-      </v-list-item> -->
+      </v-list-item>
       
       <v-list-item  nav>
         <v-btn
@@ -21,9 +28,9 @@
           :staked="isStacked"
           :class="{'mb-12 mt-12' : isBlock}"
           :block="isBlock"
+          :size="fontSize"
           variant="text"
           @click="goIntro('.scroll-to-introduction')"
-          :size="fontSize"
           prepend-icon="mdi-cards-playing">
           Introduction
         </v-btn>
