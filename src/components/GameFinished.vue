@@ -77,7 +77,7 @@
   const goTo = useGoTo()
 
   const gameIntro = () => {
-    return goTo(".scroll-to-finished", { offset: -450, duration: 300, easing: 'easeInOutCubic' })
+    return goTo(".scroll-to-finished", { offset: 0, duration: 300, easing: 'easeInOutCubic' })
   }
 
   gameIntro()
@@ -110,7 +110,8 @@
     gamePoints, 
     gameProgress,
     modelOpenClose,
-    modelIndex
+    modelIndex,
+    cardSelected
   } = storeToRefs(store);
   
   onClickOutside(targetTwo, (event) => {
@@ -121,6 +122,7 @@
     gameProgress.value = 0;
     gamePoints.value = 0;
     myQuestionAnswers.value = [];
+    cardSelected.value = [null, null, null, null, null, null]
   }
 
   function nextCard() {

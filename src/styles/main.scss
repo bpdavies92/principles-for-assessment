@@ -7,6 +7,13 @@
 @font-face {
     font-family: "Aveny";
     src: url("../assets/AvenyTLBU-Medium.otf");
+    ascent-override: 90%;  
+}
+
+$body-font-family: Arial, Helvetica, sans-serif !important;
+
+p, .text-body-1, .text-body-2 {
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 h1, h2, h3, .text-h2, .title-points, .v-app-bar-title {

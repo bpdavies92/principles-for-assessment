@@ -11,7 +11,7 @@
             :block="windowSize.x <= 600"
             width="100%"
             rounded="xs"
-            size="small"
+            size="small"    
             class="mb-1 next-btn"
             color="#303030">
             Next card
@@ -30,7 +30,7 @@
                 <div class="text-body-1">points</div>
               </div>
             </v-progress-circular>
-            <v-btn  v-if="!cardPicked" class="ml-6" @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+            <v-btn  v-if="!cardPicked" class="ml-6" @click="store.reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
           </div>
       </v-sheet>
       <v-sheet class="position-relative card-container mr-auto ml-auto" height="102vh" color="transparent">
@@ -63,7 +63,7 @@
           class="scale-card"
           @mouseover="cardPicked === false ? isRotated[index] = true : null"
           @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-          @click="userCardInput(item.id, index); pointsCollector(item.points, index, item.id, item.userInput); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
+          @click="userCardInput(item.id, index); store.pointsCollector(item.points, index, item.id, item.userInput); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); " 
           :style="{
             transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
           }"
@@ -111,7 +111,9 @@ const store = useCardStore();
 
 const { 
   onlyQuestionCards, 
-  questionAnswerPair 
+  questionAnswerPair,
+  pointsCollector,
+  reshuffleCards
 } = store;
 
 let windowSize = ref({
@@ -138,7 +140,8 @@ let windowSize = ref({
     gameProgress,
     gamePoints,
     currentQuestion,
-    modelIndex
+    modelIndex,
+    cardSelected
   } = storeToRefs(store);
 
   // Reactive Variables
@@ -147,7 +150,6 @@ let windowSize = ref({
   const showAllAnswerCards = ref(false);
   const numberAdder = ref(1);
   const isRotated = ref([false, false, false, false, false, false]);
-  const cardSelected = ref([null, null, null, null, null, null]);
   const winText = ref('winning-card-answer');
   const cardPicked = ref(false);
   const animationStage = ref(0);
@@ -174,24 +176,6 @@ const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
     gameProgress.value += 10;
   }
 
-  function pointsCollector(points, i, id, input) {
-    if(cardSelected.value[i] != null || input === true) return
-
-    gameProgress.value += 10
-
-    if(!cardInfo.value[id].isDouble && !cardInfo.value[id].isTriple) {
-      gamePoints.value += points
-    } 
-
-    if(cardInfo.value[id].isDouble) {
-      gamePoints.value += points * 2
-    }
-
-    if(cardInfo.value[id].isTriple) {
-      gamePoints.value += points * 3 
-    }
-
-  }
 
 function userCardInput(id, i) {
   if(cardInfo.value[id].userInput === false || cardSelected.value[i] === 'not selected' || modelIndex.value === false) return
@@ -246,17 +230,7 @@ function newSelection() {
   }
 }
 
-function reshuffleCards() {
-  tl.revert();
-      newGame.value = false;
-      cardPicked.value = false;
-      cardSelected.value.fill(null);
-      store.reshuffleAnswerCard();
-      processStage.value = 0;
-      startAnimation.value = true;
-      animationDelay();
-      isRotated.value.fill(false);
-}
+
 
 // Initial Setup
 store.reshuffleAnswerCard();

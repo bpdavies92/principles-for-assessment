@@ -542,17 +542,22 @@ export const useCardStore = defineStore('cardInfo', {
     myQuestionAnswers: [],
     currentQuestion: 0,
     modelOpenClose: false,
-    gameProgress: 70,
+    gameProgress: 0,
     gamePoints: 0, 
     drawer: false,
-    modelIndex: null
+    modelIndex: null,
+    cardSelected: [null, null, null, null, null, null], 
+    newGame: false, 
+    cardPicked: false,
+    startAnimation: true,
+    isRotated: [false, false, false, false, false, false]
     }),
     getters: { 
         onlyQuestionCards: (state) => {
-        return state.cardInfo.filter((i) => i.type === 'q')
+            return state.cardInfo.filter((i) => i.type === 'q')
         }, 
         onlyAnswerCards: (state) => {
-        return state.cardInfo.filter((i) => i.type === 'a')
+            return state.cardInfo.filter((i) => i.type === 'a')
         },
         onlyQuestionCardsSingleRandom: (state) => { 
             const questionCards = state.cardInfo.filter((i) => { return i.type === 'q' })
@@ -604,6 +609,33 @@ export const useCardStore = defineStore('cardInfo', {
             const newPair = [question, answer, score]
             this.myQuestionAnswers.push(newPair)
             console.log(this.myQuestionAnswers)
-        }
+        }, 
+        pointsCollector(points, i, id, input) {
+            if(this.cardSelected[i] != null || input === true) return
+
+                this.gameProgress += 20
+
+            if(!this.cardInfo[id].isDouble && !this.cardInfo[id].isTriple) {
+                this.gamePoints += points
+            } 
+
+            if(this.cardInfo[id].isDouble) {
+                this.gamePoints += points * 2
+            }
+
+            if(this.cardInfo[id].isTriple) {
+                this.gamePoints += points * 3 
+            }
+        }, 
+        reshuffleCards() {
+                this.newGame = false;
+                this.cardPicked = false;
+                this.cardSelected.fill(null);
+                this.reshuffleAnswerCard();
+                this.processStage = 0;
+                this.startAnimation = true;
+                this.isRotated.fill(false);
+          }
+          
     }
   })

@@ -1,5 +1,5 @@
 <template>
-  <AnswerInputBox :indexNum="modelIndex" v-if="gameProgress < 100"/>
+  <AnswerInputBox @givePoints="pointsCollector" :indexNum="modelIndex"/>
    <v-container class="mobile-game-container position-relative scroll-to-question">
       <v-sheet class="position-fixed next-btn-container pl-6 pr-6">
         <v-btn
@@ -46,8 +46,8 @@
               >
                 <div  class="d-flex align-center justify-center flex-column mt-n1 game-scoreboard-info">
                   <div class="text-body-1">{{ gamePoints }}</div>
-                  <div class="text-body-1">points</div>
-            <v-btn v-if="!cardPicked" class="mt-3" block @click="reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
+                  <div class="text-body-1">points</div> 
+            <v-btn v-if="!cardPicked" class="mt-3" block @click="store.reshuffleCards" color="#303030" size="small">Reshuffle</v-btn>
                 </div>
               </v-progress-circular>
    
@@ -66,7 +66,7 @@
               class="scale-card"
               @mouseover="cardPicked === false ? isRotated[index] = true : null"
               @mouseleave="cardPicked === false ? isRotated[index] = false : null"
-              @click="goIntro(item.id); userCardInput(item.id, index); pointsCollector(item.points, index, item.id); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); "
+              @click="goIntro(item.id); userCardInput(item.id, index); store.pointsCollector(item.points, index, item.id, item.userInput); cardChoice(index); cardPicked = true; questionAnswerPair(item, onlyQuestionCardsSingleRandom, item.points); isRotated.forEach((value, i, array) => array[i] = true); "   
               :style="{
                   transform: isRotated[index] === false ? `translate(-50%, -50%) rotate(${rot[index]}deg)` : ''
               }"
@@ -112,8 +112,6 @@ onBeforeMount(() => {
   modelIndex.value = null
 })
 
-
-
 // Store
 const store = useCardStore();
 const goTo = useGoTo()
@@ -121,7 +119,9 @@ const goTo = useGoTo()
 
 const { 
   onlyQuestionCards, 
-  questionAnswerPair 
+  questionAnswerPair,
+  pointsCollector,
+  reshuffleCards
 } = store;
 
 let windowSize = ref({
@@ -148,7 +148,12 @@ let windowSize = ref({
     gameProgress,
     gamePoints,
     currentQuestion,
-    modelIndex
+    modelIndex, 
+    cardSelected, 
+    newGame,
+    cardPicked,
+    startAnimation,
+    isRotated
   } = storeToRefs(store);
 
   // Reactive Variables
@@ -156,13 +161,8 @@ let windowSize = ref({
   const cardInput = ref([false, false, false, false, false, false]);
   const showAllAnswerCards = ref(false);
   const numberAdder = ref(1);
-  const isRotated = ref([false, false, false, false, false, false]);
-  const cardSelected = ref([null, null, null, null, null, null]);
   const winText = ref('winning-card-answer');
-  const cardPicked = ref(false);
   const animationStage = ref(0);
-  const newGame = ref(false);
-  const startAnimation = ref(true);
   const main = ref();
 
 // Computed Properties
@@ -182,25 +182,7 @@ const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
   // Functions
   function progressGame() {
     gameProgress.value += 10;
-  }
-
-  function pointsCollector(points, i, id) {
-    if(cardSelected.value[i] != null) return
-
-    gameProgress.value += 10
-
-    if(!cardInfo.value[id].isDouble && !cardInfo.value[id].isTriple) {
-      gamePoints.value += points
-    } 
-
-    if(cardInfo.value[id].isDouble) {
-      gamePoints.value += points * 2
-    }
-
-    if(cardInfo.value[id].isTriple) {
-      gamePoints.value += points * 3 
-    }
-  }
+  } 
 
   const goIntro = (id) => {
    return goTo(`.scroll-to-answer-${id}`, { offset: -450, duration: 300, easing: 'easeInOutCubic' })
@@ -267,17 +249,8 @@ function newSelection() {
   }
 }
 
-function reshuffleCards() {
-  tl.revert();
-      newGame.value = false;
-      cardPicked.value = false;
-      cardSelected.value.fill(null);
-      store.reshuffleAnswerCard();
-      processStage.value = 0;
-      startAnimation.value = true;
-      animationDelay();
-      isRotated.value.fill(false);
-}
+
+
 
 // Initial Setup
 store.reshuffleAnswerCard();

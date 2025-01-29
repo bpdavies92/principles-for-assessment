@@ -7,8 +7,7 @@
       persistent
       class="elevation-8"
     >
-      <template v-slot:activator="{ props: activatorProps }">
-      </template>
+
 
       <v-card>        
         <v-card-text>
@@ -42,6 +41,8 @@ import { storeToRefs } from 'pinia';
 import {ref} from 'vue'
 
 const props = defineProps(['userText', 'indexNum'])
+const emit = defineEmits(['givePoints'])
+
 const store = useCardStore()
 const {
     cardInfo,
@@ -61,6 +62,10 @@ function updateAnswer() {
   }
   modelOpenClose.value = false    
   modelText.value = ''
+
+  emit('givePoints', cardInfo.value[props.indexNum].points, props.indexNum, props.indexNum, false )
+
+  // points, i, id, input
 
 }
 
