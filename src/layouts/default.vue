@@ -27,8 +27,8 @@
       fullscreen>
 
       <v-card color='#303030'>
-        <v-toolbar>
-
+        <v-toolbar color="#303030">
+       
           <v-toolbar-title class="font-typeface">Principles Towards Assessment</v-toolbar-title>
 
           <v-spacer></v-spacer>
