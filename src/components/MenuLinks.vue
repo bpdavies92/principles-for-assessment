@@ -1,27 +1,5 @@
 <template>
-    <v-list-item nav>
-        <v-btn 
-          variant="text" 
-          prepend-icon="mdi-download" 
-          :slim="isSlim"
-          :staked="isStacked"
-          :class="{'mb-12 mt-12' : isBlock}"
-          :block="isBlock"
-          :size="fontSize">
-        Download
-          <v-menu activator="parent">
-          <v-list>
-            <v-list-item link>
-              <v-list-item-title>Print ready PDF</v-list-item-title>
-            </v-list-item>
-            <v-list-item link>
-              <v-list-item-title>PDF</v-list-item-title>
-            </v-list-item>
-          </v-list>
-                </v-menu>
-        </v-btn>
-      </v-list-item>
-      
+         
       <v-list-item  nav>
         <v-btn
           :slim="isSlim"
