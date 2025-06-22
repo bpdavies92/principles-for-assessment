@@ -16,7 +16,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 1, 
             type: 'q',
-            content: 'To ensure that assessments are reliable and fair “.........”',
+            content: 'To ensure that assessments are reliable and fair, it is essential to “__________”',
             colour: '#26a8df',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/hand and earth.svg`,
             isFront: true, 
@@ -26,7 +26,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 2, 
             type: 'q',
-            content: '“................” should be considered when designing assessments',
+            content: 'When designing assessments, “__________” should always be considered',
             colour: '#26a8df',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/guy holding pencil up looking at it.svg`,
             isFront: true, 
@@ -36,7 +36,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 3, 
             type: 'q',
-            content: '“................” to avoid over-assessment',
+            content: 'To avoid over-assessment, it is important to “__________”',
             colour: '#26a8df',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/unhappy assessment girl.svg`,
             isFront: true, 
@@ -46,7 +46,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 4, 
             type: 'q',
-            content: 'Incorporate “............” into assessments',
+            content: 'Effective assessments incorporate “__________”',
             colour: '#26a8df',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/girl with finger up.svg`,
             isFront: true, 
@@ -84,7 +84,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 7, 
             type: 'a',
-            content: 'Provide multiple assessment tasks aligned to each learning outcome',
+            content: 'Using multiple assessment tasks aligned to learning outcomes',
             colour: '#Afd3f0',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/multi choice assessment.svg`,
             isFront: true, 
@@ -126,7 +126,7 @@ export const useCardStore = defineStore('cardInfo', {
         {
             id: 10, 
             type: 'a',
-            content: 'Students design their own assessment tasks',
+            content: 'Students designing their own assessment tasks',
             colour: '#Afd3f0',
             svgUrl: `${import.meta.env.VITE_LINK}/images/illustrations/arm hand and pencil.svg`,
             isFront: true, 

@@ -24,7 +24,7 @@
            @click="goIntro('.scroll-to-rules')"
           :size="fontSize"
           prepend-icon="mdi-book-open-blank-variant">
-          Rules
+          How to play
         </v-btn>
       </v-list-item>
 

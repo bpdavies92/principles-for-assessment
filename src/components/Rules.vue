@@ -10,7 +10,7 @@
             rounded="xl"
         >
         
-            <h2 class="text-h2">Rules</h2>
+            <h2 class="text-h2">How to play</h2>
 
             <v-list 
                 bg-color="transparent" 
@@ -23,7 +23,7 @@
                         <div class="number"><span>1</span></div>
                         <div>
                             <span style="background-color: #fafafa;">
-                                Read out a question one at a time. As a team, discuss and choose the most suitable answer
+Participants are divided into small table groups. Each group is supported by a facilitator (can be another student or peer) who acts as the card dealer.
                             </span>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="number"><span>2</span></div>
                         <div>
                             <span style="background-color: #fafafa;">
-                                Only one answer per question. You cannot change your answer, once a card is played - it’s locked in, so choose wisely
+                              Each group receives a set of answer cards related to a specific subject area. Some cards contain more accurate or appropriate answers than others.
                             </span>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="number"><span>3</span></div>
                         <div>
                             <span style="background-color: #fafafa;">
-                                Select the next question and repeat the process with the remaining answers
+                                The facilitator reads out five key questions, one at a time, to the group. Each question relates to assessment design and strategy.
                             </span>
                         </div>
                     </div>
@@ -55,8 +55,44 @@
                     <div class="list-layout">
                         <div class="number"><span>4</span></div>
                         <div>
+                            <span>
+                            For every question:
+                                <v-list variant='dense' color='transparent'>
+                                        <v-list-item>a. Review: Participants have 2 minutes to look through the answer cards</v-list-item>
+                                        <v-list-item>b. Choose: As a group, they pick the single most appropriate answer card</v-list-item>
+                                        <v-list-item>c. (Optional) Justify: Groups can add short notes or justifications using sticky notes</v-list-item>
+                                </v-list>
+                            </span>
+                        </div>
+                    </div>
+                </v-list-item>
+                  <v-list-item class="rules-top">
+                    <div class="list-layout">
+                        <div class="number"><span>5</span></div>
+                        <div>
                             <span style="background-color: #fafafa; z-index: 9999;">
-                                You can write on some cards to earn double or triple points!
+                               Once the answer is selected, hand the card (and any sticky notes) back to the facilitator.
+                            </span>
+                        </div>
+                    </div>
+                </v-list-item>
+                  <v-list-item class="rules-top">
+                    <div class="list-layout">
+                        <div class="number"><span>6</span></div>
+                        <div>
+                            <span style="background-color: #fafafa; z-index: 9999;">
+                             The facilitator proceeds to the next question, and the process repeats until all five have been completed.
+
+                            </span>
+                        </div>
+                    </div>
+                </v-list-item>
+                  <v-list-item class="rules-top">
+                    <div class="list-layout">
+                        <div class="number"><span>7</span></div>
+                        <div>
+                            <span style="background-color: #fafafa; z-index: 9999;">
+                                Some answer cards may be marked as double or triple points — but points are only awarded if they are used in a relevant and appropriate way.
                             </span>
                         </div>
                     </div>
